@@ -1,0 +1,5 @@
+{%if onclick == "" %}
+    <div style="float:left;">  <button type="submit" class="{{tryb}}" name="{{komunikat}}">{{etykieta}}</button></div>
+{%else%}
+    <div style="float:left;">  <button type="submit" class="{{tryb}}" onclick="return confirm('{{onclick}}')" name="{{komunikat}}">{{etykieta}}</button></div>
+{%endif%}

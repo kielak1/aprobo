@@ -1,0 +1,80 @@
+{% extends 'base_needs.html' %}
+{% load render_table from django_tables2 %}
+<!-- {% load custom_filters %} -->
+{% load static %}
+{% block title %}Edycja potrzeby{% endblock %}
+{% load need_tags %}
+{% load general_tags %}
+{% block content %}
+
+    {% include 'edit_need_short_scripts.html' %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {% if form.errors %}
+            <div class="error">
+                <p>Nieprawidłowe dane w formularzu. Proszę sprawdzić poniższe błędy:</p>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+
+            {% include 'edit_need_short_header.html' %}  
+
+        <div style="clear: both;"></div>
+
+        <div class="standard-blok";  style="width: {{ szerokosc }}px">
+            {% include 'edit_need_short_check.html' %}  
+            <div style="clear: both;">
+                {% include 'edit_need_short_subject.html' %}
+            </div>
+            <div style="clear: both;">
+                {% include 'related_notes.html' %}  
+            </div> 
+
+
+            {% resolutions %}
+
+            <div style="clear: both;">
+                {% include 'edit_need_short_main_butons.html' %}
+            </div>    
+            <div style="clear: both;">
+                {% include 'edit_need_short_architektura.html' %}
+            </div> 
+            <div style="clear: both;"></div> 
+            <div > {% include 'edit_need_short_main_block.html' %} </div>
+
+        </div>
+
+        <div class="standard-blok"; style="width: {{ szerokosc }}px">
+            {% if contract_list %}
+                {% include "contract_related.html" %}
+            {% endif %} 
+
+            {% if ideas %}
+                {% include "idea_related.html" %}
+            {% endif %}  
+
+            {% if purchase_list %}
+                {% include "purchase_related.html" %}
+            {% endif %}     
+        </div>
+        {% include 'edit_need_short_infrastruktura.html' %} 
+        {% include 'edit_need_short_siec.html' %} 
+        {% include 'edit_need_short_uslugi.html' %} 
+        {% include 'edit_need_short_finanse.html' %} 
+
+
+        <!-- {% include 'form_debug.html' %}  -->
+
+    </form>
+
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">
+        {% include 'recent_logs.html' %}
+    </div>
+    
+    <div style="clear: both;"></div> 
+{% endblock %}
+
+

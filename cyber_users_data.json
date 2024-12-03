@@ -1,0 +1,214 @@
+[
+    {
+        "username": "Sstaavantu1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantu2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_viewer",
+            "purchase_editor"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavanta1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_recommender",
+            "idea_viewer",
+            "lead_maker",
+            "need_editor",
+            "need_maker",
+            "need_recommender",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer",
+            "purchase_recommender"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavanta2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_recommender",
+            "idea_viewer",
+            "lead_maker",
+            "need_editor",
+            "need_maker",
+            "need_recommender",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer",
+            "purchase_recommender"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantac1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_viewer",
+            "need_editor",
+            "need_finanse_acceptor",
+            "need_infra_acceptor",
+            "need_net_acceptor",
+            "need_service_acceptor",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantac2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_viewer",
+            "need_editor",
+            "need_finanse_acceptor",
+            "need_infra_acceptor",
+            "need_net_acceptor",
+            "need_service_acceptor",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantam1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_allocator",
+            "contract_editor",
+            "contract_viewer",
+            "idea_allocator",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_allocator",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_allocator",
+            "purchase_editor",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantam2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_allocator",
+            "contract_editor",
+            "contract_viewer",
+            "idea_allocator",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_allocator",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_allocator",
+            "purchase_editor",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantad1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_allocator",
+            "contract_editor",
+            "contract_viewer",
+            "idea_acceptor",
+            "idea_allocator",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_acceptor",
+            "need_allocator",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_allocator",
+            "purchase_editor",
+            "purchase_viewer",
+            "purchase_acceptor"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "Sstaavantad2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_allocator",
+            "contract_editor",
+            "contract_viewer",
+            "idea_acceptor",
+            "idea_allocator",
+            "idea_editor",
+            "idea_viewer",
+            "lead_maker",
+            "need_acceptor",
+            "need_allocator",
+            "need_editor",
+            "need_maker",
+            "need_viewer",
+            "purchase_allocator",
+            "purchase_editor",
+            "purchase_viewer",
+            "purchase_acceptor"
+        ],
+        "permissions": []
+    }
+]

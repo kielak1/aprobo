@@ -1,0 +1,89 @@
+{% load static %}
+{% load general_tags %}
+<!DOCTYPE html>
+<html>
+    {% include 'base_head.html' %}
+
+    <body>
+        {% include 'common_start_body.html' %}
+
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Umowy</a>
+                    <ul class="dropdown-menu">
+                        {% if request.user.is_authenticated %}
+                            {% drop_down '/contracts/wszystkieumowy' 'Wszystkie umowy' %}
+                            {% drop_down '/contracts/wszystkieumowyaktywne' 'Wszystkie umowy aktywne' %}
+                            <li><a class="dropdown-item" href="/contracts/ostatniozmieniane"> Ostatnio edytowane umowy</a></li>
+                            <li><a class="dropdown-item" href="/contracts/cbu_list"> Umowy CBU</a></li>
+                            <li><a class="dropdown-item" href="/contracts/ezzc_list"> Umowy EZZ </a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Uzupełnij</a>
+                    <ul class="dropdown-menu">
+                        {% if request.user.is_authenticated %}
+                            <li><a class="dropdown-item" href="/contracts/nieprzypisane">Który dział</a></li>
+                            <li><a class="dropdown-item" href="/contracts/czyobslugiwane">Czy obsługiwana &raquo;</a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" href="/contracts/czyobslugiwane">Wszystkie działy</a></li>
+                                    {% for section in request.user.custom_models.all %}
+                                        <li><a class="dropdown-item" href="/contracts/czyobslugiwane/?section__short_name={{ section.short_name }}">{{ section.short_name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="/contracts/czykontynuowac">Czy kontynuować &raquo;</a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" href="/contracts/czykontynuowac">Wszystkie działy</a></li>
+                                    {% for section in request.user.custom_models.all %}
+                                        <li><a class="dropdown-item" href="/contracts/czykontynuowac?section__short_name={{ section.short_name }}">{{ section.short_name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="/contracts/kiedykontynuowac">Kiedy kontynuować &raquo;</a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" href="/contracts/kiedykontynuowac">Wszystkie działy</a></li>
+                                    {% for section in request.user.custom_models.all %}
+                                        <li><a class="dropdown-item" href="/contracts/kiedykontynuowac?section__short_name={{ section.short_name }}">{{ section.short_name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="/contracts/jakkontynuowac">Jak kontynuować &raquo;</a>
+                                <ul class="submenu dropdown-menu">
+                                    <li><a class="dropdown-item" href="/contracts/jakkontynuowac">Wszystkie działy</a></li>
+                                    {% for section in request.user.custom_models.all %}
+                                        <li><a class="dropdown-item" href="/contracts/jakkontynuowac?section__short_name={{ section.short_name }}">{{ section.short_name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% if is_contract_editor and is_advanced %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Import umów</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/contracts/cbu_import">1 - Import umów CBU</a></li>
+                            <li><a class="dropdown-item" href="/contracts/ezzc_import">2 - Import umów EZZ</a></li>
+                            {% if dolacz_umowy %}
+                                <li><a class="dropdown-item" href="/contracts/ezzc_add">3 - Dołącz zaimportowane umowy do bazy umów</a></li>
+                            {% endif %}
+                            {% if ustaw_dane_umowy %}
+                                <li><a class="dropdown-item" href="/contracts/auto_contract">4 - Ustaw dane w bazie umów na podstawie przyłączonych rekordów</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% include 'common_mid_body.html' %}
+         <main>
+            <!-- Treść główna strony -->
+            {% block content %}{% endblock %}
+        </main>
+        {% include 'common_end_body.html' %}   
+    </body>
+</html>

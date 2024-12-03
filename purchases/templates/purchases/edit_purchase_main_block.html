@@ -1,0 +1,105 @@
+{% load purchase_tags %}
+{% load need_tags %}
+
+{% purchase_field_info purchase_instance.przedmiot_zakupu form.przedmiot_zakupu 'Przedmiot zakupu:' is_editable 1 %}
+{% purchase_field_komentarz purchase_instance.komentarz_akceptujacego form.komentarz_akceptujacego 'Komentarz akceptującego dla koordynatora IT:' status_akceptacji is_purchase_acceptor %}
+
+{% include 'related_notes.html' %}
+<!-- Sekcja przycisków -->
+<div style="clear:both;margin-bottom: 5px; margin-top: 5px;  "></div>
+
+{% if is_true %}
+  <div style="float:left;">
+    <button type="submit" class="button-normal" name="Submit">Zapisz i wyjdź</button>
+  </div>
+  <div style="float:left;">
+    <button type="submit" class="button-normal" name="Zapisz">Zapisz</button>
+  </div>
+{% endif %}
+{% if status_purchase == 'w zakupach' or status_purchase == 'w EZZ' or status_purchase == 'w realizacji' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz przejść do statusu zakup BGNIG?' 'Zakupbgnig' 'Zakup BGNiG' %}
+{% endif %}
+{% if status_purchase == 'zakup BGNIG' or status_purchase == 'w EZZ' or status_purchase == 'w realizacji' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz przejść do statusu zakup standardowy?' 'Zakupstandardowy' 'Zakup standardowy' %}
+{% endif %}
+{% if status_purchase == 'anulowany' or status_purchase == 'w zakupach' or status_purchase == 'zakup BGNIG' or status_purchase == 'zakończony' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz przejść do statusu w realizacji?' 'wrealizacji' 'w realizacji' %}
+{% endif %}
+{% if status_purchase == 'w realizacji' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz zakończyć zakup?' 'zakonczony' 'zakończ (Zakup zrealizowany)' %}
+{% endif %}
+
+{% if status_purchase == 'roboczy' or status_purchase == 'w zakupach' or status_purchase == 'zakup BGNIG' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz przejść do statusu w EZZ?' 'wezz' 'w EZZ' %}
+{% endif %}
+
+{% if status_purchase == 'w EZZ' %}
+  {% buton 'button-proces' 'Czy na pewno chcesz przejść do statusu roboczy?' 'roboczy' 'roboczy' %}
+{% endif %}
+
+{% if status_purchase != 'anulowany' %}
+  <div style="float:left;">
+    <button type="submit" onclick="return confirm('Czy na pewno chcesz porzucić zakup?')" class="button-danger" name="anulowany">Porzuć</button>
+  </div>
+{% endif %}
+
+<div style="float:left;">
+  <button type="submit" class="button-normal" name="Anuluj">Wróć</button>
+</div>
+
+<!--  {% if is_purchase_acceptor %}
+            {% if status_akceptacji == "do akceptacji" %}
+                <div style="float:left;"> <button type="submit" onclick="return confirm('Czy na pewno chcesz zaakceptać zakup?')"  class="button-normal" name="akcept">akceptuję</button></div>
+                <div style="float:left;"> <button type="submit" onclick="return confirm('Czy na pewno chcesz skierować zakup do poprawy?')"  class="button-normal" name="popraw">popraw formularz</button></div>
+            {%endif%}
+
+            {% if status_akceptacji == "zaakceptowane" %}
+                <div style="float:left;"> <button type="submit" onclick="return confirm('Czy na pewno chcesz confąć akceptację?')"  class="button-normal" name="cofnij_akceptacje">cofnij akceptację</button></div>
+            {%endif%}
+        {%endif%}
+        {% if is_purchase_recommender %}
+            {% if status_akceptacji == "do poprawy" or status_akceptacji == "niegotowe" %}
+                <div style="float:left;"><button type="submit" onclick="return confirm('Czy na pewno chcesz skierować zakup do akceptacji?')"  class="button-normal" name="gotowe">skieruj do akceptacji</button></div>
+            {%endif%}
+        {%endif%}  -->
+
+<div style="clear:both;margin-bottom: 5px; margin-top: 5px;  "></div>
+
+{% purchase_field_base purchase_instance.wymagana_data_zawarcia_umowy form.wymagana_data_zawarcia_umowy 'Wymagana data zawarcia umowy:' is_true 1 1 %}
+
+{% purchase_field_no_form purchase_instance.need.wymagana_data_realizacji 'Wymagana data realizacji:' %}
+{% purchase_field_no_form purchase_instance.need.rodzaj_inicjatywy 'Rodzaj inicjatywy:' %}
+
+{% purchase_field_base purchase_instance.odtworzeniowy|yesno:'Tak,Nie' form.odtworzeniowy 'Odtworzeniowy:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.rozwojowy|yesno:'Tak,Nie' form.rozwojowy 'Rozwojowy:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.budzet_opex_netto form.budzet_opex_netto 'OPEX:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.budzet_capex_netto form.budzet_capex_netto 'CAPEX:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.waluta form.waluta 'Waluta:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.sposob_wyceny form.sposob_wyceny 'Sposób wyceny:' is_editable 1 1 %}
+
+{% purchase_field_base purchase_instance.sposob_zakupu form.sposob_zakupu 'Sposób zakupu:' is_editable 1 1 %}
+
+<div style="clear:both;margin-bottom: 5px; margin-top: 5px;  "></div>
+
+{% purchase_field_info purchase_instance.uzasadnienie_zakupu form.uzasadnienie_zakupu 'Uzasadnienie:' is_editable 1 %}
+{% purchase_field_info purchase_instance.zakres_zakupu form.zakres_zakupu 'Zakres:' is_editable 1 %}
+{% purchase_field_info purchase_instance.cel_i_produkty form.cel_i_produkty 'cel i produkty:' is_editable 1 %}
+{% purchase_field_info purchase_instance.komentarz form.komentarz 'komentarz:' is_editable 1 %}
+
+<!-- {% purchase_field_base purchase_instance.planowany_termin_platnosci form.planowany_termin_platnosci 'Planowany termin płatności:' is_editable 1 1%} -->
+{% purchase_field_base purchase_instance.id_sap form.id_sap 'Numer zadania SAP ID:' is_editable 1 1 %}
+
+<!-- {% purchase_field_base purchase_instance.zgodnosc_mapy form.zgodnosc_mapy 'Zgodność z mapą zakupową:' is_editable 1 1%} -->
+
+{% purchase_field_base purchase_instance.dostawca form.dostawca 'Dostawca:' is_editable 1 1 %}
+
+{% purchase_field_multiple cripy form.crip_id 'CRIP:' is_editable %}
+
+<!-- {% purchase_field_multiple acceptor form.acceptors 'Akceptujący:' is_editable %} -->
+
+{% purchase_field_base purchase_instance.link_do_ezz form.link_do_ezz 'Link do EZZ:' is_editable 1 1 %}

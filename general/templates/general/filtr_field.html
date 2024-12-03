@@ -1,0 +1,16 @@
+{% load general_filters %}
+
+<div class="form-group mr-2">
+    <label for="id_{{ field_name }}" class="sr-only">{{ name }}</label>
+    {% if choices %}
+        <div class="form-control"> {{name}}: </div>
+        <select name="{{ field_name }}" id="id_{{ field_name }}" class="form-control" value="{{ parameters|get_item:field_name|default:'' }}>
+            <option value="">-- Wybierz --</option>
+            {% for choice_value, choice_label in choices %}
+                <option value="{{ choice_value }}" {% if choice_value|stringformat:"s" == parameters|get_item:field_name|stringformat:"s" %}selected{% endif %}>{{ choice_label }}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <input type="text" name="{{ field_name }}" id="id_{{ field_name }}" placeholder="{{ name }}" class="form-control" value="{{ parameters|get_item:field_name|default:'' }}">
+    {% endif %}
+</div>

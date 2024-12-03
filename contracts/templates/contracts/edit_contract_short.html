@@ -1,0 +1,60 @@
+{% extends 'base_contracts.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}Edycja umowy{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}        
+        {% if form.errors %}
+            <div class="error">
+                <p>Nieprawidłowe dane w formularzu. Proszę sprawdzić poniższe błędy:</p>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        {% include 'edit_contract_short_header.html' %}
+ 
+    
+        <div class="standard-blok"; style="width: {{ szerokosc }}px">
+            {% include 'edit_contract_short_subject.html' %}
+            {% include 'related_notes.html' %} 
+            {% include 'edit_contract_short_button.html' %}
+
+            {% include 'edit_contract_short_main.html' %}
+
+            {% include 'edit_contract_short_next.html' %}
+       
+        </div>
+
+
+    </form>
+
+           
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">
+        {% if ideas %}
+            {% include "idea_related.html" %}
+        {% endif %} 
+
+        {% if need_list %}
+            {% include "need_related.html" %}
+        {% endif %} 
+
+        {% if purchase_list %}
+            {% include "purchase_related.html" %}
+        {% endif %}    
+    </div>
+
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">    
+        {% include "recent_logs.html" %}
+    </div>
+    <div style="clear: both;"></div>    
+    <div class="standard-blok"; style="width: {{ szerokosc }}px"> 
+        {% include 'edit_contract_short_contracts.html' %}
+    </div>
+    <div style="clear: both;"></div>    
+
+{% endblock %}
+
+

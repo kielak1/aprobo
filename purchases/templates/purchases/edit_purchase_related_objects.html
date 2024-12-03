@@ -1,0 +1,18 @@
+
+<div class="tabela_powiazana">
+    <div style="width: 1000px; float: left;margin-right: 10px;">
+        {% if contract_list %}
+            {% include "contract_related.html" %}
+        {% endif %} 
+    </div>
+    <div style="width: 1000px; float: left;margin-right: 10px;">
+        {% if ideas %}
+            {% include "idea_related.html" %}
+        {% endif %}  
+    </div>
+    <div style="width: 1000px; float: left;margin-right: 10px;">
+        {% if need_list %}
+            {% include "need_related.html" %}
+        {% endif %}    
+    </div>
+</div> 

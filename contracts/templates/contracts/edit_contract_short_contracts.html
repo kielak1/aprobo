@@ -1,0 +1,62 @@
+    
+<div style="width:1000px; background-color: rgb(207, 209, 211); float: left; ">
+
+
+    
+    {% if cbu_instance %}
+
+        <div class="opis_umowy_cbu">
+            <h2>CBU:</h2>
+            <p>Sygnatura: {{ cbu_instance.sygnatura }}</p>
+            <p>Data zawarcia: {{ cbu_instance.data_zawarcia }}</p>
+            <p>data zakończenia: {{ cbu_instance.data_zakonczenia }}</p>
+            <p>status: {{ cbu_instance.status }}</p>
+            <p>nazwa kontrahenta: {{ cbu_instance.nazwa_kontrahenta }}</p>
+            <p>osoba prowadzaca: {{ cbu_instance.osoba_prowadzaca }}</p>
+            <p>wartość wydatkowa: {{ cbu_instance.wartosc_wydatkowa }}</p>
+            <p>wartość wpływowa: {{ cbu_instance.wartosc_wplywowa }}</p>
+            <p>wartość odbiorów wydatkowych: {{ cbu_instance.wartosc_odbiorow_wydatkowych }}</p>
+            <p>wartość odbiorów wpływowych: {{ cbu_instance.wartosc_odbiorow_wplywowyc }}</p>
+            <p>temat: {{ cbu_instance.temat }}</p>
+            <p>idemand: {{ cbu_instance.idemand }}</p>
+            <p>mandant: {{ cbu_instance.mandant }}</p>
+        </div>
+    {% endif %}   
+    
+    {% if ezzc_instance %}
+
+        <div class="opis_umowy_ezz">
+            <h2>EZZ:</h2>
+            <p>Sygnatura: {{ ezzc_instance.sygnatura }}</p>  
+            <p>sygnatura nadrzędna: {{ ezzc_instance.sygnatura_nadrzedna }}</p>
+            <p>przedmiot: {{ ezzc_instance.przedmiot }}</p>
+            <p>numer SRM: {{ ezzc_instance.numer_SRM  }}</p>
+            <p>numer ZZZT: {{ ezzc_instance.numer_ZZZT  }}</p>
+            <p>wartość: {{ ezzc_instance.wartosc }}</p>
+            <p>typ umowy: {{ ezzc_instance.typ_umowy  }}</p>
+            <p>komórka: {{ ezzc_instance.komorka }}</p>
+            <p>podstawa prawna: {{ ezzc_instance.podstawa_prawna }}</p>
+            <p>waluta: {{ ezzc_instance.waluta }}</p>
+            <p>wlaściciel merytoryczny: {{ ezzc_instance.wlasciciel_merytoryczny }}</p>
+            <p>opiekun Biura Zakupów: {{ ezzc_instance.opiekun_BZ }}</p>
+            <p>dostawca: {{ ezzc_instance.dostawca }}</p>
+            <p>koordynatorzy: {{ ezzc_instance.koordynatorzy }}</p>
+            <p>typ zakresu: {{ ezzc_instance.typ_zakresu }}</p>
+            <p>status: {{ ezzc_instance.status }}</p>
+            <p>od kiedy: {{ ezzc_instance.od_kiedy }}</p>  
+            <p>do kiedy: {{ ezzc_instance.do_kiedy }}</p>   
+        </div>
+
+
+    {% endif %}   
+   
+
+
+</div>
+
+
+
+
+
+
+<div style="clear: both;"></div>

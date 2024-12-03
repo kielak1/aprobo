@@ -1,0 +1,36 @@
+{% load humanize %}
+{% load general_filters %}
+{% if contract_list %}
+    <div  class="related_header_contract">Powiązane umowy</div>
+    {% for contract in contract_list %}
+        <div class="related_body">
+            <div style="width: 4%; float: left;">
+                <a href="/contracts/wszystkieumowy/edit_contract_short/?contract_id={{contract.id}}" title="Edycja umowy">{{contract.id}} </a>
+            </div>
+            <div style="float: left;padding-right: 5px;">
+                {{ contract.subject }}  
+            </div>
+
+            <div style="clear: both;"></div>
+
+            <div  class="related_wciecie">
+                <div style="width: 15%; float: left;">
+                    {{ contract.numer_umowy }}
+                </div>
+                <div style="width: 10%; float: left;">
+                     {{ contract.wartosc|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 4%; float: left;">
+                    {{ contract.waluta }}
+                </div>
+                <div style="float: left;">
+                    ({{ contract.kontrahent }})
+                </div>
+         
+            </div>
+            <div style="clear: both;"></div>
+            <div class="related_separator"></div>
+        </div>
+    {% endfor %}
+{% endif %} 
+

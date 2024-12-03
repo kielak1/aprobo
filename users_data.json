@@ -1,0 +1,178 @@
+[
+    {
+        "username": "acceptor",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_viewer",
+            "idea_viewer",
+            "need_finanse_acceptor",
+            "need_infra_acceptor",
+            "need_net_acceptor",
+            "need_service_acceptor",
+            "need_viewer",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "architect",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_viewer",
+            "idea_recommender",
+            "idea_viewer",
+            "need_recommender",
+            "need_viewer",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "director",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_viewer",
+            "idea_acceptor",
+            "idea_viewer",
+            "need_acceptor",
+            "need_viewer",
+            "purchase_viewer",
+            "purchase_acceptor"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "guest",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [],
+        "permissions": []
+    },
+    {
+        "username": "manager",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_allocator",
+            "contract_viewer",
+            "idea_allocator",
+            "idea_viewer",
+            "need_allocator",
+            "need_viewer",
+            "purchase_allocator",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "superuser",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "superuser"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "user",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_editor",
+            "contract_viewer",
+            "idea_editor",
+            "idea_viewer",
+            "need_editor",
+            "need_viewer",
+            "purchase_editor",
+            "purchase_viewer",
+            "purchase_recommender",
+            "lead_maker",
+            "need_maker"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "viewer",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_viewer",
+            "idea_viewer",
+            "need_viewer",
+            "purchase_viewer"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "tester",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "contract_viewer",
+            "idea_viewer",
+            "need_viewer",
+            "purchase_viewer",
+            "contract_editor",
+            "idea_editor",
+            "need_editor",
+            "purchase_editor",
+            "purchase_recommender",
+            "lead_maker",
+            "need_maker",
+            "superuser",
+            "idea_acceptor",
+            "need_acceptor",
+            "purchase_acceptor",
+            "idea_recommender",
+            "need_recommender",
+            "need_finanse_acceptor",
+            "need_infra_acceptor",
+            "need_net_acceptor",
+            "need_service_acceptor"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "sanok1",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "client",
+            "lead_maker"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "sanok2",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "client"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "zgora",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "client",
+            "lead_maker"
+        ],
+        "permissions": []
+    },
+    {
+        "username": "sanok",
+        "is_superuser": false,
+        "is_staff": false,
+        "groups": [
+            "client",
+            "lead_maker"
+        ],
+        "permissions": []
+    }
+]

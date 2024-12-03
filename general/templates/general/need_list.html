@@ -1,0 +1,45 @@
+{% load humanize %}
+{% load general_filters %}
+{% if need_list %}
+    <div class="related_header_need">Powiązane potrzeby</div>
+    {% for need in need_list %}
+        <div class="related_body" >
+            <div style="width: 4%; float: left;">
+                {%if is_client%}    
+                    {{ need.id }} 
+                {%else%}
+                    <a href="/needs/wszystkiepotrzeby/edit_need_short/?need_id={{ need.id }}"title="Edycja potrzeby">  {{ need.id }}  </a></td>
+                {%endif%}
+             </div>
+            <div style="width: 78%;float: left;padding-right: 5px;">
+                {{ need.subject }}  
+            </div>
+            <div style="float: left;">
+                {{ need.status_potrzeby }}/<b>{{need.status_akceptacji}}</b>  
+            </div>
+            <div style="clear: both;"></div> 
+            <div  class="related_wciecie">
+                <div style="width: 10%; float: left;">
+                    {{ need.wymagana_data_realizacji }}
+                </div>
+                <div style="width: 13%; float: left;">
+                    B: {{ need.orientacynjy_budzet|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 13%; float: left;">
+                    CX: {{ need.capex|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 13%; float: left;">
+                    OX: {{ need.opex|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 9%; float: left;">
+                    ({{ need.waluta }})
+                </div>
+                <div style="float: left;">
+                    {{ need.client }}
+                </div>           
+            </div>
+            <div style="clear: both;"></div>
+            <div class="related_separator"></div>
+        </div>
+    {% endfor %}
+{% endif %} 

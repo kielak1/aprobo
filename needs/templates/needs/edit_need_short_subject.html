@@ -1,0 +1,10 @@
+{% load need_tags %}
+<div style="width:1000px; ">
+    {% need_field_info need_instance.subject form.subject 'Przedmiot inicjatywy:' freeze_all 1%}
+    {% need_field_komentarz need_instance.komentarz_akceptujacego form.komentarz_akceptujacego 'Komentarz akceptującego dla koordynatora IT:' status_akceptacji is_need_acceptor %}
+    {% if need_instance.komentarz_akceptujacego %}
+        {% need_field_info need_instance.odpowiedz_do_akceptujacego form.odpowiedz_do_akceptujacego 'Odpowiedź koordynatora dla akceptującego: ' freeze_all 0 %}
+    {% endif %}
+</div>
+
+

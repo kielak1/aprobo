@@ -1,0 +1,5 @@
+{% load need_tags %}
+<div style="width:1110px; ">
+    {% need_field_info idea_instance.subject form.subject 'Przedmiot inicjatywy:' is_edition_blocked 1%}
+    {% need_field_komentarz idea_instance.komentarz_akceptujacego form.komentarz_akceptujacego 'Komentarz akceptującego dla koordynatora IT:' status_akceptacji is_idea_acceptor %}
+</div>

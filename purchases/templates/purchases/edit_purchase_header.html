@@ -1,0 +1,20 @@
+{% load header_tags %}
+{% load general_filters %}
+
+<div class="header-blok"; style="width: {{ szerokosc }}px">
+  {% generate_purchase purchase_instance ideas need_list as generated_idea %}
+  {% header_field 0 '' '' generated_idea|safe 'zakup' %}
+
+  {% header_field 0 '' status_purchase 'Status:' status_purchase %}
+  {% header_field 0 '' purchase_instance.ezz.status '' 'ezz-status' %}
+  {% header_field 0 '' purchase_instance.data_utworzenia 'Utworzona:' '' %}
+
+  {% header_field is_purchase_allocator form.section purchase_instance.section 'Dział:' '' %}
+  {% header_field is_purchase_allocator form.osoba_prowadzaca purchase_instance.osoba_prowadzaca '' '' %}
+  {% header_field is_editable form.pilnosc purchase_instance.pilnosc 'Pilność:' '' %}
+  {% header_field 0 '' purchase_instance.need.priorytet 'Priorytet:' '' %}
+
+  {% header_field 0 form.link_do_ezz purchase_instance.link_do_ezz|link_or_warning 'EZZ:' '' %}
+  {% header_field 0 '' purchase_instance.client 'klient:' '' %}
+</div>
+<div style=" clear: both;"></div>

@@ -1,0 +1,52 @@
+
+
+
+{% if postepowanie_instance  %}
+    <div style="clear: both;  width: 400px; height: 24px; ">
+        Dane zaimportowane z postępowań EZZ:
+    </div>
+
+    <div style="float:left;  width: 140px; height: 24px; ">
+        ID: {{postepowanie_instance.id}}
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div style="float:left;  width: 400px; height: 24px; ">
+        Numer SRM/SAP:{{postepowanie_instance.numer_SRM_SAP}}
+    </div>
+
+    <div style="float:left;  width: 400px; height: 24px; ">
+        Numer ZZ:{{postepowanie_instance.numer_ZZ}}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 400px; height: 150px; overflow: auto;">
+        {{postepowanie_instance.opis_zapotrzebowania}}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 190px; height: 24px; ">
+        Priorytet: {{postepowanie_instance.priorytet}}
+    </div>
+
+    <div style="float:left;  width: 190px; height: 24px; ">
+        Status: {{postepowanie_instance.status_SRM}}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 390px; height: 28px; ">
+        Zlecający: {{postepowanie_instance.zlecajacy}}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 240px; height: 24px; ">
+        Kupiec: {{postepowanie_instance.kupiec}}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 400px; height: 24px; ">
+        {%if postepowanie_instance.status_biura  %}Status biura {{postepowanie_instance.status_biura}}  {%endif%}
+    </div>
+    <div style="clear:both;"></div>
+    <div style="float:left;  width: 400px; height: 24px; ">
+        Data wprowadzenia:{{postepowanie_instance.data_wprowadzenia}}
+    </div>
+
+{%endif%}
+

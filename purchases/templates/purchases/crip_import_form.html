@@ -1,0 +1,36 @@
+<!-- crip_import_form.html --> 
+{% extends 'base_purchases.html' %}
+{% load general_tags %}
+{% block content %}
+    <div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import CRIP" "Importuj" %}
+        <hr><br>
+        <h1>Importowany plik powinien mieć format zgodny z poniższym przykładem. Plik w formacie excell. Bez wiersza nagłówkowego.</h1>
+        <br> <br>   
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr>
+                <td style="border: 1px solid black;">PL-PGN-ITG-2023-005875</td>
+                <td style="border: 1px solid black;">SIN_Odnowienie subskrypcji SAP SuccessFactors na okres 2 lat: 2023-2025</td>
+                <td style="border: 1px solid black;">SIN</td>
+                <td style="border: 1px solid black;">INF</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">PL-PGN-ITG-2023-006144</td>
+                <td style="border: 1px solid black;">SIN_Zakup przełączników LAN w celu ich instalacji w lokalizacji Kasprzaka 25 w Warszawie.</td>
+                <td style="border: 1px solid black;">SIN</td>
+                <td style="border: 1px solid black;">INI</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">PL-PGN-ITU-2023-006113</td>
+                <td style="border: 1px solid black;">SIN_Zakup modułu oprogramowania Petrel – PrinTerra do druku 3D cyfrowych modeli złóż.</td>
+                <td style="border: 1px solid black;">SIN</td>
+                <td style="border: 1px solid black;">INF</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+{% endblock %}
+
+
+
+    

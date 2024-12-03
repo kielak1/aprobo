@@ -1,0 +1,156 @@
+/* Styl dla paska bocznego */
+.wy-side-nav-search {
+    background-color: #bbd1c5ab;
+    /* Zielone tło paska bocznego */
+}
+
+.wy-side-nav-content {
+    background-color: #bbd1c5ab;
+    /* Dalsze tło paska bocznego */
+}
+
+/* Styl dla linków w pasku bocznym */
+.wy-side-nav-search a,
+.wy-side-nav-content a {
+    color: #333333;
+    /* Kolor linków w pasku bocznym */
+}
+
+.wy-side-nav-search a:hover,
+.wy-side-nav-content a:hover {
+    color: #0056b3;
+    /* Kolor linków po najechaniu */
+}
+
+/* Tło dla całego obszaru strony */
+body {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło dla strony */
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+/* Tło dla głównego obszaru treści dokumentacji */
+.wy-nav-content {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło dla głównej treści */
+}
+
+.rst-content {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło dla obszaru tekstu dokumentacji */
+    padding: 1em;
+    /* Opcjonalnie: odstepy od krawędzi */
+}
+
+/* Styl dla nagłówków */
+.rst-content h1,
+.rst-content h2,
+.rst-content h3 {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    /* Czcionka nagłówków */
+}
+
+/* Poprawa kontrastu tekstu */
+.rst-content {
+    color: #333333;
+    /* Kolor tekstu */
+}
+
+/* Stylowanie linków w treści dokumentacji */
+.rst-content a {
+    color: #0044cc;
+    /* Kolor linków */
+}
+
+.rst-content a:hover {
+    color: #002288;
+    /* Kolor linków po najechaniu */
+    text-decoration: underline;
+    /* Podkreślenie linków po najechaniu */
+}
+
+
+
+
+/* Tło dla głównego obszaru dokumentacji */
+.body[role="main"] {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło */
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    /* Czcionka */
+    padding: 1em;
+    /* Opcjonalnie: odstępy od krawędzi */
+}
+
+/* Tło dla sekcji dokumentacji */
+.body[role="main"] section {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło sekcji */
+    color: #333333;
+    /* Kolor tekstu */
+}
+
+/* Styl nagłówków wewnątrz sekcji */
+.body[role="main"] h1,
+.body[role="main"] h2,
+.body[role="main"] h3 {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    /* Czcionka nagłówków */
+}
+
+/* Linki w głównym obszarze */
+.body[role="main"] a {
+    color: #0044cc;
+    /* Kolor linków */
+}
+
+.body[role="main"] a:hover {
+    color: #002288;
+    /* Kolor linków po najechaniu */
+    text-decoration: underline;
+    /* Podkreślenie linków po najechaniu */
+}
+
+
+
+/* Tło dla elementów kodu */
+.highlight-default.notranslate {
+    background-color: hsl(225, 20%, 66%);
+    /* Szare tło */
+    padding: 1em;
+    /* Odstęp wewnętrzny dla lepszej czytelności */
+    border-radius: 5px;
+    /* Zaokrąglenie rogów */
+    border: 1px solid #cccccc;
+    /* Delikatne obramowanie */
+}
+
+/* Kolor tekstu w elementach kodu */
+.highlight-default.notranslate code {
+    color: #000000;
+    /* Czarny tekst dla kontrastu */
+    font-family: "Courier New", Courier, monospace;
+    /* Monospace dla kodu */
+}
+
+/* Stylowanie numerów linii (jeśli występują) */
+.highlight-default.notranslate .linenos {
+    background-color: hsl(225, 20%, 56%);
+    /* Ciemniejszy odcień szarego dla numerów linii */
+    color: #ffffff;
+    /* Biały tekst dla numerów linii */
+    padding-right: 1em;
+    /* Odstęp między numerami linii a kodem */
+}
+
+/* 
+.sphinxsidebar{
+    background-color: hsl(120, 35%, 49%);
+
+} */
+
+
+.sphinxsidebarwrapper {
+    background-color: #c3e0d0ab;
+
+}

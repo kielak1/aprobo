@@ -1,0 +1,23 @@
+{% if recent_logs %}
+
+    
+    
+
+
+    <div style="float: left; width: 1000px; background-color: #ebc5c5; overflow: auto; height: 500px;">
+        <p style="font-size: 24px; color: rgb(10, 8, 22);">
+            Lista ostatnich aktywności:
+        </p>
+        {% for log in recent_logs %}
+            <div style="display: flex; overflow: auto; align-items: center; color: rgb(23, 13, 80); border-bottom: 1px solid #ff0000; font-size: 16px;">
+                <div style="width: 150px; float: left;">{{ log.data|date:"Y-m-d H:i:s" }}</div>
+                <div style="width: 140px; float: left;">{{ log.user }}</div>
+                <div style="width: 660px; float: left;">{{ log.akcja }}</div>
+            </div>
+            <div style="clear: both;"></div>
+        {% endfor %}
+    </div>
+    
+
+
+{%endif%}

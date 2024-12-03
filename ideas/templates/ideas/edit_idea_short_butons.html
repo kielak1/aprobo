@@ -1,0 +1,120 @@
+{% load need_tags %}
+<div style="width: {{szerokosc}}px;">
+  {% if is_idea_editor %}
+    {% if not is_client %}
+      {% if status_idei == 'nowa' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz przejść do kolejnej fazy?' 'realizuj' 'Realizuj' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz zawiesić prace?' 'zawies' 'Zawieś' %}
+      {% endif %}
+
+      {% if status_idei == 'zawieszona' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz odwiesić prace?' 'odwies' 'Odwieś' %}
+      {% endif %}
+
+      {% if status_idei == 'rada architektury' and status_akceptacji != 'do akceptacji' and status_akceptacji != 'zaakceptowane' and is_idea_recommender and idea_instance.czy_dotyczy_architektury != None %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do akceptacji?' 'gotowe' 'Skieruj do akceptacji' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do poprawy?' 'popraw' 'Popraw formularz' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz wstrzymać pomysł?' 'wstrzymane' 'Wstrzymaj' %}
+      {% endif %}
+
+      {% if status_idei == 'analiza' and status_akceptacji != 'do akceptacji' and status_akceptacji != 'zaakceptowane' and is_idea_recommender %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do rady architektury?' 'rada' 'Skieruj do Rady' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do poprawy?' 'popraw' 'Popraw formularz' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz wstrzymać pomysł?' 'wstrzymane' 'Wstrzymaj' %}
+      {% endif %}
+
+      {% if status_idei == 'wstrzymane' and status_akceptacji != 'do akceptacji' and status_akceptacji != 'zaakceptowane' and is_idea_recommender %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do rady architektury?' 'rada' 'Skieruj do Rady' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do poprawy?' 'popraw' 'Popraw formularz' %}
+      {% endif %}
+
+      {% if status_idei == 'realizowana' or status_idei == 'rada architektury' or status_idei == 'wstrzymane' %}
+        {% if status_akceptacji != 'do akceptacji' and status_akceptacji != 'zaakceptowane' and is_idea_editor %}
+          {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do analizy?' 'analiza' 'Skieruj do analizy' %}
+        {% endif %}
+      {% endif %}
+
+      {% if status_akceptacji == 'do akceptacji' and is_idea_acceptor %}
+        {% buton 'button-proces' 'Czy na pewno chcesz zaakceptować pomysł?' 'akcept' 'Akceptuję' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz skierować pomysł do poprawy?' 'popraw' 'Popraw formularz' %}
+      {% endif %}
+
+      {% if status_idei != 'nowa' and status_idei != 'zawieszona' and status_idei != 'zamknięta' and status_idei != 'zrealizowana' and status_akceptacji != 'do akceptacji' and status_akceptacji != 'zaakceptowane' %}
+        <div style=" float:left; ">
+          <button type="submit" onclick="return confirm('Czy na pewno chcesz przerwać realizację pomysłu i zakońćzyć jego realizację?')" class="button-danger" name="zamknij">Porzuć</button>
+        </div>
+      {% endif %}
+
+      {% if status_akceptacji == 'zaakceptowane' and status_idei != 'zrealizowana' %}
+        {% buton 'button-proces' 'Czy na pewno chcesz uznać pomysł za zrealizowany?' 'zakoncz' 'Zakończ pomysł zrealizowany' %}
+      {% endif %}
+
+      {% if status_idei == 'zamknięta' or status_idei == 'zrealizowana' %}
+        {% if is_idea_recommender or is_idea_acceptor or is_idea_editor %}
+          {% buton 'button-proces' 'Czy na pewno chcesz przywócić realizację pomysłu i wznowić jego realizację?' 'przywroc' 'Wznów realizację' %}
+        {% endif %}
+      {% endif %}
+
+      {% if status_akceptacji == 'zaakceptowane' and status_idei != 'zamknięta' and status_idei != 'zrealizowana' and is_idea_editor %}
+        {% buton 'button-proces' 'Czy na pewno chcesz confnąć akcetację?' 'cofnij' 'Cofnij akceptację' %}
+      {% endif %}
+      {% buton 'button-normal' 'Czy na pewno chcesz sklonować ten pomysł?' 'klonuj' 'Sklonuj pomysł' %}
+    {% endif %}
+  {% endif %}
+
+  {% if is_idea_editor or is_lead_maker or is_idea_allocator %}
+    {% if not is_edition_blocked or status_akceptacji == 'do akceptacji' %}
+      <div style=" float:left; ">
+        <button type="submit" class="button-normal" name="Submit">Zapisz i wyjdź</button>
+      </div>
+      <div style=" float:left; ">
+        <button type="submit" class="button-normal" name="Zapisz">Zapisz</button>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if status_idei == 'nowa' and is_lead_maker %}
+    <div style=" float:left; ">
+      <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć ten pomysł?')" class="button-danger" name="Usun">Usuń</button>
+    </div>
+  {% endif %}
+
+  {% if not is_client %}
+
+
+    {% if is_need_maker and status_akceptacji == 'zaakceptowane' and status_idei != 'zamknięta' and status_idei != 'zrealizowana' %}
+      <div style=" float:left; ">
+        <button type="submit" onclick="return confirm('Czy na pewno chcesz dodać potrzebę w kontekście tego pomysłu?')" class="button-normal" name="Need">Stwórz potrzebę</button>
+      </div>
+    {% endif %}
+
+    {% if status_idei == 'rada architektury' or status_idei == 'analiza' %}
+      {% if is_idea_recommender %}
+        {% if idea_instance.czy_dotyczy_architektury != True %}
+          <div style=" float:left; ">
+            <button type="submit" onclick="return confirm('Czy na pewno inicjatywa dotyczy architektury?')" class="button-normal" name="arch_yes">Dotyczy architektury</button>
+          </div>
+        {% endif %}
+
+        {% if idea_instance.czy_dotyczy_architektury != False %}
+          <div style=" float:left; ">
+            <button type="submit" onclick="return confirm('Czy na pewno inicjatywa nie dotyczy architektury?')" class="button-normal" name="arch_no">Nie dotyczy architektury</button>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if is_superuser %}
+    {% if status_akceptacji != 'niegotowe' or status_idei != 'realizowana' and not is_client %}
+      <div style=" float:left; ">
+        <button type="submit" onclick="return confirm('Czy na pewno chcesz wykonać reset pomysłu?')" class="button-danger" name="Reset">Reset</button>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <div style=" float:left; ">
+    <button type="submit" class="button-normal" name="Anuluj">Wróć</button>
+  </div>
+</div>
+<div style="clear: both;"></div>

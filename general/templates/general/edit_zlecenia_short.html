@@ -1,0 +1,49 @@
+{% extends 'base_general.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}
+  Edycja zlecenia kontrolingowego
+{% endblock %}
+
+{% block content %}
+  <div class="standard-blok" style="width: {{ szerokosc }};">
+    <form method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+        <div class="error">
+          <p>Nieprawidłowe dane w formularzu. Proszę sprawdzić poniższe błędy:</p>
+          {{ form.errors }}
+        </div>
+      {% endif %}
+
+      <div style="clear: both;"></div>
+
+      {% include 'edit_zlecenia_short_main_block.html' %}
+      <div style="clear: both;"></div>
+
+      {% if is_accountant %}
+        <div style="float:left;">
+          <button type="submit" class="button-normal" name="Zapisz">Zapisz</button>
+        </div>
+
+        {% if full == True %}
+          <div style="float:left;">
+            <button type="submit" class="button-normal" name="Submit">Zapisz i wyjdź</button>
+          </div>
+          <div style="float:left;">
+            <button type="submit" class="button-danger" onclick="return confirm('Czy na pewno chcesz usunąć to zlecenie')" name="Usun">Usuń</button>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      <div style="float:left;">
+        <button type="submit" class="button-normal" name="Anuluj">Wróć</button>
+      </div>
+
+      <div style="clear: both;"></div>
+      {% include 'need_list.html' %}
+      <div style="clear: both;"></div>
+      {% include 'purchase_list.html' %}
+    </form>
+  </div>
+{% endblock %}

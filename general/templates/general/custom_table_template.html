@@ -1,0 +1,47 @@
+<!-- common_table.html -->
+{% load django_tables2 %}
+{% load general_filters %} 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            {% for column in table.columns %}
+                <th>
+                    {% if column.orderable %}
+                        {% with prefix="-" %}
+                            {% if column.is_ordered %}
+                                {% if column.order_by_alias|slice:":1" == prefix %}
+                                    <a href="{% querystring table.prefixed_order_by_field=column.order_by_alias|slice:'1:' %}">
+                                        {{ column.header }} <span class="tri-down"></span>
+                                    </a>
+                                {% else %}
+                                    <a href="{% querystring table.prefixed_order_by_field='-'|add:column.order_by_alias %}">
+                                        {{ column.header }} <span class="tri-up"></span>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{% querystring table.prefixed_order_by_field=column.order_by_alias %}">
+                                    {{ column.header }}
+                                </a>
+                            {% endif %}
+                        {% endwith %}
+                    {% else %}
+                        {{ column.header }}
+                    {% endif %}
+                </th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in table.page.object_list %}
+            <tr class="{% cycle 'odd' 'even' %}">
+                {% for column, cell in row.items %}
+                    <td class="{{ column.name|get_class_for_column }}">
+                        {{ cell|format_instance|safe }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

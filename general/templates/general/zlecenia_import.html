@@ -1,0 +1,46 @@
+{% extends 'base_general.html' %}
+{% block content %}
+    <div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        <h1>Wczytane zlecenia kontrolingowe</h1>
+        {% if number_of_records %}
+            wczytano {{ number_of_records }} zleceń ({{ number_of_new_records }} nowych)
+        {% endif %}
+        {% if error %}
+            <h2> {{ error }}  </h2>
+        {% elif lista %}
+            <h2>Lista poprawnych zleceń:</h2>
+            <table>
+                {% for element in lista %}
+                    <tr>
+                        {% for cell in element %}
+                        <td class="cell-td">{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Brak nowych zleceń</p>
+        {% endif %}
+        {% if rejected %}
+            <h2>Odrzucone zlecenia:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numer Zlecenia</th>
+                        <th>Opis</th>
+                        <th>Powód Odrzucenia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rejected %}
+                    <tr>
+                        <td>{{ row.0 }}</td>
+                        <td>{{ row.1 }}</td>
+                        <td>{{ row.2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

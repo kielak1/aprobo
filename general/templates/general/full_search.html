@@ -1,0 +1,106 @@
+{% extends 'base_general.html' %}
+{% load static %}
+{% block title %}
+  Full text search
+{% endblock %}
+{% load need_tags %}
+
+{% block content %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('search_word').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault()
+          document.querySelector('button[name="submit"]').click()
+        }
+      })
+    })
+  </script>
+  <div class="header_lit">Wyszukiwanie</div>
+
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="error">
+        <p>Nieprawidłowe dane w formularzu. Proszę sprawdzić poniższe błędy:</p>
+        {{ form.errors }}
+      </div>
+    {% endif %}
+
+    <form method="post" action="">
+      {% csrf_token %}
+      <div style="background-color: aliceblue; height: 65px;display: flex; align-items: center;width: 1300px; ">
+        <label for="search_word">Wpisz słowo do wyszukiwania: (jeżeli chcesz użyć wyszukiwania zaawansowanego rozpocznij znakiem >)</label>
+        <input type="text" id="search_word" style="width: 1040px; height: 45px;margin-left: 10px;" name="search_word" value="{{ search_word|default:'' }}" placeholder="Wpisz słowo lub zapytanie..." />
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="query_name">Nazwa zapytania:</label>
+        <input type="text" id="query_name" name="query_name" value="{{ query_name|default:'' }}" placeholder="Nazwa zapytania" />
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="save_query">Zapisz zapytanie:</label>
+        <input type="checkbox" id="save_query" name="save_query" />
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="saved_queries">Wybierz zapisane zapytanie:</label>
+        <select id="saved_queries" name="saved_queries">
+          <option value="">-- Wybierz zapytanie --</option>
+          {% for query in saved_queries %}
+            <option value="{{ query.id }}">{{ query.nazwa }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" name="delete_query" class="button-danger" value="1" onclick="return confirm('Czy na pewno chcesz usunąć to zapytanie?');">Usuń wybrane zapytanie</button>
+      </div>
+      <div style="clear: both;"></div>
+      {% buton 'button-normal' '' 'submit' 'Szukaj' %}
+    </form>
+
+    <br /><br />
+    <div style="float: left; width: 1100px;">
+      {% include 'idea_related.html' %}
+      {% include 'need_related.html' %}
+      {% include 'purchase_related.html' %}
+      {% include 'contract_related.html' %}
+    </div>
+  </form>
+
+  <div style="clear: both;"></div>
+  <br /><br />
+
+  {% if error_query %}
+    <div class="error-message">{{ error_query|linebreaksbr }}</div>
+
+    <div style="clear: both;"></div>
+    <br /><br />
+  {% endif %}
+
+  {% if parsed %}
+    <div class="parsed-container">
+      <div class="parsed-title">Dekompozycja Twojego zapytania:</div>
+      <div class="parsed-content">{{ parsed|linebreaksbr }}</div>
+    </div>
+    <div style="clear: both;"></div>
+    <br /><br />
+  {% endif %}
+
+  <div class="grammar-container">
+    <div class="grammar-title">Instrukcja stosowania wyszukiwania zaawansowanego:</div>
+    <div class="grammar-content">
+      Jeżeli chcesz użyć wyszukiwania zaawansowanego musisz jako pierwszego znaku zapytania użyć znaku > Przykładowo jezeli chcesz wyszukać wszystkie obiekty, których właścicielem jest tkielak wpisz: <b>>OWNER tkielak</b>
+      Jeżeli chciałbyś wykluczyć obiekty należące do działu NIP wpisz: <b>>AND OWNER tkielak NOT OWNER NIP</b>
+      Jeżeli dodatkowo chciałbyś aby nie brać pod uwagę obiektów nie zawierających słowa Kasprzaka wpisz: <b>>AND OWNER tkielak NOT OWNER NIP (FULL Kasprzaka)</b>
+      Zwróć uwagę, że w przykładzie użyto nawiasów. Beż nawiasów parser gramatyki mógłby zinterpretoac cały ciąg NIP FULL Kasprzaka jako argument funkcji OWNER. Stosowanie nawiasów powoduje, że uzyskojemy kontrole nad tym w jaki sposób parser zinterpretuje treść zapytania. Na samym dole strony po wykonanioa zapytania wyświetlona jest przyjęta przez parser interpretacja treści zapytania.
+
+      Pisząc zapytanie możesz używać operatorów: AND X Y - Cześć wspólna zbiorów X i Y (argumetów może być więcej niż dwa) OR X Y - Suma zbiorów X - Y (argumetów może być więcej niż dwa) NOT X - Dopełnienie zbioru X
+
+      Do definiowania wyszukiwania możesz używać funkcji: FULL ciąg znaków - Przeeszukuje wszystkie podstatowe pola wszystkich tabel w poszukiwaniu ciagu znaków NOTE_TRESC ciąg znaków - Przeeszukuje treści wszystkich notatek w poszukiwaniu ciagu znaków OWNER ciąg znaków - przeszukuje pola koordynadora__login i dział__short_name w poszukiwaniu ciągu znaków
+
+      Lista funkcji będzie rozszeżana.
+
+      Zwróć uwagę, na to, że pisząc zapytania należy stosować tak zwaną notację polską czyli na początku operator lub nazwa funkcji a potem argumenty.
+    </div>
+
+    <div class="grammar-title">Opis gramatyki:</div>
+    <div class="grammar-content">{{ query_grammar|linebreaksbr }}</div>
+  </div>
+{% endblock %}

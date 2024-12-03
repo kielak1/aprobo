@@ -1,0 +1,6 @@
+{% load need_tags %}
+{% need_field_info contract_instance.zakres form.zakres 'Zakres umowy:' is_contract_editor|negate 0 %}
+{% need_field_info contract_instance.kontrahent form.kontrahent 'Kontrahent:' is_contract_editor|negate 0 %}
+{% need_field_info contract_instance.komentarz form.komentarz 'Komentarz:' is_contract_editor|negate 0 %}
+
+<div style="clear: both;"></div>

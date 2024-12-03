@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Funkcja do sprawdzenia czy ostatnie polecenie zakończyło się powodzeniem
+check_status() {
+  if [ $? -ne 0 ]; then
+    echo "Błąd podczas wykonywania operacji: $1"
+    exit 1
+  fi
+}
+
+# Krok 1: Usunięcie istniejącej bazy danych i stworzenie nowej
+echo "Czy chcesz usunąć i utworzyć bazę danych od nowa? (t/n)"
+read response
+if [[ "$response" == "t" ]]; then
+  echo "Usuwanie i tworzenie bazy danych..."
+  
+  # Zakończenie aktywnych połączeń z bazą
+  sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'bgnig1';"
+  
+  sudo -u postgres psql -c "DROP DATABASE IF EXISTS bgnig1;"
+  check_status "DROP DATABASE"
+  sudo -u postgres psql -c "CREATE DATABASE bgnig1;"
+  check_status "CREATE DATABASE"
+fi
+
+# Krok 2: Dodanie uprawnień dla użytkownika
+echo "Dodawanie uprawnień dla użytkownika bgnig1..."
+sudo -u postgres psql -d bgnig1 -c "GRANT CONNECT ON DATABASE bgnig1 TO bgnig1;"
+check_status "GRANT CONNECT"
+sudo -u postgres psql -d bgnig1 -c "GRANT ALL PRIVILEGES ON SCHEMA public TO bgnig1;"
+check_status "GRANT ALL PRIVILEGES"
+
+# Krok 3: Odtworzenie bazy danych
+echo "Podaj nazwę pliku z kopią zapasową bazy danych (.dump):"
+read dump_file
+
+if [ -z "$dump_file" ]; then
+  echo "Nazwa pliku nie może być pusta. Przerywam."
+  exit 1
+fi
+
+if [ ! -f "$dump_file" ]; then
+  echo "Plik kopii zapasowej nie istnieje: $dump_file"
+  exit 1
+fi
+
+echo "Odtwarzanie bazy danych z pliku $dump_file..."
+pg_restore -U bgnig1 -h localhost -d bgnig1 "$dump_file"
+check_status "pg_restore"
+
+# Krok 4: Import użytkowników testowych
+echo "Importowanie użytkowników testowych..."
+python manage.py import_users_pass qwer
+check_status "import_users (import użytkowników)"
+
+# Krok 5: Ustawienie haseł dla użytkowników
+echo "Ustawianie maili dla wszystkich na fake@fake.pl"
+python manage.py set_email fake@fake.pl
+check_status "set_email (ustawienie maili)"
+
+echo "Import bazy danych zakończony sukcesem."

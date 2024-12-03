@@ -1,0 +1,11 @@
+{% load general_filters %}
+
+<li><a class="dropdown-item" href="{{sciezka}}"> {{etykieta}} &raquo; </a>
+    <ul class="submenu dropdown-menu">
+        {% for klient in klienci %}
+            <li><a class="dropdown-item" href="{{sciezka}}client__name={{ klient.name }}"> {{ klient.name }}   </a></li>
+        {% endfor %}   
+     </ul>
+</li>  
+
+

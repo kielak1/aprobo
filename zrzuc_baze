@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Zapytaj użytkownika o nazwę pliku, do którego ma być zapisany zrzut bazy danych
+read -p "Podaj nazwę pliku do zapisu zrzutu bazy danych (np. /home/tkielak/dump_bazy.dump): " plik_zrzutu
+
+# Wykonaj polecenie pg_dump
+pg_dump -U aprobo -h localhost -Fc -f "$plik_zrzutu" -d aprobo
+
+# Sprawdź, czy polecenie zakończyło się sukcesem
+if [ $? -eq 0 ]; then
+    echo "Zrzut bazy danych zakończony sukcesem."
+else
+    echo "Wystąpił błąd podczas wykonywania zrzutu bazy danych."
+fi
+

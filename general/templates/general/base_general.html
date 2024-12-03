@@ -1,0 +1,17 @@
+<!-- base_general.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+    {% include 'base_head.html' %}
+    <body>
+        {% include 'common_start_body.html' %}
+        {% include "menu_general.html" %}
+        {% include 'common_mid_body.html' %}
+        <main>
+            <!-- Treść główna strony -->
+            {% block content %}
+            {% endblock %}
+        </main>       
+        {% include 'common_end_body.html' %}
+    </body>
+</html>

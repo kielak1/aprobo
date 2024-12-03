@@ -1,0 +1,133 @@
+{% load need_tags %}
+{% load general_filters %}
+
+
+<div style="width: 100%;margin-top: 5px; " >
+
+<!-- Sekcja do wyświetlania dyskutowanych pomysłów (Ideas) -->
+<div style="color:  rgb(31, 8, 53);clear: both; margin-left: 10px; font-size: 2em;"> Omawiane pomysły</div>
+
+
+    {% for item in discussed_ideas_with_id %}
+    
+        <div style="margin-top: 5px;margin-bottom: 5px;"></div>
+        <div   style="background-color:#adff2f;  color: red; float:left;padding-left: 5px;padding-right: 5px;">
+            <a href="/ideas/wszystkiepomysly/edit_idea_short/?idea_id={{ item.idea.id }}"title="formularz pomysłu">{{ item.idea.id  }}</a>
+        </div>
+        <div   style=" margin-left:10px;float:left; background-color: #ffffff;padding-left: 5px;padding-right: 5px;" > 
+            utworzony:{{ item.idea.data_utworzenia}}
+        </div>
+        <div  style="background-color: white; color: purple; margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;">
+            dział: {{ item.idea.section}} 
+        </div>
+        <div style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Koordynator IT: {{ item.idea.osoba_prowadzaca }} 
+        </div>
+        <div style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Priorytet: {{ item.idea.priorytet }}  
+        </div>
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Inicjator: {{ item.idea.inicjator }} 
+        </div>
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Budżet: {{ item.idea.orientacynjy_budzet|space_intcomma }} 
+        </div>
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            {{ item.idea.client.short_name }} 
+        </div>
+
+
+        <div style="clear: both;"></div>
+        <div style="max-height: 80px; background-color:#bdd499;; min-height: 40px; overflow-y: auto; overflow-x: hidden;margin-top: 2px; margin-bottom: 1px;">
+            {{ item.idea }} 
+        </div>
+        <div style="clear: both;"></div>
+        {% if is_editable %}
+            <div>
+                {% buton  "button-normal" ""  item.id  "Ustalenie" %}  
+            </div>
+            <div style="background-color: azure;">
+                {% if item.resolution_text %}
+                    <textarea id="{{ item.edit }}" name="{{ item.edit }}" style="width: 100%; min-height: 60px; max-height: 180px; overflow-y: auto; overflow-x: hidden;margin-left: 1px; margin-top: 2px;">{{ item.resolution_text }}</textarea>
+                {%else%}
+                    <textarea id="{{ item.edit }}" name="{{ item.edit }}" style="width: 100%; min-height: 60px; max-height: 180px; overflow-y: auto; overflow-x: hidden;margin-left: 1px; margin-top: 2px;"></textarea>
+                {%endif%}
+            </div>
+
+        {%else%}
+            <div style="background-color: #d5dace; white-space: pre-wrap;">{{ item.resolution_text }}</div>
+        {%endif%}
+        <div style="clear: both;"></div>
+    {% empty %}
+        <div style="color: red;">
+           Brak dyskutowanych pomysłów.    
+        </div>
+    
+    {% endfor %}
+
+
+<!-- Sekcja do wyświetlania dyskutowanych potrzeb (Needs) -->
+ <div style="color:  rgb(31, 8, 53);clear: both; margin-left: 10px; font-size: 2em;"> Omawiane potrzeby</div>
+
+
+    {% for item in discussed_needs_with_id %}
+    
+        <div style="margin-top: 5px;margin-bottom: 5px;"></div>
+        <div style="background-color: deepskyblue; color: red;padding-left: 5px;padding-right: 5px; float:left;"   >
+            <a href="/needs/wszystkiepotrzeby/edit_need_short/?need_id={{ item.need.id }}"title="formularz potrzeby">{{ item.need.id  }}</a>
+        </div>
+        <div   style=" margin-left:10px;float:left; background-color: #ffffff;padding-left: 5px;padding-right: 5px;" > 
+            utworzony:{{ item.need.data_utworzenia}}
+        </div>
+        <div  style="background-color: white; color: purple; margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;">
+            dział: {{ item.need.section}} 
+        </div>
+        <div style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Koordynator IT: {{ item.need.osoba_prowadzaca }} 
+        </div>
+        <div style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Priorytet: {{ item.need.priorytet }}  
+        </div>
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Inicjator: {{ item.need.inicjator }} 
+        </div>
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            Budżet: {{ item.need.orientacynjy_budzet|space_intcomma }} 
+        </div>           
+        <div  style="margin-left:10px;float:left;padding-left: 5px;padding-right: 5px;background-color: hsl(225, 31%, 87%);">
+            {{ item.need.client.short_name}} 
+        </div>      
+        <div style="clear: both;"></div>
+        <div style="max-height: 80px; background-color:#bdd499;; min-height: 40px; overflow-y: auto; overflow-x: hidden;margin-top: 2px; margin-bottom: 1px;">
+            {{ item.need }} 
+        </div>
+
+        <div style="clear: both;"></div>
+
+        {% if is_editable %}
+        <div>
+            {% buton  "button-normal" ""  item.id  "Ustalenie" %}  
+        </div>
+        <div style="background-color: azure;">
+            {% if item.resolution_text %}
+                <textarea id="{{ item.edit }}" name="{{ item.edit }}" style="width: 915px; min-height: 60px; max-height: 180px; overflow-y: auto; overflow-x: hidden;margin-left: 1px; margin-top: 2px;">{{ item.resolution_text }}</textarea>
+            {%else%}
+                <textarea id="{{ item.edit }}" name="{{ item.edit }}" style="width: 915px; min-height: 60px; max-height: 180px; overflow-y: auto; overflow-x: hidden;margin-left: 1px; margin-top: 2px;"></textarea>
+            {%endif%}
+        </div>
+
+        {%else%}
+            <div style="background-color: #d5dace; white-space: pre-wrap;">{{ item.resolution_text }}</div>
+        {%endif%}
+        <div style="clear: both;"></div>
+
+    {% empty %}
+        <div style="color: red;">
+           Brak dyskutowanych potrzeb.    
+        </div>
+    
+    {% endfor %}
+
+
+</div>
+<div style="clear: both;"></div>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load general_filters %}
+{% load static %}
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+    
+    html,
+    body {
+      background-image: url("{% static 'general/images/tlo.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+      font-family: 'Numans', sans-serif;
+    }
+
+    .container {
+      height: 100vh;
+    }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Zmień hasło</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" autocomplete="off">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">Wystąpiły błędy w formularzu. Hasło musi mieć od 12 do 128 znaków.</div>
+                    {% endif %}
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" name="old_password" class="form-control" placeholder="Wprowadź swoje aktualne hasło" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" name="new_password1" class="form-control" placeholder="Wprowadź nowe hasło" required>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" name="new_password2" class="form-control" placeholder="Powtórz nowe hasło" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Zapisz zmiany" class="btn btn-primary w-100" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

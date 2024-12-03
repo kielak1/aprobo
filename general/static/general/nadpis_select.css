@@ -1,0 +1,18 @@
+.select2-container--default .select2-selection--multiple .select2-search__field {
+    width: 100% !important;
+    min-width: 300px !important;
+    color: black !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+    width: 100% !important;
+    min-width: 300px !important;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field::placeholder {
+    color: #aaa !important;
+    opacity: 1 !important;
+}

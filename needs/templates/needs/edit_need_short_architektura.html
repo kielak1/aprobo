@@ -1,0 +1,10 @@
+
+{% load need_tags %}
+<div style="width:1000px; ">
+    {% need_field_komentarz_architekta need_instance.komentarz_architekta form.komentarz_architekta 'Komentarz architekta dla Koordynatora IT:' status_need is_need_recommender%}
+    {% if need_instance.komentarz_architekta %}
+        {% need_field_info need_instance.odpowiedz_koordynatora_do_architekta form.odpowiedz_koordynatora_do_architekta 'Odpowiedź dla architekta: ' freeze_arch_resp 0 %}    
+    {% endif %}            
+       
+
+</div>

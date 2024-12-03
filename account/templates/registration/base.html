@@ -1,0 +1,27 @@
+<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+    {% include 'base_head.html' %}
+    <body>
+        {% include 'common_start_body.html' %}
+        {% if is_user_admin %}
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Użytkownicy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/account/users/">edycja użytkowników</a></li>
+                            <li><a class="dropdown-item" href="/account/user-groups/">macierz uprawnień</a></li>
+                        </ul>
+                    </li>                
+                </ul>
+            </div> <!-- navbar-collapse.// -->
+        {% endif %}
+        {% include 'common_mid_body.html' %}
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        {% include 'common_end_body.html' %}
+</body>
+</html>

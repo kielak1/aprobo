@@ -1,0 +1,76 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Dodajemy obsługę zdarzeń dla wszystkich nagłówków z klasą 'toggle-header'
+    document.querySelectorAll('.toggle-header').forEach(function (header) {
+      header.addEventListener('click', function () {
+        // Pobieramy element 'content' jako bezpośrednie rodzeństwo klikniętego nagłówka
+        var content = this.nextElementSibling
+        // Sprawdzamy, czy element 'content' jest widoczny, a następnie przełączamy jego stan
+        content.style.display = content.style.display === 'none' ? 'block' : 'none'
+      })
+    })
+  })
+</script>
+<div style="white-space: nowrap; ">
+  <div>
+    <!-- Odstęp dla wizualnego oddzielenia -->
+    <div style="clear: both;"></div>
+    <div style="width: 450px; float: left;">
+      {% if not is_client %}
+        <!-- Sekcja akeptującego -->
+        <div style="margin-left: 10px;  ">
+          {% include 'co_do_akceptacji.html' %}
+        </div>
+        <div style="clear: both;"></div>
+
+        <!-- Sekcja staystuk umów -->
+        <div style="margin-left: 10px;  ">
+          {% include 'statystyki_umow.html' %}
+        </div>
+
+        <!-- Sekcja aktywnosci -->
+        <div style="margin-left: 10px;  ">
+          {% include 'aktywnosci.html' %}
+        </div>
+      {% endif %}
+      <!-- Sekcja danych użytkownika -->
+      <div style="margin-left: 10px;  ">
+        {% include 'dane_uzytkownika.html' %}
+      </div>
+
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+
+  <div style="margin-left: 10px;  max-width: 1200px; display: inline-block; ">
+    {% if is_client %}
+      <!-- Sekcja tabeli z pomysłami, z zapewnieniem czyszczenia floatów dla spójnego układu -->
+      <div style="margin-left: 10px;   white-space: wrap;  ">
+        {% include 'ideas_table_only.html' %}
+      </div>
+    {% else %}
+      <!-- Sekcja tabeli z umowami, z zapewnieniem czyszczenia floatów dla spójnego układu -->
+      <div style="margin-left: 10px;   white-space: wrap;">
+        {% include 'contracts_table_only.html' %}
+      </div>
+
+      <!-- Sekcja tabeli z zakupami, z zapewnieniem czyszczenia floatów dla spójnego układu -->
+      <div style="margin-left: 10px;   white-space: wrap; ">
+        {% include 'purchases_table_only.html' %}
+      </div>
+
+      <!-- Sekcja tabeli z pomysłami, z zapewnieniem czyszczenia floatów dla spójnego układu -->
+      <div style="margin-left: 10px;   white-space: wrap;  ">
+        {% include 'ideas_table_only.html' %}
+      </div>
+
+      <!-- Sekcja tabeli z potrzebami, z zapewnieniem czyszczenia floatów dla spójnego układu -->
+      <div style="margin-left: 10px;  white-space: wrap;  ">
+        {% include 'needs_table_only.html' %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Odstęp dla wizualnego oddzielenia -->
+  <div style="clear: both;"></div>
+</div>

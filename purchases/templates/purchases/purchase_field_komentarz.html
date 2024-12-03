@@ -1,0 +1,10 @@
+<div style="clear:both;text-align: center; " > 
+    {{ field_label }} 
+</div>     
+
+{% if status == "do akceptacji" and  rola%}        
+    <div style="clear:both; " >  {{ field }}  </div>   
+{% else %}
+    <div class="read_only_komentarz"  style="width: 1000px;height: 80px;">{{ instance }}</div>  
+{% endif%} 
+

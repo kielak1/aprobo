@@ -1,0 +1,29 @@
+#!/bin/bash
+python manage.py collectstatic --noinput
+
+# Uruchom skrypt set_permissions.sh
+./set_permissions.sh
+
+# Restart Gunicorn
+echo "Restarting Gunicorn..."
+if sudo systemctl restart gunicorn; then
+    echo "Gunicorn restarted successfully."
+else
+    echo "Failed to restart Gunicorn."
+fi
+
+# Restart Celery Beat
+echo "Restarting Celery Beat..."
+if sudo systemctl restart celery-beat.service; then
+    echo "Celery Beat restarted successfully."
+else
+    echo "Failed to restart Celery Beat."
+fi
+
+# Restart Celery Worker
+echo "Restarting Celery Worker..."
+if sudo systemctl restart celery-worker.service; then
+    echo "Celery Worker restarted successfully."
+else
+    echo "Failed to restart Celery Worker."
+fi

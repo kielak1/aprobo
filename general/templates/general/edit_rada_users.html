@@ -1,0 +1,67 @@
+{% load need_tags %}
+<!-- Użytkownicy -->
+
+
+<div style="width: 100%;margin-top: 5px;background-color: rgb(211, 191, 216);" >
+
+
+<div style="color:  rgb(31, 8, 53);clear: both; margin-left: 10px; font-size: 2em; "> Uczestnicy</div>
+
+
+
+<div style="float: left; background-color: beige;width: 50%;">
+    <div style="color: blue;">Zaproszeni:</div>
+    {% if is_editable %}
+        <div>
+            {{form.invitations}}    
+        </div>
+    {%else%}
+
+        {% for item in instance.invitations.all %}
+            <div>
+
+                <div style="float: left; margin-right: 5px; padding-right: 5px;">
+                    {{item.first_name}}   
+                </div>
+                <div style="margin-left: 5px;padding-left: 5px;">
+                    {{item.last_name}}   
+                </div>
+            
+
+            </div>
+            <div style="clear: both;"></div>
+        {% endfor %}
+
+    {%endif%}
+</div>
+
+<div style="color: blue;background-color: azure;">
+    <div >Uczestniczący:</div>
+    {% if is_editable %}   
+        <div>
+            {{form.attendance_list}}
+        </div>
+    {%else%}
+        <div style="float: left;background-color: azure; width: 50%;">
+            {% for item in instance.attendance_list.all %}
+                <div>
+                    <div style="float: left;  padding-right: 5px;">
+                        {{item.first_name}}   
+                    </div>
+                    <div style="margin-left: 5px;padding-left: 5px; float: left;">
+                        {{item.last_name}}   
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            {% endfor %}
+        </div>    
+    {%endif%}
+
+</div>
+
+
+
+
+</div>
+
+<div style="clear: both;"></div>

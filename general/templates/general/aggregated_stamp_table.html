@@ -1,0 +1,79 @@
+{% extends 'base_general.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}Lista Crip-ów{% endblock %}
+
+
+{% block content %}
+
+<style>
+    .edit_contract {
+        background-color: #ffffcc; /* Jasno żółte tło */
+        border-top: 2px solid orange; /* Pomarańczowa dolna krawędź */
+    }
+    .idea_edit {
+        background-color: #dec9e0; 
+        border-top: 2px solid rgb(49, 15, 68); 
+    }
+    .need_edit {
+        background-color: #abaed1; 
+        border-top: 2px solid rgb(42, 177, 53); 
+    }
+    .purchase_edit {
+        background-color: #b4e4b2; 
+        border-top: 2px solid rgb(80, 15, 21); 
+    }
+
+
+
+
+</style>
+<div class="header_lit">Zagregowane wyniki pomiarów</div>
+
+
+    <form method="get">
+        <label for="period">Wybierz przedział czasu:</label>
+        <select name="period" id="period">
+            <option value="hour" {% if period == 'hour' %}selected{% endif %}>Godzina</option>
+            <option value="day" {% if period == 'day' %}selected{% endif %}>Dzień</option>
+            <option value="week" {% if period == 'week' %}selected{% endif %}>Tydzień</option>
+            <option value="month" {% if period == 'month' %}selected{% endif %}>Miesiąc</option>
+        </select>
+        <button type="submit">Zastosuj</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Przedział czasowy</th>
+                <th>Nazwa</th>
+                <th>Typ zdarzenia</th>
+                <th>Sekwencja</th>
+                <th>Min </th>
+                <th>Max </th>
+                <th>Średni </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, entries in aggregated_data.items %}
+                <tr class="{{key.1}}">
+                    <td style="padding-right: 20px; ">{{ key.0 }}</td>
+                    <td style="padding-right: 20px; ">{{ key.1 }}</td>
+                    {% for entry in entries %}
+                        <tr>
+                            <td></td>  <!-- Kolumna dla "Przedział czasowy" -->
+                            <td></td>  <!-- Kolumna dla "Nazwa" -->
+                            <td style="padding-right: 20px; ">{{ entry.typ_zdarzenia }}</td>
+                            <td style="padding-right: 20px; ">{{ entry.sekwencja }}</td>
+                            <td style="padding-right: 20px; ">{{ entry.min_duration }}</td>
+                            <td>{{ entry.max_duration }}</td>
+                            <td>{{ entry.avg_duration }}</td>
+                        </tr>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

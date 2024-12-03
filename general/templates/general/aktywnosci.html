@@ -1,0 +1,11 @@
+
+<div class="aktywnosci">
+    {% if request.user.is_authenticated %}
+        <p>Ostatnie aktywności użytkowników</p>
+        <ul>
+            {% for entry in activity_data %}
+                <li>{{ entry.username }} - Ostatnia aktywność: {{ entry.last_activity }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} 
+</div>

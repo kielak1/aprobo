@@ -1,0 +1,31 @@
+{% load url_transforms %}
+    <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+            <li><a class="nav-link" style="color: rgb(244, 239, 146);" href="#">{{ request.user.username }} </a></li>
+        {% endif %} 
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Konto</a>
+            <ul class="dropdown-menu">
+                {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="/account/logout/">wyloguj {{ request.user.username }}</a></li>
+                    <li><a class="dropdown-item" href="/account/password_change/">zmiana hasła</a></li>
+                {% else %}
+                    <li><a class="dropdown-item" href="/login/">Zaloguj</a></li>
+                {% endif %}    
+            </ul>
+        </li>      
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ request.build_absolute_uri|to_doc_domain }}/" data-bs-toggle="dropdown">Dokumentacja</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/user/">Dokumentacja użytkownika</a></li>                
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/admin/">Dokumentacja administratora</a></li>   
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/enviroment/">Dokumentacja środowiska</a></li>   
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/developer/">Dokumentacja programisty</a></li>                                   
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/user/instrukcja.html">Instrukcja</a></li>
+                <li><a class="dropdown-item"  href="{{ request.build_absolute_uri|to_doc_domain }}/user/faq.html">FAQ</a></li>
+            </ul>
+        </li>      
+        {% if is_advanced %}
+            <li><a class="nav-link"  href="{{ request.build_absolute_uri|to_stat_domain }}">Statystyki</a></li>
+        {% endif %} 
+    </ul>

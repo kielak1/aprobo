@@ -1,0 +1,4 @@
+cd robot
+./avantic.sh
+cd ..
+firefox robot/results/report.html 

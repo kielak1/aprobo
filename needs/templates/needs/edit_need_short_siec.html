@@ -1,0 +1,46 @@
+{% load need_tags %}
+
+<div class="standard-blok"; style="width: {{ szerokosc }}px">
+
+    {% need_domain_header status_akceptacji_sieci 'Sieć' %}
+ 
+    {% comment %} blok nawigacyjny dla sekcji Siec {% endcomment %}
+
+    {% if status_need == "realizowana" and is_need_editor %} 
+        {% if status_akceptacji_sieci == "niegotowe" or status_akceptacji_sieci == "do poprawy"%} 
+            <div style="clear:both;"></div>
+            {% buton  "button-proces" "Czy na pewno chcesz przejść do fazy akceptacji sieci?" "do_akceptacji_siec" "skieruj do akceptacji" %}
+        {% endif %}
+        {% if is_need_net_acceptor or is_superuser %}
+            {% if status_akceptacji_sieci == "do akceptacji"  %} 
+                {% if is_need_net_acceptor %}
+                    {% buton  "button-proces" "Czy na pewno chcesz zaakceptować sieć?" "akceptuj_siec" "akceptuję sieć" %}
+                {%endif%}
+                {% buton  "button-proces" "Czy na pewno chcesz zwócić do poprawy?" "do_poprawy_siec" "zwróć do poprawy" %}
+            {% endif %}
+            {% if status_akceptacji_sieci == "zaakceptowane" and status_akceptacji != "zaakceptowane" %} 
+                {% buton  "button-proces" "Czy na pewno chcesz cofnąć akceptację sieci?" "cofnij_siec" "cofnij akceptację sieci" %}
+            {% endif %}
+        {%endif%} 
+        <div style="clear:both;"></div>
+    {% endif %} 
+
+    {% need_field 1 need_instance.czy_beda_wymagane_uslugi_zewnetrzne|yesno:"Tak,Nie" form.czy_beda_wymagane_uslugi_zewnetrzne 'Czy będzie wymagane skorzystanie z usług zewnętrznych dostawców?' is_need_editor freeze_siec 'normal' True True 0 %}
+
+    <div id="obszar_uslug_zewnetrznych_dostawcow_siec"> 
+        {% need_field 21 need_instance.zakres_uslug_zewnetrznych form.zakres_uslug_zewnetrznych 'Zakres usług zewnętrznych dostawców:' is_need_editor freeze_siec 'tekst' need_instance.czy_beda_wymagane_uslugi_zewnetrzne True 0 %}
+    </div>             
+
+    {% need_field 1 need_instance.czy_bedzie_wymagany_load_balancer|yesno:"Tak,Nie" form.czy_bedzie_wymagany_load_balancer 'Czy będzie wymagane wykorzystanie loadbalacera?' is_need_editor freeze_siec 'normal' True True 0 %}
+    <div style="clear:both;"></div>
+        {% need_field_komentarz_dziedzinowy need_instance.komentarz_sieciowy form.komentarz_sieciowy 'Komentarz sieciowy dla Koordynatora IT:' status_akceptacji_sieci is_need_net_acceptor%}
+        {% if need_instance.komentarz_sieciowy %}
+            {% need_field_info need_instance.odpowiedz_na_sieciowy form.odpowiedz_na_sieciowy 'Odpowiedź dla akceptującego sieć: ' freeze_siec 0 %}
+        {% endif %}            
+    <div style="clear:both;"></div>
+
+</div> 
+
+
+
+

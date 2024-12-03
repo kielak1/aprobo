@@ -1,0 +1,25 @@
+
+
+body {
+    background-color: hsl(225, 20%, 66%);
+ }
+
+ .tabela_powiazana td {
+    color: #333; /* Kolor tekstu */
+    background-color: #f5f5f5; /* Tło komórki */
+    border: 1px solid #ddd; /* Kolor ramek */
+    font-family: Arial, sans-serif; /* Rodzina czcionki */
+}
+
+/* Styl dla komórek <th> */
+.tabela_powiazana th {
+    color: #fff; /* Kolor tekstu */
+    background-color: #0074d9; /* Tło komórki (dla nagłówków) */
+    border: 1px solid #0056b3; /* Kolor ramek */
+    font-family: Arial, sans-serif; /* Rodzina czcionki */
+}
+
+/* Zmiana koloru tła dla wariantu hover */
+.tabela_powiazana td:hover {
+    background-color: #ffdc00; /* Kolor tła po najechaniu myszką */
+}

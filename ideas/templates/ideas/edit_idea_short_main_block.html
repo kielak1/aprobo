@@ -1,0 +1,58 @@
+{% load need_tags %}
+{% load general_filters %}
+{% load humanize %}
+<div style="width:1110px;margin-top: 5px; ">
+  <div style="float: left;margin-right: 5px;">Data realizacji</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;margin-right: 5px;">{{ form.wymagana_data_realizacji }}</div>
+  {% else %}
+    <div style="float: left;margin-right: 5px; width: 120px; height: 29px; " class="read_only">{{ idea_instance.wymagana_data_realizacji }}</div>
+  {% endif %}
+
+  <div style="float: left;margin-right: 5px;">Budżet:</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;margin-right: 5px;">{{ form.orientacynjy_budzet }}</div>
+  {% else %}
+    <div style="float: left; margin-right: 5px;width: 150px; height: 29px; " class="read_only">{{ idea_instance.orientacynjy_budzet|floatformat:2|space_intcomma }}</div>
+  {% endif %}
+
+  <div style="float: left;margin-right: 5px;">Rodzaj inicjatywy:</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;margin-right: 5px;">{{ form.rodzaj_inicjatywy }}</div>
+  {% else %}
+    <div style="float: left; margin-right: 5px;width: 390px; height: 29px; " class="read_only">{{ idea_instance.rodzaj_inicjatywy }}</div>
+  {% endif %}
+
+  <div style="clear: both; margin-top: 5px;padding-top: 5px;"></div>
+
+  <div style="float: left;margin-right: 5px;">Klient:</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;margin-right: 5px;">{{ form.client }}</div>
+  {% else %}
+    <div style="float: left; margin-right: 5px;width: 390px; height: 29px; " class="read_only">{{ idea_instance.client }}</div>
+  {% endif %}
+  <div style="clear: both;"></div>
+  <div style="float: left;margin-right: 5px;">Kontakt:</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;margin-right: 5px;">{{ form.osoba_kontakowa_u_klienta }}</div>
+  {% else %}
+    <div style="float: left; margin-right: 5px;width: 150px; height: 29px; " class="read_only">{{ idea_instance.osoba_kontakowa_u_klienta }}</div>
+  {% endif %}
+
+  <div style="float: left;margin-right: 5px;">BDM (Właściciel biznesowy):</div>
+  {% if not is_edition_blocked %}
+    <div style="float: left;">{{ form.wlasciciel_biznesowy }}</div>
+  {% else %}
+    <div style="float: left; width: 150px; height: 29px; " class="read_only">{{ idea_instance.wlasciciel_biznesowy }}</div>
+  {% endif %}
+
+  <div style="clear: both;"></div>
+
+  {% need_field_info idea_instance.opis form.opis 'Opis:' is_edition_blocked 1 %}
+  {% need_field_info idea_instance.uzasadnienie form.uzasadnienie 'Uzasadnienie:' is_edition_blocked 1 %}
+  {% need_field_info idea_instance.produkty form.produkty 'Produkty:' is_edition_blocked 1 %}
+  {% need_field_info idea_instance.komentarz form.komentarz 'Komentarz:' is_edition_blocked 1 %}
+  {% need_field_info idea_instance.proponowany_sposob_realizacji form.proponowany_sposob_realizacji 'Proponowany sposób realizacji:' is_edition_blocked 1 %}
+
+  <div style="clear:both; "></div>
+</div>

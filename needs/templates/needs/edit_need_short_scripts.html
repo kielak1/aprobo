@@ -1,0 +1,170 @@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('id_czy_wymagana_jest_infrastruktura');
+            const obszar_wymagana_infra3 = document.getElementById('obszar_wymagana_infra3');
+            const obszar_wymagana_infra4 = document.getElementById('obszar_wymagana_infra4'); 
+            const obszar_wymagana_infra5 = document.getElementById('obszar_wymagana_infra5'); 
+            const obszar_wymagana_infra9 = document.getElementById('obszar_wymagana_infra9'); 
+
+            function toggleObszary() {
+                if (checkbox.checked) {
+                    obszar_wymagana_infra3.style.display = 'block'; 
+                    obszar_wymagana_infra4.style.display = 'block';                
+                    obszar_wymagana_infra5.style.display = 'block';                
+                    obszar_wymagana_infra9.style.display = 'block';                
+             
+                } else {
+                    obszar_wymagana_infra3.style.display = 'none'; 
+                    obszar_wymagana_infra4.style.display = 'none';                   
+                    obszar_wymagana_infra5.style.display = 'none';                   
+                     obszar_wymagana_infra9.style.display = 'none';                   
+                 }
+                
+            }
+            // Wywołaj funkcję toggleObszary przy zmianie stanu checkbox
+            checkbox.addEventListener('change', toggleObszary);
+            // Wywołaj funkcję toggleObszary przy załadowaniu strony
+            toggleObszary();
+           
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox_wym_zak_wsp_infr = document.getElementById('id_czy_wymagany_zakup_uslug_utrzymania_infrastruktury');
+            const obszar_wymagana_infra11 = document.getElementById('obszar_wymagana_infra11'); 
+
+            
+            function toggleObszary_zak_zak_wsp() {
+                if (checkbox_wym_zak_wsp_infr.checked) {
+                    obszar_wymagana_infra11.style.display = 'block'; 
+
+                } else {
+                    obszar_wymagana_infra11.style.display = 'none'; 
+
+                }
+                {% comment %} alert('Strona została załadowana. Kliknij przycisk OK, aby kontynuować.');   {% endcomment %}
+            }
+            
+            checkbox_wym_zak_wsp_infr.addEventListener('change', toggleObszary_zak_zak_wsp);
+            toggleObszary_zak_zak_wsp();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox_wym_zak_wsp__infr = document.getElementById('id_czy_wymagany_zakup_infrastruktury');
+            const obszar_wymagana_infra7 = document.getElementById('obszar_wymagana_infra7'); 
+            
+            function toggleObszary_zak_zak() {
+                if (checkbox_wym_zak_wsp__infr.checked) {
+                    obszar_wymagana_infra7.style.display = 'block'; 
+                } else {
+                    obszar_wymagana_infra7.style.display = 'none'; 
+                }
+                {% comment %} alert('Strona została załadowana. Kliknij przycisk OK, aby kontynuować.');   {% endcomment %}
+            }
+            
+            checkbox_wym_zak_wsp__infr.addEventListener('change', toggleObszary_zak_zak);
+            toggleObszary_zak_zak();
+        });
+    </script>
+
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox_backup = document.getElementById('id_czy_wymagany_backup');
+            const obszar_backup1 = document.getElementById('obszar_backup1'); 
+            function toggleBackup() {
+                if (checkbox_backup.checked) {    
+                    obszar_backup1.style.display = 'block'; 
+                } else {
+                    obszar_backup1.style.display = 'none'; 
+                }
+            }
+            checkbox_backup.addEventListener('change', toggleBackup);
+            toggleBackup();
+        });
+    </script>
+
+
+<!-- Skrypty kontrolujace widocznosc  -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function toggleVisibility(checkboxId, areaId, invert = false) {
+            const checkbox = document.getElementById(checkboxId);
+            const area = document.getElementById(areaId);
+    
+            function toggleDisplay() {
+                if (invert) {
+                    area.style.display = checkbox.checked ? 'none' : 'block';
+                } else {
+                    area.style.display = checkbox.checked ? 'block' : 'none';
+                }
+            }
+    
+            checkbox.addEventListener('change', toggleDisplay);
+            toggleDisplay(); // Wywołanie początkowe dla ustawienia początkowego stanu
+        }
+    
+        function toggleCheckbox(masterCheckboxId, slaveCheckboxId, actionOnCheck, actionOnUncheck) {
+            const masterCheckbox = document.getElementById(masterCheckboxId);
+            const slaveCheckbox = document.getElementById(slaveCheckboxId);
+    
+            function updateSlaveCheckbox() {
+                if (masterCheckbox.checked) {
+                    slaveCheckbox.checked = actionOnCheck === 'check';
+                } else {
+                    slaveCheckbox.checked = actionOnUncheck === 'check';
+                }
+            }
+    
+            masterCheckbox.addEventListener('change', updateSlaveCheckbox);
+            updateSlaveCheckbox(); // Wywołanie początkowe dla ustawienia początkowego stanu
+        }
+    
+        // Zastosowanie setTimeout do opóźnienia zmiany stanu checkboxów
+        // setTimeout(function() {
+        //     toggleCheckbox('id_czy_przedmiotem_jest_zakup_licencji_subskrypcji', 'id_czy_licencje_sa_wieczyste', 'check', 'check');
+        //     toggleCheckbox('id_czy_przedmiotem_jest_zakup_licencji_subskrypcji', 'id_czy_licencje_sa_objete_uslugami_wsparcia_producenta', 'uncheck', 'uncheck');
+        //     toggleCheckbox('id_czy_przedmiotem_jest_zakup_licencji_subskrypcji', 'id_czy_zakup_licencji_jest_powiazany_z_zakupem_usług', 'uncheck', 'uncheck');
+          
+        //     toggleCheckbox('id_czy_licencje_sa_objete_uslugami_wsparcia_producenta', 'id_czy_koszt_wsparcia_jest_wliczony_w_wartosc_zakupionych_licencji', 'uncheck', 'uncheck');
+        //     toggleCheckbox('id_czy_licencje_sa_objete_uslugami_wsparcia_producenta', 'id_czy_koszt_wsparcia_licencji_jest_wyodrebniany', 'uncheck', 'uncheck');
+        //     toggleCheckbox('id_czy_licencje_sa_objete_uslugami_wsparcia_producenta', 'id_czy_zakup_wsparcia_lcencji_dotyczy_licencji_juz_zakupionych', 'uncheck', 'uncheck');
+        // }, 100); // Opóźnienie 100 ms, dostosuj według potrzeb
+    
+        // Inne wywołania funkcji bez opóźnienia
+       toggleVisibility('id_czy_przedmiotem_sa_uslugi_wsparcia_producenta', 'obszar_czas_uslug_wsparcia_producenta');
+       toggleVisibility('id_czy_przedmiotem_jest_zakup_licencji_subskrypcji', 'obszar_zakupu_licencji'); 
+       toggleVisibility('id_czy_licencje_sa_wieczyste', 'obszar_licencji_terminowych', true); 
+       toggleVisibility('id_czy_licencje_sa_objete_uslugami_wsparcia_producenta', 'obszar_wsparcia_licencji');
+       toggleVisibility('id_czy_zakup_wsparcia_licencji_dotyczy_licencji_juz_zakupionych', 'obszar_juz_zakupionych_licencji'); 
+
+       // fifnase 
+       toggleVisibility('id_czy_przedmiotem_zakupu_jest_sprzet', 'obszar_sprzetu'); 
+            toggleVisibility('id_czy_w_ramach_zakupu_sprzetu_kupowane_sa_licencje', 'obszar_licencje_ze_sprzetem'); 
+            toggleVisibility('id_czy_w_ramach_sprzetu_sa_uslugi_wsparcia', 'obszar_uslug_ze_sprzetem'); 
+            toggleVisibility('id_czy_w_wyniku_zakupu_bedzie_wycofywany_stary_sprzet', 'sprzet_wycofywany'); 
+
+       toggleVisibility('id_czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia', 'obszar_uslug'); 
+            toggleVisibility('id_czy_zakup_uslug_jest_powiazany_z_zakupem_sprzetu', 'obszar_uslug_powiazany_ze_sprzetem'); 
+            toggleVisibility('id_czy_zakup_usług_jest_powiazany_ze_wsparci_producenta', 'obszar_uslug_powiazany_ze_wsparciem'); 
+            toggleVisibility('id_czy_zakup_uslug_jest_zwiazany_z_zakupem_licencji', 'obszar_uslug_powiazany_z_licencjami'); 
+
+       toggleVisibility('id_czy_zadanie_zostalo_zaplanowane', 'obszar_crip'); 
+       toggleVisibility('id_czy_zadanie_zostalo_zaplanowane', 'obszar_przyczyn_niezaplanowania', true); 
+
+        //siec
+        
+        toggleVisibility('id_czy_beda_wymagane_uslugi_zewnetrzne', 'obszar_uslug_zewnetrznych_dostawcow_siec'); 
+       
+        // infrastruktura
+        //toggleVisibility('id_czy_wymagany_backup', 'obszar_backup1'); 
+    
+
+    });
+    </script>
+    

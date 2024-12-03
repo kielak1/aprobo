@@ -1,0 +1,25 @@
+{% load general_filters %}
+{%if left == 1 %}
+<div style="float:left; display: flex; align-items: center; margin-right: 2px;padding-right: 2px;padding-left: 2px;height: 32px; background-color: aliceblue;"> 
+{%else%}
+<div style="clear: both; display: flex; align-items: center; margin-right: 2px;padding-right: 2px;padding-left: 2px;width: 1000px; height: 32px; background-color: aliceblue;"> 
+{%endif%}
+
+    {{ field_label }}<div style="width: 2px;"></div>
+    {% if freeze_all %}
+
+        {% if alert == 1 or alert == True%}
+            {% if instance %}
+                <b>  {{ instance|format_instance|truncatechars:110  }} </b>
+            {% else %}
+                <b style=" background-color: red;"> ???? </b>
+            {% endif %}
+        {%else%}
+            <b> {{ instance|format_instance|truncatechars:110  }} </b>
+        {%endif%}
+    {% else %}
+        {{ field }}   
+    {% endif%} 
+</div>
+
+

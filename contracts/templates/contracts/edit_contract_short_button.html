@@ -1,0 +1,37 @@
+    
+<div style="width:1000px;">
+
+
+
+    {% if  is_contract_editor or is_lead_maker or is_contract_allocator  %}
+    <button type="submit" class="button-normal" name="Submit">Zapisz i wyjdź</button>
+    <button type="submit" class="button-normal" name="Zapisz">Zapisz</button>
+    {% endif %}
+
+    {% if  is_lead_maker and contract_instance.czy_wymagana_kontynuacja  %}   
+    <button type="submit"onclick="return confirm('Czy na pewno chcesz dodać pomysł, którego produktem będzie zapewnienie ciągłości realizacji usług w ramach tej umowy? Uwaga: NIE NALEŻY za pomoca tego przycisku dodawać pomysłów, które będą finansowane z tej umowy ani takich, które są jedynie powiązane z tą umową.')" class="button-normal" name="Idea"
+    title ="Ten przycisk służy wyłącznie do tworzenia pomysłów, które zapewnią kontunuację realizacji usług po tym jak ta umowa przestanie obowiązywać."
+    >Stwórz pomysł</button>        
+    {% endif %}
+    <button type="submit" class="button-normal" name="Anuluj">Wróć</button>
+
+
+
+
+
+    {% if  is_lead_maker and contract_instance.czy_wymagana_kontynuacja  %}   
+    <div style="clear: both;">
+        <button type="submit" class="button-normal" name="DodajPomysl">Dołącz Pomysł</button>
+        {{ form.ideas_to_add }}
+    </div>
+    {% endif %}
+    {% if  is_lead_maker and pomysly  %}  
+    <div style="clear: both;">
+        <button type="submit" class="button-danger" name="UsunPomysl">Odłącz Pomysł</button>
+        {{ form.ideas_to_remove }}
+    </div>
+    {% endif %}
+
+</div>
+
+<div style="clear: both;"></div>

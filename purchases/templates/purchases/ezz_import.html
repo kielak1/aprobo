@@ -1,0 +1,125 @@
+{% extends 'base_purchases.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block content %} 
+
+    <div style="background-color: rgb(181, 226, 230); width: 1200px; padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+   
+
+        <h1>Wczytane rekordy EZZ</h1>
+
+        {% if number_of_records %}
+            <p>Wczytano {{ number_of_records }} EZZ-ów, z czego {{ number_of_new_records }} to nowe rekordy.</p>
+        {% endif %}
+
+        {% if error %}
+            <h2>{{ error }}</h2>
+        {% endif %}
+
+        <!-- Display successfully added records (new records) -->
+        {% if imported_records %}
+            <h2>Dodane nowe rekordy</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numer wniosku</th>
+                        <th>Zlecający</th>
+                        <th>Data utworzenia</th>
+                        <th>Przedmiot zlecenia</th>
+                        <th>Status</th>
+                        <th>Dostawca</th>
+                        <th>Źródło finansowania</th>
+                        <th>Docelowy odbiorca</th>
+                        <th>Obecni Akceptujący</th>
+                        <th>Data ostatniej akceptacji</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in imported_records %}
+                        <tr>
+                            {% for cell in record %}
+                                <td class="cell-td">{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak nowych EZZ-ów</p>
+        {% endif %}
+        <!-- Display successfully modified records  -->
+        {% if modified_records %}
+            <h2>Zmodyfikowane rekordy</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numer wniosku</th>
+                        <th>Zlecający</th>
+                        <th>Data utworzenia</th>
+                        <th>Przedmiot zlecenia</th>
+                        <th>Status</th>
+                        <th>Dostawca</th>
+                        <th>Źródło finansowania</th>
+                        <th>Docelowy odbiorca</th>
+                        <th>Obecni Akceptujący</th>
+                        <th>Data ostatniej akceptacji</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in modified_records %}
+                        <tr>
+                            {% for cell in record %}
+                                <td class="cell-td">{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak zmodyfikowanych EZZ-ów</p>
+        {% endif %}
+
+
+
+
+        <!-- Display rejected records with errors -->
+        {% if rejected_records %}
+            <h2>Odrzucone rekordy</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numer wniosku</th>
+                        <th>Zlecający</th>
+                        <th>Data utworzenia</th>
+                        <th>Przedmiot zlecenia</th>
+                        <th>Status</th>
+                        <th>Dostawca</th>
+                        <th>Źródło finansowania</th>
+                        <th>Docelowy odbiorca</th>
+                        <th>Obecni Akceptujący</th>
+                        <th>Data ostatniej akceptacji</th>
+                        <th>Błędy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rejected_record, errors in rejected_records %}
+                        <tr>
+                            {% for cell in rejected_record %}
+                                <td class="cell-td">{{ cell }}</td>
+                            {% endfor %}
+                            <td class="cell-td">
+                                <ul>
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak odrzuconych rekordów</p>
+        {% endif %}
+    </div>
+{% endblock %}

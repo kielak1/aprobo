@@ -1,0 +1,9 @@
+<!-- import_ezzc_form.html --> 
+{% extends 'base_contracts.html' %}
+{% load general_tags %}
+{% block content %}
+    <div style="background-color: rgb(165, 165, 136); width: 1200px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import umów/zamówień z pliku excell wyeksportowanego z systemu EZZ (nazwa pliku postaci Rejestr)" "Importuj" %}
+    </div>   
+{% endblock %}
+

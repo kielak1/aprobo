@@ -1,0 +1,36 @@
+<div class="dane_uzytkownika">
+{% if request.user.is_authenticated %}
+    <p>Jesteś zalogowany jako: {{ user.username }}</p>
+    <ul>
+        <li><a href="/account/logout/">wyloguj {{ request.user.username }}</a></li>
+        <li><a href="/account/password_change/">zmiana hasła</a></li>
+    </ul>
+    <p>Reprezentujesz działy:</p>
+    <ul> 
+        {% for dzial in dzialy %}
+            <li>{{dzial}}</li>
+        {% endfor %}
+    </ul>
+    <p>Reprezentujesz klienctów:</p>
+    <ul> 
+        {% for klient in klienci_rel %}
+            <li>{{klient}}</li>
+        {% endfor %}
+    </ul>
+   
+    <p>Posiadasz uprawnienia:</p>
+    <ul> 
+        {% for grupa in grupy %}
+            <li>{{grupa}}</li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>Żeby móc korzystać z aplikacji AvanTIc musisz się zalogować</P>
+    <ul>
+        <li><a href="/login/">Zaloguj</a></li>                            
+        <li><a href="/account/register/">Załóż konto </a></li>
+    </ul>
+{% endif %} 
+</div>
+

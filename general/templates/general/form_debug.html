@@ -1,0 +1,15 @@
+{% load static %}
+
+<div style="clear: both;"></div> 
+<h1>Szczegóły pól formularza</h1>
+<ul>
+{% for field in form %}
+    <li>
+        Nazwa: {{ field.name }}<br>
+        Etykieta: {{ field.label }}<br>
+        Typ: {{ field.field.widget.input_type }}<br>
+        Wartość: {{ field.value }}
+    </li>
+{% endfor %}
+</ul>
+<div style="clear: both;"></div> 

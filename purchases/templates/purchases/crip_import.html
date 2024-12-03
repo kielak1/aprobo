@@ -1,0 +1,68 @@
+
+{% extends 'base_purchases.html' %}
+
+{% block content %}
+<div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+    <h1>Wczytane dane CRIP</h1>
+
+    {% if number_of_records %}
+        <p>Wczytano {{ number_of_records }} crip-id ({{ number_of_new_records }} nowych)</p>
+    {% else %}
+        <p><strong>Brak nowych crip-id do zaimportowania.</strong></p>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message">
+            <h2>{{ error }}</h2>
+        </div>
+    {% endif %}
+
+    {% if lista %}
+        <h2>Poprawnie wczytane wiersze</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>crip_id</th>
+                    <th>nazwa_projektu</th>
+                    <th>jednostka</th>
+                    <th>sekcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in lista %}
+                    <tr>
+                        {% for cell in element %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if odrzucone_wiersze %}
+        <h2>Odrzucone wiersze</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>crip_id</th>
+                    <th>nazwa_projektu</th>
+                    <th>jednostka</th>
+                    <th>sekcja</th>
+                    <th>Powód odrzucenia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row_data in odrzucone_wiersze %}
+                    <tr>
+                        {% for cell in row_data.row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                        <td>{{ row_data.reason }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

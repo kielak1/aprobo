@@ -1,0 +1,28 @@
+<div style="clear: both;"></div>
+<footer>
+    <!-- Stopka strony -->
+    <p>&copy; 2024 Aprobo</p>
+</footer>
+</div>
+    {% include 'hide_preloader.html' %}
+    {% include 'common_links.html' %}  
+<script>
+    var form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            // Zablokuj przycisk po wysłaniu formularza
+            setTimeout(function() {
+                var button = document.querySelector('.button-normal');
+                if (button) {
+                    button.disabled = true; 
+                    document.body.style.backgroundColor = 'red';
+                    // Pokaż spinner
+                    var preloader = document.getElementById('preloader');
+                    if (preloader) {
+                        preloader.style.display = 'block';  // Pokaż preloader
+                    }
+                }
+            }, 10); // Opóźnienie 10ms, aby formularz miał czas na wysłanie wartości
+        });
+    }
+</script>

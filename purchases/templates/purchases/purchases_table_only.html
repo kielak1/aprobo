@@ -1,0 +1,10 @@
+{% load render_table from django_tables2 %}
+{% load bootstrap3 %}
+
+<div class="section">
+    <p class="toggle-header" style="color: rgb(55, 33, 179); font-size: 24px; text-align: center; background-color: rgb(236, 234, 205); font-weight: bold; cursor: pointer;">ZAKUPY</p>
+    <div class="content" style="display: block;">
+        {% render_table table_purchases 'django_tables2/bootstrap.html' %}
+    </div>
+</div>
+

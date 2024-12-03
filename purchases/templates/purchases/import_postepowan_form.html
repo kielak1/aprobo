@@ -1,0 +1,9 @@
+<!-- import_form.html --> 
+{% extends 'base_purchases.html' %}
+{% load general_tags %}
+{% block content %}
+    <div style="background-color: beige; width: 1000px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import postępowań z pliku excell wyeksportowanego z systemu EZZ (nazwa pliku postaci _Wnioski ZZG)" "Importuj" %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,14 @@
+<div style="clear:both;text-align: center; " > 
+    {{ field_label }} 
+</div>     
+
+
+{% if not freeze_all %}        
+    <div class="read_only"  style="width: 1000px;height: 80px;">{% if alert == 1 %}{% if instance %}{{ instance }}    
+    {% else %} <b style=" background-color: red;"> ???? </b>  
+    {% endif %}  {%else%}{{ instance }}{%endif%}</div>
+{% else %}
+    <div style="clear:both; " >  {{ field }}  </div>   
+{% endif%} 
+
+ 

@@ -1,0 +1,17 @@
+
+{% load need_tags %}
+<div style="width:100%; ">
+
+{%if status_idei == 'analiza' or status_idei == 'rada architektury' or idea_instance.komentarz_architekta %}
+    {% need_field_komentarz_architekta idea_instance.komentarz_architekta form.komentarz_architekta 'Komentarz architekta dla Koordynatora IT:' status_idei is_idea_recommender%}
+    {% if idea_instance.komentarz_architekta %}
+
+
+        {%if  form.odpowiedz_koordynatora_do_architekta %}
+            {% need_field_info idea_instance.odpowiedz_koordynatora_do_architekta form.odpowiedz_koordynatora_do_architekta 'Odpowiedź dla architekta: ' 0 0 %}    
+        {%else%}
+            {% need_field_info idea_instance.odpowiedz_koordynatora_do_architekta form.odpowiedz_koordynatora_do_architekta 'Odpowiedź dla architekta: ' 1 0 %}    
+        {%endif%}
+    {% endif %}            
+{% endif %}
+</div>

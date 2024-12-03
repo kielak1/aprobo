@@ -1,0 +1,30 @@
+{% load general_filters %}
+{% load need_tags %}
+{% if resolutions %}
+    <div style="width: 1000px; background-color: bisque;">
+        <div style="clear: both;">
+            Postanowienia Rady Architektury:
+        </div>
+
+        {% for resolution in resolutions %}
+            <div style="clear: both;"></div>
+            <strong>Data posiedzenia:</strong>
+            {% if is_client %} 
+                {{ resolution.meeting.meeting_date }}<br>
+            {% else %}
+                <a href="/general/edit_rada/{{ resolution.meeting.id }}/">{{ resolution.meeting.meeting_date }}</a><br>
+            {% endif %}
+            {% if resolution == editable_resolution and is_recommender %}
+                <div>
+                    {% buton "button-normal" "" "update_resolution" "Ustalenie" %}
+                </div>
+                <div style="background-color: azure;">
+                    <textarea name="resolution_text" style="width: 915px; min-height: 60px; max-height: 180px; overflow-y: auto; overflow-x: hidden; margin-left: 1px; margin-top: 2px;">{{ resolution.resolution_text }}</textarea>
+                </div>
+            {% else %}
+                <strong>Postanowienie:</strong> {{ resolution.resolution_text }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+{% endif %}

@@ -1,0 +1,28 @@
+{% extends 'base_needs.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}Potrzeby{% endblock %}
+
+{% block content %}       
+
+    {% load bootstrap3 %}       
+    {% load general_tags %}    
+    <div class="header_lit">Potrzeby</div>
+    {% include 'pagination_general.html' %}
+
+    {% if filter %}
+        <form action="" method="get" class="form form-inline mb-3">
+            {% filtr_field 'id' 'Id' %}
+            {% filtr_field 'subject' 'Nazwa' %}
+            {% filtr_field 'section__short_name' 'Dział' %}
+            {% filtr_field 'status_potrzeby__status' 'Status potrzeby' %}
+            {% filtr_field 'osoba_prowadzaca__username' 'Osoba prowadząca' %}
+            {% filtr_field 'status_akceptacji__akceptacja' 'Status akceptacji' %}         
+            {% filtr_field 'client__name' 'Klient' %}
+            <button type="submit" class="btn btn-primary">Filtruj</button>
+        </form>
+    {% endif %} 
+
+    {% render_table table 'custom_table_template.html' %}
+
+{% endblock %}

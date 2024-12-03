@@ -1,0 +1,154 @@
+.header_lit {
+
+    background-color: rgb(37, 40, 95) !important;
+    color: rgb(236, 235, 228) !important;
+    margin-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.umowa {
+    background-color: yellow !important;
+    color: red !important;
+}
+
+.zakup {
+    background-color: rgb(217, 218, 208) !important;
+    color: rgb(49, 16, 16) !important;
+}
+
+
+.pomysl {
+    background-color: #adff2f !important;
+    color: red !important;
+}
+
+.potrzeba {
+    background-color: deepskyblue !important;
+    color: red !important;
+}
+
+
+.niegotowe {
+    background-color: gray !important;
+    color: black !important;
+}
+
+.do-akceptacji {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.do-poprawy {
+    background-color: pink !important;
+    color: black !important;
+}
+
+.odrzucone {
+    background-color: red !important;
+    color: black !important;
+}
+
+.zaakceptowane {
+    background-color: green !important;
+    color: white !important;
+}
+
+.nowa {
+    background-color: gray !important;
+    color: red !important;
+}
+
+.zawieszona {
+    background-color: gray !important;
+    color: black !important;
+}
+
+.realizowana {
+    background-color: blue !important;
+    color: yellow !important;
+}
+
+.zrealizowana {
+    background-color: green !important;
+    color: yellow !important;
+}
+
+.zamknieta {
+    background-color: red !important;
+    color: black !important;
+}
+
+.rada-architektury {
+    background-color: rgb(214, 201, 201) !important;
+    color: rgb(1, 21, 20) !important;
+}
+
+.analiza {
+    background-color: rgb(198, 233, 230) !important;
+    color: rgb(1, 21, 20) !important;
+}
+
+.wstrzymane {
+    background-color: rgb(77, 43, 105) !important;
+    color: rgb(166, 201, 199) !important;
+}
+
+.w-EZZ {
+    background-color: gray !important;
+    color: black !important;
+}
+
+.w-realizacji {
+    background-color: blue !important;
+    color: yellow !important;
+}
+
+.zakonczony {
+    background-color: green !important;
+    color: yellow !important;
+}
+
+.anulowany {
+    background-color: red !important;
+    color: black !important;
+}
+
+.roboczy {
+    background-color: rgb(0, 255, 170) !important;
+    color: black !important;
+}
+
+.zakup-BGNIG {
+    background-color: rgb(128, 118, 29) !important;
+    color: black !important;
+}
+
+.w-zakupach {
+    background-color: rgb(113, 190, 201) !important;
+    color: black !important;
+}
+
+.ezz-status {
+    background-color: #e68db9 !important;
+}
+
+.nowe {
+    background-color: gray !important;
+    color: black !important;
+}
+
+.otwarte {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.zamkniete {
+    background-color: pink !important;
+    color: black !important;
+}

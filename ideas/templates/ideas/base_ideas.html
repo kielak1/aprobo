@@ -1,0 +1,57 @@
+{% load static %}
+{% load general_tags %}
+<!DOCTYPE html>
+<html>
+
+{% include 'base_head.html' %}
+<body>
+    {% include 'common_start_body.html' %}
+
+    <div class="collapse navbar-collapse" id="main_nav">
+        <ul class="navbar-nav">
+            {% if request.user.is_authenticated %}
+                {% for group in user.groups.all %}
+                    {% if group.name == 'lead_maker' %}
+                        <li>
+                            <a class="nav-link" href="/ideas/wszystkiepomysly/edit_idea_short/?new" onclick="return confirm('Czy na pewno chcesz stworzyć nowy pomysł?')">Nowy pomysł</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pomysły</a>
+                <ul class="dropdown-menu">
+                    {% if is_idea_viewer  %}
+                        {% drop_down '/ideas/wszystkiepomysly' 'Wszystkie pomysły' %}
+                        {% drop_down_klient '/ideas/wszystkiepomysly' 'Pomysły w podziale na klientów' %}
+                        {% drop_down '/ideas/pomyslydoakceptacji' 'Pomysły do akceptacji' %}
+                        {% drop_down '/ideas/wszystkiepomysly/?status_idei__status=zawieszona' 'Pomysły zawieszone' %}
+                        {% drop_down '/ideas/wszystkiepomysly/?status_idei__status=realizowana' 'Pomysły realizowane' %}
+                        <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/?osoba_prowadzaca__username={{ user.username }}">Moje pomysły</a></li>
+                        <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/?status_idei__status=rada architektury">Pomysły skierowane na Radę Architektury</a></li>
+                        <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/?status_idei__status=rada+architektury&czy_dotyczy_architektury=True">Pomysły do decyzji Rady Architektury</a></li>
+                        <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/?status_idei__status=rada+architektury&czy_dotyczy_architektury=False">Pomysły poza decyzją Rady Architektury</a></li>
+                        <li> <a class="dropdown-item" href="/ideas/excell?wszystkie_pomysly=1" >Pełny raport inicjatyw (excell)</a> </li>     
+                    {% endif %}
+                    {% if is_client %}
+                        <li> <a class="dropdown-item" href="/ideas/pomyslyklienta/" >Pomysły klienta</a> </li>
+                    {% endif %}
+                        <li> <a class="dropdown-item" href="/ideas/excell" >Raport inicjatyw (excell)</a> </li>      
+                    {% if is_advanced %}   
+                        <li> <a class="dropdown-item" href="/ideas/excell_all?wszystkie_pomysly=1" >Raport kompleksowy (excell)</a> </li>     
+                    {% endif %}  
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    {% include 'common_mid_body.html' %}
+
+    <main>
+        <!-- Treść główna strony -->
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'common_end_body.html' %}
+</body>
+</html>

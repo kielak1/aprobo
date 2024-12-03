@@ -1,0 +1,45 @@
+
+
+
+<div style="clear:both; background-color: aquamarine; margin-top: 5px; margin-bottom: 5px;padding-top: 1px;padding-bottom: 1px;padding-left: 2px;padding-right: 2px;" >
+
+    <div style="clear:both; " >Powiązane pomysły:</div>   
+    {% if form.usun_powiazany_pomysl  %}
+        <div style=" clear: both; margin-left: 5px;width: 990px;"> 
+            <div style="float:left;padding-right: 15px;padding-left: 4px;"> 
+                <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć powiązanie pomysłu?')" class="button-danger" name="unlink_related_idea">Odłącz  pomysł</button>
+            </div>
+            <div style="float:left;width: 830px;margin-top: 3px;"> {{form.usun_powiazany_pomysl}} </div>
+        </div>   
+
+        <div style="clear: both;"></div>
+        <div style="clear: both; margin-left: 5px;width: 990px;"> 
+            <div style="float:left;padding-right: 10px;"> 
+                <button type="submit" onclick="return confirm('Czy na pewno chcesz powiązać pomysł?')" class="button-normal" name="link_related_idea">Przyłącz pomysł</button>
+            </div>
+            <div style="float:left;width: 830px; margin-top: 3px;"> {{form.dodaj_powiazany_pomysl}} </div>
+        </div>
+
+
+        <div style="clear:both; width: 1000px; height: 200px; "  class = "read_only_list" >
+            {% for pomysl in powiazane_pomysly %}
+                <p style="margin-bottom: 1px;">
+                     <a href="/ideas/wszystkiepomysly/edit_idea_short/?idea_id={{ pomysl.id }}"title="Edycja pomysłu"><img src="/static/general/images/edit.jpg" alt="E"></a> 
+                    -{{pomysl.id}} - {{pomysl}}
+                </p>
+            {% endfor %}
+        </div>
+
+    {%else%}
+        <div style="clear:both; width: 1000px; height: 200px; " class = "read_only_list" >
+            {% for pomysl in powiazane_pomysly %}
+                <p style="margin-bottom: 1px;">
+                    <a href="/ideas/wszystkiepomysly/edit_idea_short/?idea_id={{ pomysl.id }}"title="Edycja pomysłu"><img src="/static/general/images/edit.jpg" alt="E"></a> 
+                    -{{pomysl.id}} - {{pomysl}}
+                </p>
+            {% endfor %}
+        </div>
+
+    {%endif%}
+
+</div>   

@@ -1,0 +1,31 @@
+<!-- uslugi_import_form.html --> 
+{% extends 'base_general.html' %}
+{% load general_tags %}
+    {% block content %}
+    <div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import usług" "Importuj" %}
+
+        <hr><br>
+        <h1>Importowany plik powinien mieć format zgodny z poniższym przykładem. Plik w formacie excell. Bez wiersza nagłówkowego.</h1>
+        <br> <br>   
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr>
+                <td style="border: 1px solid black;">PGN_1.2.3 </td>
+                <td style="border: 1px solid black;"> Wsparcie procesów dyspozytorskich/bilansowanie operacyjne w OOH W: Dedykowany O. Obrotu Hurtowego</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">PGN_1.2.4</td>
+                <td style="border: 1px solid black;">Wsparcie procesu bilansowania gazu W: Dedykowany O. Odolanów</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">PGN_1.4.8 </td>
+                <td style="border: 1px solid black;">Wsparcie procesu CRM W: Dedykowany O. Obrotu Hurtowego </td>
+            </tr>
+        </table>
+        <br>
+    </div> 
+{% endblock %}
+
+
+
+    

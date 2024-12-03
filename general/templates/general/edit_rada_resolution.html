@@ -1,0 +1,16 @@
+{% load need_tags %}
+
+<div style="width: 100%;margin-top: 5px; background-color: #f1dded; " >
+
+<!-- Główne postanowienia -->
+<div style="color:  rgb(31, 8, 53);clear: both; margin-left: 10px; font-size: 2em;"> Główne postanowienia</div>
+
+    {% if is_editable %}
+        {{form.meeting_date}}
+        {{form.general_resolution}}
+    {%else%}
+        <div  style="background-color: #ddc1d7; white-space: pre-wrap;min-height: 45px;">{{instance.general_resolution}}</div>
+    {%endif%}
+
+</div>
+<div style="clear: both;"></div>

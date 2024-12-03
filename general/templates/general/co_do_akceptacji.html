@@ -1,0 +1,34 @@
+<div class="co_do_akceptacji">
+    {% if request.user.is_authenticated %}
+        <p>Akceptacje oczekujące:</p>
+        <ul>
+            <li><a href="/ideas/pomyslydoakceptacji">Pomysły do akceptacji <b>{{ideas_do_akceptacji}}</b></a></li>   
+            <li><a href="/needs/potrzebydoakceptacji">Potrzeby do akceptacji <b>{{needs_do_akceptacji}}</b></a></li>   
+            <!-- <li><a href="/purchases/zakupydoakceptacji">Zakupy do akceptacji <b>{{purchases_do_akceptacji}}</b></a></li>    -->
+        </ul>
+        <hr>
+        <p>Akceptacje z karty zakupu:</p>
+        <ul>
+            <li><a href="/needs/potrzebydoakceptacjiinfra">Potrzeby do akceptacji (infrastruktura) <b>{{needs_do_akceptacji_infra}}</b></a></li>
+            <li><a href="/needs/potrzebydoakceptacjiuslugi">Potrzeby do akceptacji (usługi) <b> {{needs_do_akceptacji_uslugi}}</b> </a></li>
+            <li><a href="/needs/potrzebydoakceptacjisiec">Potrzeby do akceptacji (sieć) <b>{{needs_do_akceptacji_siec}} </b> </a></li>
+            <li><a href="/needs/potrzebydoakceptacjifinanse">Potrzeby do akceptacji (finanse) <b>{{needs_do_akceptacji_finanse}}</b>  </a></li>
+            <li><a href="/needs/potrzebydoakceptacjilate">Potrzeby do akceptacji (odłozone) <b>{{needs_late_accept}}</b>  </a></li>
+
+        </ul>
+        <hr>
+        <p>Rada Architektury:</p>
+        <ul>
+            <li><a href="/ideas/wszystkiepomysly/?status_idei__status=rada+architektury&czy_dotyczy_architektury=True">Pomysły do decyzji Rady Architektury <b>{{ideas_do_decyzji_rady}}</b></a></li>
+            <li><a href="/needs/wszystkiepotrzeby/?status_potrzeby__status=rada+architektury&czy_dotyczy_architektury=True">Potrzeby do decyzji Rady Architektury <b>{{needs_do_decyzji_rady}}</b></a></li>
+            <br>
+            <li><a href="/ideas/wszystkiepomysly/?status_idei__status=analiza">Pomysły analizowane przez Radę Architektury <b>{{ideas_do_analizy}}</b></a></li>
+            <li><a href="/needs/wszystkiepotrzeby/?status_potrzeby__status=analiza">Potrzeby analizowane przez Radę Architektury <b>{{needs_do_analizy}}</b></a></li>
+            <br>
+            <li><a href="/ideas/wszystkiepomysly/?status_idei__status=wstrzymane">Pomysły wstrzymane przez Radę Architektury <b>{{ideas_wstrzymane}}</b></a></li>
+            <li><a href="/needs/wszystkiepotrzeby/?status_potrzeby__status=wstrzymane">Potrzeby wstrzymane przez Radę Architektury <b>{{needs_wstrzymane}}</b></a></li>
+       
+        </ul>     
+    {% endif %} 
+</div>
+

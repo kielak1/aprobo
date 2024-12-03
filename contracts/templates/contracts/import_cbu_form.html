@@ -1,0 +1,9 @@
+<!-- import_cbu_form.html --> 
+{% extends 'base_contracts.html' %}
+{% load general_tags %}
+{% block content %}
+    <div style="background-color: rgb(198, 218, 203); width: 1200px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import umów z pliku excell wyeksportowanego z systemu CBU (nazwa pliku postaci: raport)" "Importuj" %}
+    </div>
+{% endblock %}
+

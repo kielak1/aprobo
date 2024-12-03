@@ -1,0 +1,17 @@
+
+{% if status == "do akceptacji" and  rola%}   
+    <div style="clear:both;text-align: center; " > 
+        {{ field_label }} 
+    </div>  
+    <div style="clear:both; " >  {{ field }}  </div>   
+{% else %}
+    {% if instance %}
+        <div style="clear:both;text-align: center; " > 
+            {{ field_label }} 
+        </div>  
+        <div class="read_only_komentarz"  style="width: 1000px;height: 80px;">{{ instance }}</div>  
+    {%else%}
+        <!-- <hr style="width: 1000px; border: 1px solid #000;">  -->
+    {%endif%}
+{% endif%} 
+

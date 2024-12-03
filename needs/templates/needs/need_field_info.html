@@ -1,0 +1,13 @@
+{% load general_filters %}
+
+{% if not freeze_all or alert == 1 or instance %}
+    <div style="clear:both;text-align: center;"> 
+        {{ field_label }} 
+    </div>   
+
+    {% if freeze_all %}        
+        <div class="read_only" style="width: 1000px;height: 80px;">{% if alert == 1 %}{% if instance %} {% if instance|stringformat:"s" == instance %}{{ instance|make_links }} {% else %}{{ instance }}{% endif %}{% else %}<b style="background-color: red;"> ???? </b>{% endif %}{% else %}{% if instance|stringformat:"s" == instance %}{{ instance|make_links }}{% else %}{{ instance }}{% endif %}{% endif %}</div>
+    {% else %}
+        <div style="clear:both;"> {{ field }} </div>   
+    {% endif %}
+{% endif %}

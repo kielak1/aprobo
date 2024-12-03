@@ -1,0 +1,66 @@
+
+{% load need_tags %}
+<div class="standard-blok"; style="width: {{ szerokosc }}px">
+
+    {% need_domain_header status_akceptacji_uslug 'Usługi' %}
+
+    {% comment %} blok nawigacyjny dla sekcji Usługi {% endcomment %}
+
+    {% if status_need == "realizowana" and is_need_editor %} 
+        {% if status_akceptacji_uslug == "niegotowe" or status_akceptacji_uslug == "do poprawy"%} 
+            <div style="clear:both;"></div>
+            {% buton  "button-proces" "Czy na pewno chcesz przejść do fazy akceptacji usług?" "do_akceptacji_uslugi" "skieruj do akceptacji" %}
+        {% endif %}
+        {% if is_need_service_acceptor or is_superuser%}
+            {% if status_akceptacji_uslug == "do akceptacji"  %} 
+                {% if is_need_service_acceptor %}
+                    {% buton  "button-proces" "Czy na pewno chcesz zaakceptować usługi?" "akceptuj_uslugi" "akceptuję uslugi" %}
+                {%endif%}
+                {% buton  "button-proces" "Czy na pewno chcesz zwrócić do poprawy?" "do_poprawy_uslugi" "zwróć do poprawy" %}
+            {% endif %}
+            {% if status_akceptacji_uslug == "zaakceptowane" and status_akceptacji != "zaakceptowane" %} 
+                {% buton  "button-proces" "Czy na pewno chcesz cofnąć akceptację usług?" "cofnij_uslugi" "cofnij akceptację usług" %}
+            {% endif %}
+        {%endif%} 
+        <div style="clear:both;"></div>
+    {% endif %} 
+    
+    {% need_field 1 need_instance.czy_inicjatywa_dotyczy_uslug_w_ramach_umow_SLA|yesno:"Tak,Nie" form.czy_inicjatywa_dotyczy_uslug_w_ramach_umow_SLA 'Czy inicjatywa dotyczy usług w ramach umów SLA?' is_need_editor freeze_uslugi 'normal' True True 0 %}
+    {% need_field 1 need_instance.czy_inicjatywa_wymaga_akceptacji_klienow|yesno:"Tak,Nie" form.czy_inicjatywa_wymaga_akceptacji_klienow 'Czy inicjatywa wymaga akceptacji klientów?' is_need_editor freeze_uslugi 'normal' True True 0 %}
+    {% need_field 1 need_instance.czy_wymagana_bedzie_zmiana_w_kartach_uslug|yesno:"Tak,Nie" form.czy_wymagana_bedzie_zmiana_w_kartach_uslug 'Czy wymagana będzie zmiana w kartach usług?' is_need_editor freeze_uslugi 'normal' True True 0 %}
+ 
+     <div style="clear:both;"></div> 
+     
+     Usługi:
+     {%if form.uslugi %}
+        {{ form.uslugi }}
+     {%else%}
+        <div class="read_only_list" style = "width: 900px; max-height: 140px;"> 
+            {% for pozycja in uslugi %}<ul style="margin-bottom: 1px;"></ul><div>{{pozycja}}</div></ul>{% endfor %}
+        </div>
+     {%endif%}
+
+     <div style="clear:both;"></div> 
+
+
+    Zlecenia kontrolingowe:
+     {%if form.zlecenia_kontrolingowe %}
+        {{ form.zlecenia_kontrolingowe }}
+     {%else%}
+        <div class="read_only_list" style = "width: 900px; max-height: 140px;"> 
+            {% for pozycja in zlecenia_kontrolingowe %}<ul style="margin-bottom: 1px;"></ul><div>{{pozycja}}</div></ul>{% endfor %}
+        </div>
+     {%endif%}
+
+
+    <div style="clear:both;"></div>  
+    {% need_field_komentarz_dziedzinowy need_instance.komentarz_uslugowy form.komentarz_uslugowy 'Komentarz usługowy dla Koordynatora IT:' status_akceptacji_uslug is_need_service_acceptor%}
+    {% if need_instance.komentarz_uslugowy %}
+        {% need_field_info need_instance.odpowiedz_na_uslugowy form.odpowiedz_na_uslugowy 'Odpowiedź dla akceptującego usługi: ' freeze_uslugi 0 %}
+    {%endif%}
+    <div style="clear:both;"></div>
+
+   
+</div>    
+        
+

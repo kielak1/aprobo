@@ -1,0 +1,46 @@
+{% extends 'base_ideas.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% load general_tags %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="error">
+        <p>Nieprawidłowe dane w formularzu. Proszę sprawdzić poniższe błędy:</p>
+        {{ form.errors }}
+      </div>
+    {% endif %}
+
+    {% include 'edit_idea_short_header.html' %}
+    <div style="clear: both;"></div>
+
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">
+      <div style="float: left;">
+        {% include 'edit_idea_short_subject.html' %}
+        {% include 'related_notes.html' %}
+
+        {% resolutions %}
+
+        {% include 'edit_idea_short_butons.html' %}
+        {% include 'edit_idea_short_architektura.html' %}
+        {% include 'edit_idea_short_main_block.html' %}
+      </div>
+    </div>
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">
+
+      {% include 'contract_related.html' %}
+      {% include 'need_related.html' %}
+      {% include 'purchase_related.html' %}
+    </div>
+
+    <div class="standard-blok"; style="width: {{ szerokosc }}px">    
+      {% include 'link_ideas_in_ideas.html' %}
+    </div>
+  </form>
+  <div class="standard-blok"; style="width: {{ szerokosc }}px">
+  {% include 'recent_logs.html' %}
+  </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+{% load general_tags %}
+<!DOCTYPE html>
+<html>
+
+{% include 'base_head.html' %}
+
+<body>
+    {% include 'common_start_body.html' %}
+
+    <div class="collapse navbar-collapse" id="main_nav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Potrzeby</a>
+                <ul class="dropdown-menu">
+                    {% if request.user.is_authenticated %}
+                        {% drop_down '/needs/wszystkiepotrzeby' 'Wszystkie potrzeby' %}
+                        {% drop_down_klient '/needs/wszystkiepotrzeby' 'Potrzeby w podziale na klientów' %}
+                        {% drop_down '/needs/potrzebydoakceptacji' 'Potrzeby do akceptacji' %}
+                        {% drop_down '/needs/potrzebydoakceptacjiinfra' 'Potrzeby do akceptacji (infrastruktura)' %}
+                        {% drop_down '/needs/potrzebydoakceptacjiuslugi' 'Potrzeby do akceptacji (usługi)' %}
+                        {% drop_down '/needs/potrzebydoakceptacjisiec' 'Potrzeby do akceptacji (sieć)' %}
+                        {% drop_down '/needs/potrzebydoakceptacjifinanse' 'Potrzeby do akceptacji (finanse)' %}
+                        {% drop_down '/needs/potrzebydoakceptacjilate' 'Potrzeby do akceptacji (odłożone)' %}
+                        {% drop_down '/needs/potrzebybezzakupow' 'Zaakceptowane potrzeby bez utworzonego zakupu' %}
+                        {% drop_down '/needs/potrzebydozamkniecia' 'Potrzeby potencjalnie do zamknięcia' %}
+                        <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby?osoba_prowadzaca__username={{ user.username }}">Moje potrzeby</a></li>
+                        <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby/?status_potrzeby__status=rada+architektury">Potrzeby skierowane na Radę Architektury</a></li>
+                        <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby/?status_potrzeby__status=rada+architektury&czy_dotyczy_architektury=True">Potrzeby do decyzji Rady Architektury</a></li>
+                        <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby/?status_potrzeby__status=rada+architektury&czy_dotyczy_architektury=False">Potrzeby poza decyzją Rady Architektury</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    {% include 'common_mid_body.html' %}
+    <main>
+        <!-- Treść główna strony -->
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'common_end_body.html' %}
+       
+</body>
+</html>

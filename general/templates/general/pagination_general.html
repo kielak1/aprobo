@@ -1,0 +1,14 @@
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if table.page.has_previous %}
+                <a href="?page=1">&laquo; pierwsza</a>
+                <a href="?page={{ table.page.previous_page_number }}">poprzednia</a>
+            {% endif %}
+            <span class="current">Strona {{ table.page.number }} z {{ table.page.paginator.num_pages }}.</span>
+            {% if table.page.has_next %}
+                <a href="?page={{ table.page.next_page_number }}">następna</a>
+                <a href="?page={{ table.page.paginator.num_pages }}">ostatnia &raquo;</a>
+            {% endif %}
+        </span>    
+    </div>   

@@ -1,0 +1,25 @@
+
+{% if status == "analiza" or status == "rada architektury" or instance %}
+
+    {% if status == "analiza" or status == "rada architektury" %}
+        {% if rola %}
+            <div style="clear:both;text-align: center; " > 
+                {{ field_label }} 
+            </div>  
+            <div style="clear:both; " >  {{ field }}  </div>        
+        {%else%}
+            {% if instance %}
+                <div style="clear:both;text-align: center; " > 
+                    {{ field_label }} 
+                </div>         
+                <div class="read_only_komentarz"  style="width: 1000px;height: 80px;">{{ instance }}</div>   
+            {% endif %}  
+        {%endif%}
+    {% else %}
+        <div style="clear:both;text-align: center; " > 
+            {{ field_label }} 
+        </div>         
+        <div class="read_only_komentarz"  style="width: 1000px;height: 80px;">{{ instance }}</div>   
+    {% endif%} 
+
+{% endif%} 

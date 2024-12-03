@@ -1,0 +1,20 @@
+{% load header_tags %}
+{% load general_filters %}
+
+<div style="margin-left: 10px; margin-top: 5px; clear: both; width: {{ szerokosc }}px">
+  {% generate_idea idea_instance need_list purchase_list as generated_idea %}
+  {% header_field 0 '' '' generated_idea|safe 'pomysl' %}
+
+  {% header_field 0 '' idea_instance.status_akceptacji 'Akceptacja:' idea_instance.status_akceptacji %}
+  {% header_field 0 '' idea_instance.status_idei 'Status:' idea_instance.status_idei %}
+  {% header_field 0 '' idea_instance.data_utworzenia 'Utworzona:' 'klasa' %}
+
+
+  {% header_field  is_idea_allocator form.section   idea_instance.section 'Dział:' 'klasa' %}
+  {% header_field  is_idea_allocator form.osoba_prowadzaca   idea_instance.osoba_prowadzaca '' 'klasa' %}
+  {% header_field  is_idea_editor form.priorytet   idea_instance.priorytet|none_to_warning 'Priorytet:' 'klasa' %}
+  {% header_field  0  form.pinicjator   idea_instance.inicjator|none_to_warning 'I:' 'klasa' %}
+ 
+</div>
+
+<div style=" clear: both;"></div>

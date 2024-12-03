@@ -1,0 +1,436 @@
+Processing model: Contracts
+Added entry for field 'subject'
+Added entry for field 'kontrahent'
+Added entry for field 'numer_umowy'
+Not enough entries for field 'zakres'
+Added entry for field 'przedmiot_kolejnej_umowy'
+Added entry for field 'waluta'
+Not enough entries for field 'osoba_prowadzaca'
+Added entry for field 'komentarz'
+Not enough entries for field 'nr_ezz'
+Processing model: Ideas
+Added entry for field 'subject'
+Added entry for field 'komentarz'
+Added entry for field 'osoba_kontakowa_u_klienta'
+Added entry for field 'opis'
+Added entry for field 'uzasadnienie'
+Added entry for field 'wlasciciel_biznesowy'
+Added entry for field 'produkty'
+Not enough entries for field 'komentarz_akceptujacego'
+Added entry for field 'komentarz_architekta'
+Not enough entries for field 'odpowiedz_koordynatora_do_architekta'
+Not enough entries for field 'atrapa'
+Processing model: Needs
+Added entry for field 'link_do_clarity'
+Added entry for field 'link_do_dokumentacji'
+Added entry for field 'subject'
+Added entry for field 'komentarz'
+Added entry for field 'osoba_kontakowa_u_klienta'
+Added entry for field 'opis'
+Added entry for field 'uzasadnienie'
+Added entry for field 'wlasciciel_biznesowy'
+Added entry for field 'produkty'
+Not enough entries for field 'komentarz_akceptujacego'
+Not enough entries for field 'odpowiedz_do_akceptujacego'
+Added entry for field 'waluta'
+Added entry for field 'wymagane_komponenty_infrastruktury'
+Added entry for field 'wymagane_parametry_infrastruktury'
+Added entry for field 'oczekiwania_wobec_backupu_infrastruktury'
+Added entry for field 'sposob_realizacji_okien_serwisowych'
+Not enough entries for field 'zakres_infrastruktury_do_zakupu'
+Not enough entries for field 'zakres_uslug_do_zakupu'
+Added entry for field 'wymagania_dotyczace_monitorowania_infrastruktury'
+Added entry for field 'komentarz_infrastrukturalny'
+Added entry for field 'odpowiedz_na_infrastrukturalny'
+Not enough entries for field 'zakres_uslug_zewnetrznych'
+Not enough entries for field 'komentarz_sieciowy'
+Added entry for field 'odpowiedz_na_sieciowy'
+Added entry for field 'komentarz_uslugowy'
+Added entry for field 'odpowiedz_na_uslugowy'
+Not enough entries for field 'nazwy_i_ilosci_posiadanych_licencji'
+Not enough entries for field 'numery_seryjne_nazwy_wycofywnego_sprzetu'
+Not enough entries for field 'pozycja_PDG'
+Added entry for field 'przyczyny_nie_zaplanowania_zadania'
+Added entry for field 'harmonogram_platnosci_OPEX'
+Added entry for field 'harmonogram_platnosci_CAPEX'
+Added entry for field 'numer_zadania_inwestycyjnego'
+Added entry for field 'komentarz_finansowy'
+Added entry for field 'odpowiedz_na_finansowy'
+Added entry for field 'godziny_dostepnosci_rozwiazania'
+Not enough entries for field 'komentarz_architekta'
+Not enough entries for field 'odpowiedz_koordynatora_do_architekta'
+Processing model: Purchases
+Added entry for field 'przedmiot_zakupu'
+Added entry for field 'uzasadnienie_zakupu'
+Added entry for field 'zakres_zakupu'
+Added entry for field 'cel_i_produkty'
+Added entry for field 'komentarz'
+Added entry for field 'link_do_ezz'
+Added entry for field 'planowany_termin_platnosci'
+Added entry for field 'waluta'
+Added entry for field 'id_sap'
+Added entry for field 'dostawca'
+Added entry for field 'komentarz_akceptujacego'
+Not enough entries for field 'atrapa'
+Processing model: Postepowania
+Added entry for field 'numer_SRM_SAP'
+Added entry for field 'numer_ZZ'
+Added entry for field 'opis_zapotrzebowania'
+Added entry for field 'priorytet'
+Added entry for field 'status_SRM'
+Added entry for field 'zlecajacy'
+Added entry for field 'kupiec'
+Added entry for field 'status_biura'
+Generated Report:
+Model: Contracts
+Pole: Temat
+Maksymalna długość: 700
+Procent do maks: 33.29%
+------------------------------------------------------
+Model: Contracts
+Pole: Kontrahent
+Maksymalna długość: 400
+Procent do maks: 16.00%
+------------------------------------------------------
+Model: Contracts
+Pole: Numer umowy
+Maksymalna długość: 41
+Procent do maks: 63.41%
+------------------------------------------------------
+Model: Contracts
+Pole: Przedmiot kolejnej umowy
+Maksymalna długość: 700
+Procent do maks: 13.14%
+------------------------------------------------------
+Model: Contracts
+Pole: Waluta
+Maksymalna długość: 5
+Procent do maks: 60.00%
+------------------------------------------------------
+Model: Contracts
+Pole: Komentarz
+Maksymalna długość: 303
+Procent do maks: 29.04%
+------------------------------------------------------
+Model: Ideas
+Pole: Temat
+Maksymalna długość: 2000
+Procent do maks: 10.50%
+------------------------------------------------------
+Model: Ideas
+Pole: Komentarz
+Maksymalna długość: 425
+Procent do maks: 63.53%
+------------------------------------------------------
+Model: Ideas
+Pole: Osoba kontaktowa u klienta
+Maksymalna długość: 53
+Procent do maks: 69.81%
+------------------------------------------------------
+Model: Ideas
+Pole: Opis
+Maksymalna długość: 2301
+Procent do maks: 38.72%
+------------------------------------------------------
+Model: Ideas
+Pole: Uzasadnienie
+Maksymalna długość: 2503
+Procent do maks: 70.00%
+------------------------------------------------------
+Model: Ideas
+Pole: Właściciel biznesowy
+Maksymalna długość: 85
+Procent do maks: 69.41%
+------------------------------------------------------
+Model: Ideas
+Pole: Produkty
+Maksymalna długość: 1986
+Procent do maks: 69.99%
+------------------------------------------------------
+Model: Ideas
+Pole: Komentarz architekta
+Maksymalna długość: 2987
+Procent do maks: 1.91%
+------------------------------------------------------
+Model: Needs
+Pole: Link do Clarity
+Maksymalna długość: 400
+Procent do maks: 30.00%
+------------------------------------------------------
+Model: Needs
+Pole: Link do dokumentacji
+Maksymalna długość: 400
+Procent do maks: 33.50%
+------------------------------------------------------
+Model: Needs
+Pole: Temat
+Maksymalna długość: 2000
+Procent do maks: 10.50%
+------------------------------------------------------
+Model: Needs
+Pole: Komentarz
+Maksymalna długość: 2303
+Procent do maks: 21.71%
+------------------------------------------------------
+Model: Needs
+Pole: Osoba kontaktowa u klienta
+Maksymalna długość: 53
+Procent do maks: 54.72%
+------------------------------------------------------
+Model: Needs
+Pole: Opis
+Maksymalna długość: 2612
+Procent do maks: 69.98%
+------------------------------------------------------
+Model: Needs
+Pole: Uzasadnienie
+Maksymalna długość: 2503
+Procent do maks: 48.30%
+------------------------------------------------------
+Model: Needs
+Pole: Właściciel biznesowy
+Maksymalna długość: 85
+Procent do maks: 67.06%
+------------------------------------------------------
+Model: Needs
+Pole: Produkty
+Maksymalna długość: 2029
+Procent do maks: 69.99%
+------------------------------------------------------
+Model: Needs
+Pole: Waluta
+Maksymalna długość: 7
+Procent do maks: 42.86%
+------------------------------------------------------
+Model: Needs
+Pole: Wymagane komponenty infrastruktury
+Maksymalna długość: 200
+Procent do maks: 24.50%
+------------------------------------------------------
+Model: Needs
+Pole: Wymagane parametry infrastruktury
+Maksymalna długość: 200
+Procent do maks: 19.00%
+------------------------------------------------------
+Model: Needs
+Pole: Oczekiwania wobec backupu infrastruktury
+Maksymalna długość: 200
+Procent do maks: 12.50%
+------------------------------------------------------
+Model: Needs
+Pole: Sposób realizacji okien serwisowych
+Maksymalna długość: 200
+Procent do maks: 14.00%
+------------------------------------------------------
+Model: Needs
+Pole: Wymagania dotyczące monitorowania infrastruktury
+Maksymalna długość: 200
+Procent do maks: 24.50%
+------------------------------------------------------
+Model: Needs
+Pole: Komentarz infrastrukturalny
+Maksymalna długość: 400
+Procent do maks: 30.00%
+------------------------------------------------------
+Model: Needs
+Pole: Odpowiedź na komentarz infrastrukturalny
+Maksymalna długość: 400
+Procent do maks: 17.00%
+------------------------------------------------------
+Model: Needs
+Pole: Odpowiedź na komentarz sieciowy
+Maksymalna długość: 400
+Procent do maks: 13.50%
+------------------------------------------------------
+Model: Needs
+Pole: Komentarz usługowy
+Maksymalna długość: 1086
+Procent do maks: 30.94%
+------------------------------------------------------
+Model: Needs
+Pole: Odpowiedź na komentarz usługowy
+Maksymalna długość: 1001
+Procent do maks: 43.06%
+------------------------------------------------------
+Model: Needs
+Pole: Przyczyny nie zaplanowania zadania
+Maksymalna długość: 228
+Procent do maks: 69.74%
+------------------------------------------------------
+Model: Needs
+Pole: Harmonogram płatności OPEX
+Maksymalna długość: 200
+Procent do maks: 63.50%
+------------------------------------------------------
+Model: Needs
+Pole: Harmonogram płatności CAPEX
+Maksymalna długość: 246
+Procent do maks: 69.11%
+------------------------------------------------------
+Model: Needs
+Pole: Numer zadania inwestycyjnego
+Maksymalna długość: 20
+Procent do maks: 25.00%
+------------------------------------------------------
+Model: Needs
+Pole: Komentarz finansowy
+Maksymalna długość: 400
+Procent do maks: 68.25%
+------------------------------------------------------
+Model: Needs
+Pole: Odpowiedź na komentarz finansowy
+Maksymalna długość: 449
+Procent do maks: 69.93%
+------------------------------------------------------
+Model: Needs
+Pole: Godziny dostępności rozwiązania
+Maksymalna długość: 200
+Procent do maks: 6.50%
+------------------------------------------------------
+Model: Purchases
+Pole: Przedmiot zakupu
+Maksymalna długość: 5000
+Procent do maks: 5.30%
+------------------------------------------------------
+Model: Purchases
+Pole: Uzasadnienie zakupu
+Maksymalna długość: 5022
+Procent do maks: 35.13%
+------------------------------------------------------
+Model: Purchases
+Pole: Zakres zakupu
+Maksymalna długość: 3001
+Procent do maks: 42.39%
+------------------------------------------------------
+Model: Purchases
+Pole: Cel i produkty
+Maksymalna długość: 2000
+Procent do maks: 59.70%
+------------------------------------------------------
+Model: Purchases
+Pole: Komentarz
+Maksymalna długość: 400
+Procent do maks: 29.50%
+------------------------------------------------------
+Model: Purchases
+Pole: Link do EZZ
+Maksymalna długość: 200
+Procent do maks: 14.50%
+------------------------------------------------------
+Model: Purchases
+Pole: Planowany termin płatności
+Maksymalna długość: 81
+Procent do maks: 66.67%
+------------------------------------------------------
+Model: Purchases
+Pole: Waluta
+Maksymalna długość: 7
+Procent do maks: 42.86%
+------------------------------------------------------
+Model: Purchases
+Pole: ID SAP
+Maksymalna długość: 80
+Procent do maks: 6.25%
+------------------------------------------------------
+Model: Purchases
+Pole: Dostawca
+Maksymalna długość: 191
+Procent do maks: 17.80%
+------------------------------------------------------
+Model: Purchases
+Pole: Komentarz akceptującego
+Maksymalna długość: 3001
+Procent do maks: 2.10%
+------------------------------------------------------
+Model: Postepowania
+Pole: Numer SRM/SAP
+Maksymalna długość: 21
+Procent do maks: 47.62%
+------------------------------------------------------
+Model: Postepowania
+Pole: Numer ZZ
+Maksymalna długość: 22
+Procent do maks: 36.36%
+------------------------------------------------------
+Model: Postepowania
+Pole: Opis zapotrzebowania
+Maksymalna długość: 777
+Procent do maks: 41.44%
+------------------------------------------------------
+Model: Postepowania
+Pole: Priorytet
+Maksymalna długość: 13
+Procent do maks: 61.54%
+------------------------------------------------------
+Model: Postepowania
+Pole: Status SRM
+Maksymalna długość: 19
+Procent do maks: 36.84%
+------------------------------------------------------
+Model: Postepowania
+Pole: Zlecający
+Maksymalna długość: 28
+Procent do maks: 67.86%
+------------------------------------------------------
+Model: Postepowania
+Pole: Kupiec
+Maksymalna długość: 36
+Procent do maks: 69.44%
+------------------------------------------------------
+Model: Postepowania
+Pole: Status biura
+Maksymalna długość: 62
+Procent do maks: 69.35%
+------------------------------------------------------
+
+Top 10 Fields with the Highest Percentage of Max Length:
+Model: Ideas
+Pole: Uzasadnienie
+Maksymalna długość: 2503
+Procent do maks: 70.00%
+------------------------------------------------------
+Model: Ideas
+Pole: Produkty
+Maksymalna długość: 1986
+Procent do maks: 69.99%
+------------------------------------------------------
+Model: Needs
+Pole: Produkty
+Maksymalna długość: 2029
+Procent do maks: 69.99%
+------------------------------------------------------
+Model: Needs
+Pole: Opis
+Maksymalna długość: 2612
+Procent do maks: 69.98%
+------------------------------------------------------
+Model: Needs
+Pole: Odpowiedź na komentarz finansowy
+Maksymalna długość: 449
+Procent do maks: 69.93%
+------------------------------------------------------
+Model: Ideas
+Pole: Osoba kontaktowa u klienta
+Maksymalna długość: 53
+Procent do maks: 69.81%
+------------------------------------------------------
+Model: Needs
+Pole: Przyczyny nie zaplanowania zadania
+Maksymalna długość: 228
+Procent do maks: 69.74%
+------------------------------------------------------
+Model: Postepowania
+Pole: Kupiec
+Maksymalna długość: 36
+Procent do maks: 69.44%
+------------------------------------------------------
+Model: Ideas
+Pole: Właściciel biznesowy
+Maksymalna długość: 85
+Procent do maks: 69.41%
+------------------------------------------------------
+Model: Postepowania
+Pole: Status biura
+Maksymalna długość: 62
+Procent do maks: 69.35%
+------------------------------------------------------

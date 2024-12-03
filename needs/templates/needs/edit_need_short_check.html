@@ -1,0 +1,10 @@
+<div style="width: 1000px;">
+    {% if diff_abs >= 0.01 %}
+        <div style="background-color: brown; color: rgb(243, 243, 236); margin-top: 10px; margin-left: 10px;">
+            <p>Budżet projektu powinien być sumą wartości OPEX i CAPEX. </p>
+            <p>{{need_instance.orientacynjy_budzet}} jest różne niż {{need_instance.capex}} + {{need_instance.opex}}  </p>
+            <p>Różnica pomiędzy Budżetem i sumą CAPEX i OPEX wynosi {{ diff|floatformat:2 }} </p>
+            <H1>Usuń tę niezgodność !!!</H1>
+        </div>
+    {% endif %}
+</div>  

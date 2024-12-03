@@ -1,0 +1,266 @@
+
+body {
+   background-color: hsl(29, 100%, 50%);
+}
+
+.title-style {
+
+          font-size: 120px;
+     font-weight: bold;
+     color: hsl(253, 87%, 22%);
+
+}
+
+
+.cell-menu {
+     font-size: 100px;
+     font-weight: bold;
+     color: rgb(47, 0, 255);    
+     border-collapse: collapse;
+     border-spacing: 0;
+}
+    
+
+.cell-contracts{
+     background-image: url(   "images/sur1-grey.png" );
+     background-size: cover; /* opcjonalne - dopasowanie obrazka do wielkości komórki */
+     background-position: center; /* opcjonalne - pozycjonowanie obrazka */
+     height: 120px; /* wysokość */
+     width: 120px; /* szerokość */
+     font-size: 120px;
+     display: flex; 
+     justify-content: center; /* Wyrównanie w poziomie */
+     align-items: center; /* Wyrównanie w pionie */ 
+     /* inne właściwości stylu */
+ }
+
+.cell-contracts:hover {
+    background-image: url(   "images/sur1.png"  ); /* obrazek po najechaniu kursorem */
+}
+
+.cell-contracts a {
+     font-weight: bold;
+     color: red;
+     text-decoration: none; /* Usuwa domyślne podkreślenie odnośnika */
+}
+
+
+.cell-ideas{
+     background-image: url(   "images/sur2-grey.png" );
+     background-size: cover; /* opcjonalne - dopasowanie obrazka do wielkości komórki */
+     background-position: center; /* opcjonalne - pozycjonowanie obrazka */
+     height: 120px; /* wysokość */
+     width: 120px; /* szerokość */
+     font-size: 120px;
+     display: flex; 
+     justify-content: center; /* Wyrównanie w poziomie */
+     align-items: center; /* Wyrównanie w pionie */ 
+     /* inne właściwości stylu */
+ }
+
+.cell-ideas:hover {
+    background-image: url(   "images/sur2.png"  ); /* obrazek po najechaniu kursorem */
+}
+
+.cell-ideas a {
+     font-weight: bold;
+     color: red;
+     text-decoration: none; /* Usuwa domyślne podkreślenie odnośnika */
+}
+
+
+
+.cell-needs{
+     background-image: url(   "images/sur3-grey.png" );
+     background-size: cover; /* opcjonalne - dopasowanie obrazka do wielkości komórki */
+     background-position: center; /* opcjonalne - pozycjonowanie obrazka */
+     height: 120px; /* wysokość */
+     width: 120px; /* szerokość */
+     font-size: 120px;
+     display: flex;
+     justify-content: center; /* Wyrównanie w poziomie */
+     align-items: center; /* Wyrównanie w pionie */ 
+     /* inne właściwości stylu */
+ }
+
+.cell-needs:hover {
+    background-image: url(   "images/sur3.png"  ); /* obrazek po najechaniu kursorem */
+}
+
+.cell-needs a {
+     font-weight: bold;
+     color: red;
+     text-decoration: none; /* Usuwa domyślne podkreślenie odnośnika */
+}
+
+
+
+.cell-purchases{
+     background-image: url(   "images/sur4-grey.png" );
+     background-size: cover; /* opcjonalne - dopasowanie obrazka do wielkości komórki */
+     background-position: center; /* opcjonalne - pozycjonowanie obrazka */
+     height: 120px; /* wysokość */
+     width: 120px; /* szerokość */
+     font-size: 120px;
+     display: flex; 
+     justify-content: center; /* Wyrównanie w poziomie */
+     align-items: center; /* Wyrównanie w pionie */ 
+     /* inne właściwości stylu */
+ }
+
+.cell-purchases:hover {
+    background-image: url(   "images/sur4.png"  ); /* obrazek po najechaniu kursorem */
+}
+
+.cell-purchases a {
+     font-weight: bold;
+     color: red;
+     text-decoration: none; /* Usuwa domyślne podkreślenie odnośnika */
+}
+
+
+
+
+
+
+
+
+
+
+
+* {
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .container {
+     min-height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     scroll-behavior: smooth;
+     background: #131313;
+     font-family:'Helvetica Neue', sans-serif;
+ }
+ 
+ h1 a {
+   font-size: 80px;
+   color: #BF2E97;
+   text-decoration: none;
+   text-transform: uppercase;
+ }
+ 
+ .popover {
+    display: none;
+    box-shadow: 0px 6px 8px rgba(19, 19, 19, .7);
+ }
+ 
+ .popover:target {
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ 
+ .popover .content {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   width: 0;
+   height: 0;
+   color: #fff;
+   background-color: #191919;
+   animation: 1s grow ease forwards;
+   text-align: center;
+ }
+ 
+ .nav_list  {
+   list-style-type: none;
+ }
+ 
+ .nav_list a {
+   text-decoration: none;
+   font-size: 50px;
+   color: #fff;
+ }
+ 
+ .nav_list_item {
+   height: 100%;
+   overflow: hidden;
+ }
+ 
+ .nav_list li {
+   padding: 15px 0;
+   text-transform: uppercase;
+   transform: translateY(200px);
+   opacity: 0;
+   animation: 2s slideUp ease forwards .5s;
+   position: relative;
+ }
+ 
+ .nav_list li::before {
+   content: '';
+   position: absolute;
+   height: 2px;
+   width: 0px;
+   left: 0;
+   bottom: 10px;
+   background: #BF2E97; 
+   transition: all .5s ease;
+ }
+ 
+ .nav_list li:hover:before {
+       width: 100%;
+ }
+ 
+ .popover p {
+   padding: 50px;
+   opacity: 0;
+   animation: 1s fadeIn ease forwards 1s;
+ }
+ 
+ .popover .close::after {
+   right: 0;
+   top: 0;
+   width: 50px;
+   height: 50px;
+   position: absolute;
+   display: flex;
+   z-index: 1;
+   font-size: 30px;
+   align-items: center;
+   justify-content: center;
+   background-color: #BF2E97;
+   color: #fff;
+   content: "×";
+   cursor: pointer;
+   opacity: 0; 
+   animation: 1s fadeIn ease forwards .5s;
+ }
+ 
+ @keyframes grow {
+   100% {
+     height: 90%;
+     width: 90%;
+  }
+ }
+ 
+ @keyframes fadeIn {
+ 100% {
+   opacity: 1;
+  }
+ }
+ 
+ @keyframes slideUp {
+   100% {
+     transform: translateY(0);
+     opacity: 1;
+   }
+ }
+
+

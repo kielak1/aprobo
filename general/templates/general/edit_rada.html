@@ -1,0 +1,28 @@
+{% extends 'base_general.html' %}
+{% load need_tags %}
+{% block content %}
+  {% include 'edit_rada_header.html' %}
+  <div class="standard-blok" style="width:{{ szerokosc }}px">
+    <div class="form-container">
+      <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <!-- Wyświetlanie błędów walidacji -->
+        {% if form.errors %}
+          <ul class="error">
+            {% for field in form %}
+              {% if field.errors %}
+                <li>{{ field.name }}: {{ field.errors }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% include 'edit_rada_buton.html' %}
+        {% include 'edit_rada_sort.html' %}
+        {% include 'edit_rada_subject.html' %}
+        {% include 'edit_rada_resolution.html' %}
+        {% include 'edit_rada_discussed.html' %}
+        {% include 'edit_rada_users.html' %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

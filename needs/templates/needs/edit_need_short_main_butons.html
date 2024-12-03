@@ -1,0 +1,99 @@
+{% load need_tags %}
+
+<div style="width:1110px; margin-top: 2px; margin-bottom: 2px;">
+
+    {% if is_need_editor or is_need_maker or is_need_allocator %} 
+        {% if status_need == "nowa" %}
+            <div style="float:left;">  <button type="submit" class="button-proces" onclick="return confirm('Czy na pewno chcesz przejść do kolejnej fazy?')" name="realizuj">Realizuj</button></div>
+        {% endif %}
+
+        {% if status_need == "rada architektury" and is_need_recommender and need_instance.czy_dotyczy_architektury != None %}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować porzebę do akceptacji?" "gotowe" "Skieruj do akceptacji" %}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować pomysł do poprawy?" "popraw" "Popraw formularz" %}  
+            {% buton  "button-proces" "Czy na pewno chcesz wstrzymać pomysł?" "wstrzymane" "Wstrzymaj" %}  
+
+        {% endif %}   
+   
+        {% if is_need_recommender and status_need == "analiza" and status_akceptacji != "do akceptacji" and status_akceptacji != "zaakceptowane"  and is_acceptable%}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować potrzebę na Radę Architektury?" "rada" "Skieruj do Rady" %}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować pomysł do poprawy?" "popraw" "Popraw formularz" %}  
+            {% buton  "button-proces" "Czy na pewno chcesz wstrzymać pomysł?" "wstrzymane" "Wstrzymaj" %}  
+
+        {% endif %}   
+
+        {% if is_need_recommender and status_need == "wstrzymane" and status_akceptacji != "do akceptacji" and status_akceptacji != "zaakceptowane" and is_acceptable%}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować potrzebę na Radę Architektury?" "rada" "Skieruj do Rady" %}
+            {% buton  "button-proces" "Czy na pewno chcesz skierować pomysł do poprawy?" "popraw" "Popraw formularz" %}  
+        {% endif %}   
+
+        {% if status_need == "realizowana" or status_need == "rada architektury"  or status_need == "wstrzymane"%}
+            {% if is_need_editor and status_akceptacji != "do akceptacji" and status_akceptacji != "zaakceptowane" %}
+                {% if is_acceptable or status_need == "rada architektury"%}      `
+                    {% buton  "button-proces" "Czy na pewno chcesz skierować potrzebę do analizy?" "analiza" "Skieruj do analizy" %}
+                {% endif %}   
+            {% endif %}   
+        {% endif %}   
+
+        {% if  status_akceptacji == "do akceptacji"  and is_acceptable %}
+            {%if is_need_acceptor  %}
+                    {% buton  "button-proces" "Czy na pewno chcesz zaakceptować potrzebę?" "akcept" "Akceptuję" %}
+            {%endif%}   
+            {%if is_need_acceptor or is_superuser %}
+                    {% buton  "button-proces" "Czy na pewno chcesz skierować potrzebę do poprawy?" "popraw" "Popraw formularz" %}
+            {%endif%}
+        {% endif %}     
+
+        {% if status_need == "realizowana" and status_akceptacji != "do akceptacji" and status_akceptacji != "zaakceptowane" %} 
+            <div style="float:left;"> <button type="submit" class="button-danger" onclick="return confirm('Czy na pewno chcesz przerwać realizację potrzeby i zakońćzyć jego realizację?')" name="zamknij">Porzuć</button></div>
+        {% endif %}
+        {% if  status_akceptacji == "zaakceptowane" and status_need != "zrealizowana" %}   
+            <div style="float:left;"> <button type="submit"  class="button-proces" onclick="return confirm('Czy na pewno chcesz uznać potrzebę za zrealizowany?')" name="zakoncz">Zakończ (potrzeba zrealizowana)</button></div>
+        {% endif %} 
+        {% if  status_need == "zrealizowana" or status_need == "zamknięta" %}   
+            <div style="float:left;"> <button type="submit"  class="button-proces"  onclick="return confirm('Czy na pewno chcesz powrócić do procedowania?')" name="przywroc">Przywróć</button></div>
+        {% endif %} 
+        {% if is_need_acceptor or is_superuser %}
+            {% if  status_akceptacji == "zaakceptowane" %}   
+                {% buton  "button-proces" "Czy na pewno chcesz confąć akceptację?" "cofnij_akceptacje" "Cofnij akceptację" %}
+            {% endif %}  
+        {% endif %}   
+                
+    {% endif %}     
+
+    {% if is_need_editor or is_need_maker or is_need_allocator %}
+        {% if not freeze_all or status_akceptacji == "do akceptacji" or status_need == "rada architektury"%}
+            {% if status_need != "zrealizowana" and status_need != "zamknięta"%}
+                <div style="float:left;"> <button type="submit"  class="button-normal"   name="Submit">Zapisz i wyjdź</button></div>
+                {% buton  "button-normal" "" "Zapisz" "Zapisz" %}
+            {% endif %}   
+        {% endif %}   
+    {% endif %}
+
+    {% if status_need == "nowa" and is_need_editor%}
+        <div style="float:left;"><button type="submit" class="button-danger" onclick="return confirm('Czy na pewno chcesz usunąć tę potrzebę   ?')" name="Usun">Usuń</button></div>
+    {% endif %}
+
+    {% buton  "button-normal" "" "Anuluj" "Wróć" %}
+
+    {% if status_need == "rada architektury" or status_need == "analiza" %}  
+        {% if  is_need_recommender %}   
+            {% if need_instance.czy_dotyczy_architektury != True %}
+                <div style=" float:left; "><button type="submit"onclick="return confirm('Czy na pewno inicjatywa dotyczy architektury?')" class="button-normal" name="arch_yes">Dotyczy architektury</button>   </div>     
+            {%endif%}
+            {% if need_instance.czy_dotyczy_architektury != False %}
+                <div style=" float:left; "><button type="submit"onclick="return confirm('Czy na pewno inicjatywa nie dotyczy architektury?')" class="button-normal" name="arch_no">Nie dotyczy architektury</button>   </div>     
+            {%endif%}
+        {% endif %}
+    {% endif %}
+
+
+    {% if is_superuser %}   
+        {% if status_akceptacji != "niegotowe" or status_need != "realizowana" %}   
+            <div style=" float:left; "><button type="submit"onclick="return confirm('Czy na pewno chcesz wykonać reset potrzeby?')" class="button-danger" name="Reset">Reset</button>   </div>     
+        {% endif %}
+    {% endif %}
+
+
+    <div style="clear:both;"></div>           
+
+</div>

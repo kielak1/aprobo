@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+  <div class="header_lit">Macierz uprawnień</div>
+  <!DOCTYPE html>
+  <html lang="pl">
+    <head>
+      <meta charset="UTF-8" />
+
+      <link rel="stylesheet" href="{% static 'general/style.css' %}" />
+      <script src="{% static 'general/script.js' %}"></script>
+    </head>
+    <body>
+      <table>
+        <thead>
+          <tr>
+            <th>Login</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            {% for group in groups %}
+              <th style="writing-mode: vertical-rl; text-orientation: upright;">{{ group.name }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.username }}</td>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+              {% for group in groups %}
+                <td class="group-cell" onclick="toggleGroup('{{ user.id }}', '{{ group.id }}', '{{ user|has_group:group }}')">
+                  <div class="{% if group in user.groups.all %}
+                      green
+                    {% else %}
+                      red
+                    {% endif %}"></div>
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Dodaj ukryty CSRF token do wykorzystania w JavaScript -->
+      <input type="hidden" id="csrf-token" value="{% csrf_token %}" />
+    </body>
+  </html>
+{% endblock %}

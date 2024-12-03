@@ -1,0 +1,8 @@
+#!/bin/bash
+
+branches=$(git branch --format='%(refname:short)')
+
+for branch in $branches; do
+    last_commit=$(git log -1 --format="%ci %cr %an" $branch)
+    echo "$last_commit $branch"
+done | sort -r

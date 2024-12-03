@@ -1,0 +1,18 @@
+<!-- ezz_list.html -->
+
+{% extends 'base_purchases.html' %}
+{% load render_table from django_tables2 %}
+{% load bootstrap3 %}
+
+{% block content %}
+  <div class="header_lit">Lista EZZ-ów</div>
+
+  {% if filter %}
+    <form action="" method="get" class="form form-inline">
+      {% bootstrap_form filter.form layout='inline' %}
+      {% bootstrap_button 'filter' %}
+    </form>
+  {% endif %}
+  <!-- {% render_table table 'django_tables2/bootstrap.html' %} -->
+  {% render_table table 'custom_table_template.html' %}
+{% endblock %}

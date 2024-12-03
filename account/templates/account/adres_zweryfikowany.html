@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+
+    html,
+    body {
+      background-image: url("{% static 'general/images/tlo.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+      font-family: 'Numans', sans-serif;
+    }
+
+    .container {
+      height: 100vh; /* pełna wysokość widoku */
+    }
+
+    .card {
+      opacity: 0.9; /* lekka przezroczystość dla karty */
+      margin-top: 10%;
+    }
+
+    .card-header {
+      background-color: rgba(255, 255, 255, 0.8); /* lekka biel z przezroczystością */
+      color: #333; /* ciemny kolor tekstu */
+    }
+
+    .card-body {
+      background-color: rgba(255, 255, 255, 0.8); /* lekka biel z przezroczystością */
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    strong {
+      color: #007bff; /* niebieski kolor dla podkreślonych informacji */
+    }
+
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h2>Podsumowanie Rejestracji</h3>
+        </div>
+        <div class="card-body">
+          <p>
+            Użytkownik <strong>{{ imie }} {{ nazwisko }}</strong> został wstępnie zweryfikowanmy.
+          </p>
+          <p>
+            Login: <strong>{{ username }}</strong>
+          </p>
+          <p>Proszę czekać na weryfikację przez administratora</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

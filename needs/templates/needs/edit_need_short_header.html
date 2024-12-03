@@ -1,0 +1,27 @@
+{% load header_tags %}
+{% load general_filters %}
+
+
+
+
+    <div class="header-blok"; style="width: {{szerokosc}}px">
+        {% generate_need ideas need_instance purchase_list as generated_need %}
+
+        {% header_field  0 '' '' generated_need|safe 'potrzeba' %}
+        {% header_field  0 ''   need_instance.status_akceptacji 'Akceptacja:' need_instance.status_akceptacji  %}
+        {% header_field  0 ''   need_instance.status_potrzeby 'Status:' need_instance.status_potrzeby %}
+        {% header_field  0 '' need_instance.data_utworzenia 'Utworzona:' 'klasa' %}
+     
+        {% header_field  is_need_allocator form.section   need_instance.section 'Dział:' 'klasa' %}
+        {% header_field  is_need_allocator form.osoba_prowadzaca   need_instance.osoba_prowadzaca '' 'klasa' %}
+        {% header_field  is_need_editor form.priorytet   need_instance.priorytet|none_to_warning 'Priorytet:' 'klasa' %}
+        {% header_field  is_need_editor form.pilnosc   need_instance.pilnosc|none_to_warning 'Pilność:' 'klasa' %}
+
+        {% header_field  0 form.link_do_dokumentacji   need_instance.link_do_dokumentacji|link_or_warning  'Dokumentacja:' 'klasa' %}
+        {% header_field  0 form.link_do_clarity   need_instance.link_do_clarity|link_or_warning  'Clarity:' 'klasa' %}
+        {% header_field  0 form.capex   need_instance.capex  'CAPEX:' 'klasa' %}
+        {% header_field  0 form.opex   need_instance.opex  'OPEX:' 'klasa' %}
+    </div>
+    <div style=" clear: both;"></div>
+
+       

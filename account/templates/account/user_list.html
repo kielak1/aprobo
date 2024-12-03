@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="header_lit">Lista użytkowników</div>
+
+
+<a href="/account/register/">Załóż konto dla nowego użytkownika</a>
+
+<div style ="width: 1400px;">
+    {% for user in users %}
+        <div>            
+            <div style="width: 60px; float: left;margin-left: 10px;">
+                <a href="{% url 'edit-user' pk=user.pk %}">Edytuj</a>
+            </div>
+
+            <div style="width: 200px; float: left;margin-left: 10px; ">
+                {{ user.username }} 
+            </div>
+            <div style="width: 350px; float: left;margin-left: 10px;">
+                {{ user.first_name }}  
+            </div>
+
+            <div style="width: 350px; float: left;margin-left: 10px; ">
+                {{ user.last_name }} 
+            </div>
+
+            <div style="width: 250px; float: left;margin-left: 10px; ">
+                {{ user.email }} 
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+
+{% endblock %}

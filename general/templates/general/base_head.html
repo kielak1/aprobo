@@ -1,0 +1,24 @@
+<!-- base_head.html -->
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{%  static 'general/images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'general/related_list.css' %}">
+    <link rel="stylesheet" href="{% static 'general/header_style.css' %}">
+    <link rel="stylesheet" href="{% static 'autocomplete_light/select2.css' %}">
+    <link rel="stylesheet" href="{% static 'general/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'general/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'general/nadpis_select.css' %}">
+    <link rel="stylesheet" href="{% static 'general/login.css' %}">
+    {{ form.media }}
+ 
+    <title>{% block title %}AvanTIc{% endblock %}</title>
+    
+    {% include 'common_view.html' %}
+
+    {% block extrahead %}
+    {% endblock %}
+</head>

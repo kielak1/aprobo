@@ -1,0 +1,20 @@
+<div class="collapse navbar-collapse" id="main_nav">
+  <ul class="navbar-nav">
+    {% if is_dataadmin or is_user_admin %}
+      <a class="nav-link" href="/general/myadmin/">Panel administracyjny</a>
+      {% if is_dataadmin %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">System</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/general/baza/stale">Odtworzenie stałych</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/general/stamp">Wydajność formularzy</a>
+            </li>
+          </ul>
+        </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+</div> <!-- navbar-collapse.// -->

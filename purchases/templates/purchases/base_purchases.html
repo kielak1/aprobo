@@ -1,0 +1,55 @@
+{% load static %}
+{% load general_tags %}
+<!DOCTYPE html>
+<html>
+    {% include 'base_head.html' %}
+    <body>
+        {% include 'common_start_body.html' %}
+        {% if is_purchase_viewer %}
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">EZZ</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/purchases/ezz/">Wnioski EZZ</a></li>
+                            <li><a class="dropdown-item" href="/purchases/ezz-illegal/">Wnioski EZZ nieprzypisane do żadnego zakupu (Potrzeby)</a></li>
+                            <li><a class="dropdown-item" href="/purchases/postepowania_list/">Postępowania EZZ</a></li>
+                            <li><a class="dropdown-item" href="/purchases/unlinked_ezz/">Niepowiązane EZZ</a></li>
+                        </ul>
+                    </li>
+                    {% if is_purchase_editor %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Import</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/purchases/ezz/import">Import EZZ</a></li>
+                                <li><a class="dropdown-item" href="/purchases/ezz/import_postepowan"> Import Postępowań</a></li>   
+                                <li><a class="dropdown-item" href="/general/auto_ezz">Automatyczne ustawienie statusów zakupów</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Zakupy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/purchases/planowane">Planowane zakupy (Excel)</a></li>
+                            <li><a class="dropdown-item" href="/purchases/trwajace">Trwające zakupy (Excel)</a></li>
+                            <li><a class="dropdown-item" href="/purchases/wszystkiezakupy">Wszystkie zakupy</a></li>
+                            {% drop_down_klient '/purchases/wszystkiezakupy' 'Zakupy w podziale na klientów' %}
+                            {% drop_down '/purchases/zakupy_roboczy' 'Zakupy - roboczy' %}
+                            {% drop_down '/purchases/zakupy_ezz' 'Zakupy - EZZ' %}
+                            {% drop_down '/purchases/zakupy_zakupy' 'Zakupy - standardowe' %}
+                            {% drop_down '/purchases/zakupy_bgnig' 'Zakupy - BGNiG' %}
+                            {% drop_down '/purchases/zakupy_realizacja' 'Zakupy - realizacja' %}
+                            <li><a class="dropdown-item" href="/purchases/wszystkiezakupy?osoba_prowadzaca__username={{ user.username }}">Moje zakupy</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+        {% include 'common_mid_body.html' %}
+            <main>
+                <!-- Treść główna strony -->
+                {% block content %}{% endblock %}
+            </main>
+        {% include 'common_end_body.html' %}
+    </body>
+</html>

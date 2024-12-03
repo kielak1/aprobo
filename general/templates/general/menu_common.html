@@ -1,0 +1,121 @@
+{% load general_tags %}
+    <ul class="navbar-nav">
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Moduły</a>
+            <ul class="dropdown-menu">
+                {% if is_idea_viewer or is_client %}
+                    <li><a class="dropdown-item" href="/ideas">Pomysły &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            {% if is_idea_viewer  %}
+                                <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/">Wszystkie</a></li>
+                                <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/?osoba_prowadzaca__username={{ user.username }}">Moje</a></li>
+                            {% endif %}
+                            {% if is_client %}
+                                <li><a class="dropdown-item" href="/ideas/pomyslyklienta/ ">Pomysły klienta</a></li>
+                            {% endif %}
+                            {% if is_lead_maker %}
+                                <li><a class="dropdown-item" href="/ideas/wszystkiepomysly/edit_idea_short/?new" onclick="return confirm('Czy na pewno chcesz stworzyć nowy pomysł?')">Nowy</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>  
+                {% endif %}
+                {% if is_need_viewer  %}
+                    <li><a class="dropdown-item" href="/needs">Potrzeby &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby">Wszystkie</a></li>
+                            <li><a class="dropdown-item" href="/needs/wszystkiepotrzeby?osoba_prowadzaca__username={{ user.username }}">Moje</a></li>   
+                        </ul>
+                    </li>  
+                {% endif %}                     
+                {% if is_purchase_viewer  %}
+                    <li><a class="dropdown-item" href="/purchases">Zakupy &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/purchases/wszystkiezakupy">Wszystkie</a></li>
+                            <li><a class="dropdown-item" href="/purchases/wszystkiezakupy?osoba_prowadzaca__username={{ user.username }}">Moje</a></li>
+                        </ul>
+                    </li>  
+                {% endif %}  
+                {% if is_contract_viewer  %}
+                    <li><a class="dropdown-item" href="/contracts">Umowy &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/contracts/wszystkieumowy"> Wszystkie</a></li>
+                         </ul>
+                    </li>  
+                {% endif %}                 
+                {% if is_user_admin %}
+                    <li><a class="dropdown-item" href="/account">Autoryzacja</a></li>
+                {% endif %}
+                {% if is_advanced %}
+                    <li><a class="dropdown-item" href="/general">Zarządzanie</a></li>
+                {% endif %}
+             </ul>
+        </li>
+        {% if is_any_viewer == True or is_client%}
+            <li><a class="nav-link" href="/general/full_search">Wyszukaj</a></li>
+            {% if is_any_viewer == True %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ciągłość serwisów</a>
+                    <ul class="dropdown-menu">
+                        {% drop_down '/general/contracts' 'Ciągłość usług' %}
+                    </ul>
+                </li>
+            {% endif %}
+        {% endif %}  
+        {% if rada_viewer == True %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Obsługa Rady Architektury</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/general/rady-list">Lista posiedzeń</a></li>
+                    {% if obsluga_rady == True %}
+                        <li><a class="dropdown-item" href="/general/rady-new">Nowe posiedzenie</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+
+        {% if finanse_viewer == True %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Finanse</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Crip &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/general/crip-list">Wszystkie</a></li>
+                            <li><a class="dropdown-item" href="/general/crip-linked">Powiązane</a></li>
+                            <li><a class="dropdown-item" href="/general/crip-alone">Niepowiązane</a></li>
+                            {% if finanse_editor %}
+                                <li><a class="dropdown-item" href="/general/edit_crip_short_new">Nowy</a></li>
+                            {% endif %}
+                            {% if finanse_importer %}
+                                <li><a class="dropdown-item" href="/purchases/crip_import"> Import</a></li>
+                                <li><a class="dropdown-item" href="/general/export_crip">Eksport</a></li>                             
+                            {% endif %}
+                        </ul>
+                    </li>  
+                    <li><a class="dropdown-item" href="#">Usługi &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/general/uslug-list">Wszystkie</a></li>
+                            {% if finanse_editor %}
+                                <li><a class="dropdown-item" href="/general/edit_uslugi_short_new">Nowa</a></li>
+                            {% endif %}
+                            {% if finanse_importer %}
+                                <li><a class="dropdown-item" href="/general/import_uslug"> Import</a></li>
+                                <li><a class="dropdown-item" href="/general/export_uslug">Eksport</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>  
+                    <li><a class="dropdown-item" href="#">Zlecenia &raquo;</a>
+                        <ul class="submenu dropdown-menu">
+                            <li><a class="dropdown-item" href="/general/zlecenia-list">Wszystkie</a></li>
+                            {% if finanse_editor %}
+                                <li><a class="dropdown-item" href="/general/edit_zlecenia_short_new">Nowe</a></li>
+                            {% endif %}
+                            {% if finanse_importer %}
+                                <li><a class="dropdown-item" href="/general/import_zlecen">Import</a></li>
+                                <li><a class="dropdown-item" href="/general/export_zlecen">Eksport</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>  
+                </ul>
+            </li>
+        {% endif %}
+    </ul>

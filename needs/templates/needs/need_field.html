@@ -1,0 +1,41 @@
+{% load general_filters %}
+
+
+{%if is_freeze or not is_editor%}
+
+    {% if parent == 1 or parent == True %}
+        <div style="float:left; {% if clear == True %}width: 1000px;{% endif %} display: flex; align-items: center; margin-right: 2px; padding-right: 2px; padding-left: 2px; {% if typ == 'normal' %}height: 32px;{% endif %} background-color: aliceblue;">
+        <div style="margin-right: 3px; padding-left: {{level}}px;">{{ label }}</div>
+            {% if typ == 'normal' %}
+                <b> {{ instance|format_instance|truncatechars:110  }} </b>
+            {% elif typ == 'tekst' %}
+                <div class="read_only" style = "width: 750px; max-height: 120px;"> {{ instance }} </div>
+            {% elif typ == 'lista' %}
+                <div class="read_only_list" style = "width: 550px; max-height: 120px;"> 
+                         {% for pozycja in instance %}<ul style="margin-bottom: 1px;"></ul><div>{{pozycja}}</div></ul>{% endfor %}
+                </div>
+
+            {%endif%}
+
+
+        </div>
+    {%endif%}
+
+
+
+{%else%}        
+    <div style="float:left; {% if clear == True %}width: 1000px;{% endif %} display: flex; align-items: center; margin-right: 2px; padding-right: 2px; padding-left: 2px; {% if typ == 'normal' %}height: 32px;{% endif %} background-color: aliceblue;">
+    <div style="margin-right: 3px; padding-left: {{level}}px;">{{ label }}</div>
+    {% if typ == 'normal' %}
+        <div>{{ field }}  </div> 
+    {% elif typ == 'tekst' %}    
+        <div>{{ field }}  </div>     
+    {% elif typ == 'lista' %}    
+        <div>{{ field }}  </div> 
+    {%endif%}
+    </div>
+{%endif%}
+
+{%if clear == True %}
+    <div style="clear: both;"></div>
+{%endif%}

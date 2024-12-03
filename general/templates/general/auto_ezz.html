@@ -1,0 +1,44 @@
+{% extends 'base_general.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}Zmienione statusy zakupów {% endblock %}
+
+
+{% block content %}
+
+    {% load bootstrap3 %}
+
+    <h1>Lista zmienionych statusów zakupów:</h1>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID Zakupu</th>
+                <th>Status zakupu</th>
+                <th>ID EZZ</th>
+                <th>Status EZZ</th>
+                <th>Nowy Status zakupu</th>
+                <th>Przedmiot zakupu</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+
+
+ 
+                <td ><a href="/general/edit_purchase_short/?purchase_id={{ result.0 }} "><img src="/static/general/images/edit.jpg" alt="E"></a></td>
+                        
+
+                <td>{{ result.0 }}</td>
+                <td>{{ result.1 }}</td>
+                <td>{{ result.2 }}</td>
+                <td>{{ result.3 }}</td>
+                <td>{{ result.4 }}</td>
+                <td>{{ result.5 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

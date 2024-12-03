@@ -1,0 +1,29 @@
+{% extends 'base_needs.html' %}
+
+{% load static %}
+{% block title %}Edycja potrzeby{% endblock %}
+{% load need_tags %}
+{% block content %}
+
+
+
+    {{ dal_media }}
+    <form method="POST" >
+        {% csrf_token %}
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" value="{{ need_instance.subject }}">
+        
+        <label for="uslugi">Uslugi:</label>
+        {{ widget_html|safe }}
+        
+        <button type="submit">Save</button>
+    </form>
+    <!-- <script>
+        $(document).ready(function() {
+            $('#uslugi').select2({
+                theme: 'bootstrap'
+            });
+        });
+    </script> -->
+
+{% endblock %}

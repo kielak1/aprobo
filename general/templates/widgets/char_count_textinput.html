@@ -1,0 +1,54 @@
+<div class="mb-3">
+    <div class="position-relative">
+        <textarea
+            name="{{ widget.name }}"
+            id="{{ widget.attrs.id }}"
+            class="form-control w-auto"
+            {% for attr, value in widget.attrs.items %}{{ attr }}="{{ value }}" {% endfor %}
+        >{{ widget.value|default_if_none:"" }}</textarea>
+        <div class="text-end small mt-1" style="text-align: center;">
+            <span id="{{ widget.attrs.id }}_counter">0</span>/{{ max_length }}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const input = document.getElementById("{{ widget.attrs.id }}");
+        const counter = document.getElementById("{{ widget.attrs.id }}_counter");
+        const maxLength = {{ max_length }};
+        const warningThreshold = Math.floor(maxLength * 0.9); // 90% limitu znaków
+
+        function calculateLengthWithLineBreaks(text) {
+            // Liczy znaki, traktując każdy \n jako dwa
+            return text.length + (text.match(/\n/g) || []).length;
+        }
+
+        function updateCounter() {
+            let length = calculateLengthWithLineBreaks(input.value);
+            counter.textContent = length;
+
+            if (length >= warningThreshold) {
+                input.classList.add("is-invalid");
+            } else {
+                input.classList.remove("is-invalid");
+            }
+
+            // Jeśli długość przekracza maxLength, obcinamy wartość
+            if (length > maxLength) {
+                let trimmedValue = input.value;
+                while (calculateLengthWithLineBreaks(trimmedValue) > maxLength) {
+                    trimmedValue = trimmedValue.slice(0, -1); // Usuwa ostatni znak
+                }
+                input.value = trimmedValue;
+                length = calculateLengthWithLineBreaks(trimmedValue);
+                counter.textContent = length;
+            }
+        }
+
+        if (input) {
+            input.addEventListener("input", updateCounter);
+            updateCounter();
+        }
+    });
+</script>

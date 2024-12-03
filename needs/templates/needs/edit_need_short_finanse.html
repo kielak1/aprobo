@@ -1,0 +1,144 @@
+{% load need_tags %}
+<div class="standard-blok"; style="width: {{ szerokosc }}px">
+
+    {% need_domain_header status_akceptacji_finansow 'Finanse i kontroling' %}
+
+    {% comment %} blok nawigacyjny dla sekcji Finanse {% endcomment %}
+
+    {% if status_need == "realizowana" and is_need_editor %} 
+  
+        {% if status_akceptacji_finansow == "niegotowe" or status_akceptacji_finansow == "do poprawy"%} 
+            <div style="clear:both;"></div>
+            {% buton  "button-proces" "Czy na pewno chcesz przejść do fazy akceptacji finansów?" "do_akceptacji_finanse" "skieruj do akceptacji" %}
+        {% endif %}
+
+        {% if is_need_finanse_acceptor or is_superuser%}
+            {% if status_akceptacji_finansow == "do akceptacji"  %} 
+                {% if is_need_finanse_acceptor %}
+                    {% buton  "button-proces" "Czy na pewno chcesz zaakceptować finanse?" "akceptuj_finanse" "akceptuję finanse" %}
+                {%endif%}
+                {% buton "button-proces" "Czy na pewno chcesz zwócić do poprawy?" "do_poprawy_finanse" "zwróć do poprawy" %}
+            {% endif %}
+            {% if status_akceptacji_finansow == "zaakceptowane" and status_akceptacji != "zaakceptowane" %} 
+                {% buton "button-proces" "Czy na pewno chcesz cofnąć akceptację finansów?" "cofnij_finanse" "cofnij akceptację finansów" %}
+            {% endif %}
+        {%endif%} 
+        <div style="clear:both;"></div>
+    {% endif %} 
+
+    {% need_field 1 need_instance.czy_przedmiotem_jest_zakup_licencji_subskrypcji|yesno:"Tak,Nie" form.czy_przedmiotem_jest_zakup_licencji_subskrypcji 'Czy przedmiotem inicjatywy jest zakup licencji/subskrypcji?' is_need_editor freeze_finanse 'normal' True True 0 %}
+  
+    <div id="obszar_zakupu_licencji">
+        {% need_field 21 need_instance.czy_licencje_sa_wieczyste|yesno:"Tak,Nie" form.czy_licencje_sa_wieczyste 'Czy licencje są wieczyste?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_jest_zakup_licencji_subskrypcji  True 0 %}
+
+        <div id="obszar_licencji_terminowych">
+            {% need_field 21 need_instance.start_licencji form.start_licencji 'Start licencji' is_need_editor freeze_finanse 'normal' need_instance.czy_licencje_sa_wieczyste|negate  False 0 %}
+            {% need_field 21 need_instance.koniec_licencji form.koniec_licencji 'Koniec licencji' is_need_editor freeze_finanse 'normal' need_instance.czy_licencje_sa_wieczyste|negate  False 0 %}
+            {% need_field 21 need_instance.czas_licencji form.czas_licencji 'Czas licencji' is_need_editor freeze_finanse 'normal' need_instance.czy_licencje_sa_wieczyste|negate  False 0 %}
+        </div>
+
+        {% need_field 21 need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta|yesno:"Tak,Nie" form.czy_licencje_sa_objete_uslugami_wsparcia_producenta 'Czy licencje są objęte usługami wsparcia producenta?' is_need_editor freeze_finanse 'normal'  need_instance.czy_przedmiotem_jest_zakup_licencji_subskrypcji True 0 %}
+        
+        <div id="obszar_wsparcia_licencji">
+            {% need_field 41 need_instance.start_wsparcia_licencji form.start_wsparcia_licencji 'Start wsparcia licencji' is_need_editor freeze_finanse 'normal'  need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta False 0 %}
+            {% need_field 41 need_instance.koniec_wsparcia_licencji form.koniec_wsparcia_licencji 'Koniec wsparcia licencji' is_need_editor freeze_finanse 'normal' need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta  False 0 %}
+            {% need_field 41 need_instance.okres_wsparcia_licencji form.okres_wsparcia_licencji 'Okres wsparcia licencji' is_need_editor freeze_finanse 'normal' need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta  False 0 %}
+       
+            {% need_field 41 need_instance.czy_koszt_wsparcia_jest_wliczony_w_wartosc_zakupionych_licencji|yesno:"Tak,Nie" form.czy_koszt_wsparcia_jest_wliczony_w_wartosc_zakupionych_licencji 'Czy koszt wsparcia jest wliczony w wartość zakupionych licencji?' is_need_editor freeze_finanse 'normal'  need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta True 0 %}
+            {% need_field 41 need_instance.czy_koszt_wsparcia_licencji_jest_wyodrebniany|yesno:"Tak,Nie" form.czy_koszt_wsparcia_licencji_jest_wyodrebniany 'Czy koszt wsparcia licencji jest wyodrębniany?' is_need_editor freeze_finanse 'normal'  need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta True 0 %}
+            {% need_field 41 need_instance.czy_zakup_wsparcia_licencji_dotyczy_licencji_juz_zakupionych|yesno:"Tak,Nie" form.czy_zakup_wsparcia_licencji_dotyczy_licencji_juz_zakupionych 'Czy zakup wsparcia licencji dotyczy licencji już zakupionych?' is_need_editor freeze_finanse 'normal'  need_instance.czy_licencje_sa_objete_uslugami_wsparcia_producenta True 0 %}
+            
+            <div id="obszar_juz_zakupionych_licencji">
+                {% need_field 61 need_instance.nazwy_i_ilosci_posiadanych_licencji form.nazwy_i_ilosci_posiadanych_licencji 'Nazwy i ilości posiadanych licencji' is_need_editor freeze_finanse 'tekst' need_instance.czy_zakup_wsparcia_licencji_dotyczy_licencji_juz_zakupionych True 0 %}
+            </div>
+        </div>
+        {% need_field 21 need_instance.czy_zakup_licencji_jest_powiazany_z_zakupem_usług|yesno:"Tak,Nie" form.czy_zakup_licencji_jest_powiazany_z_zakupem_usług 'Czy zakup licencji jest powiązany z zakupem usług?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_jest_zakup_licencji_subskrypcji True 0 %}
+    
+
+    </div>
+
+
+
+
+    {% need_field 1 need_instance.czy_przedmiotem_sa_uslugi_wsparcia_producenta|yesno:"Tak,Nie" form.czy_przedmiotem_sa_uslugi_wsparcia_producenta 'Czy przedmiotem inicjatywy jest zakup/odnowienie/przedłużenie usług wsparcia producenta?' is_need_editor freeze_finanse 'normal' True True 0 %}
+    <div id="obszar_czas_uslug_wsparcia_producenta"> 
+        {% need_field 21 need_instance.data_poczatku_uslug_wsparcia form.data_poczatku_uslug_wsparcia 'Okres wsparcia początek:' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_sa_uslugi_wsparcia_producenta  False 0 %}
+        {% need_field 1 need_instance.data_konca_uslug_wsparcia form.data_konca_uslug_wsparcia 'koniec:' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_sa_uslugi_wsparcia_producenta False 0 %}
+        {% need_field 1 need_instance.czas_trwania_wsparcia form.czas_trwania_wsparcia 'lub liczba miesięcy:' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_sa_uslugi_wsparcia_producenta  False 0 %}
+    </div>
+ 
+    
+    {% need_field 1 need_instance.czy_przedmiotem_zakupu_jest_sprzet|yesno:"Tak,Nie" form.czy_przedmiotem_zakupu_jest_sprzet 'Czy przedmiotem inicjatywy jest zakup sprzętu?' is_need_editor freeze_finanse 'normal' True True 0 %}
+  
+    <div id="obszar_sprzetu">
+        {% need_field 21 need_instance.czy_w_ramach_zakupu_sprzetu_kupowane_sa_licencje|yesno:"Tak,Nie" form.czy_w_ramach_zakupu_sprzetu_kupowane_sa_licencje 'Czy w ramach zakupu sprzętu zawarty jest zakup licencji?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_jest_sprzet True 0 %}
+        <div id="obszar_licencje_ze_sprzetem">
+            {% need_field 41 need_instance.czy_licencje_sa_przypisane_do_sprzetu|yesno:"Tak,Nie" form.czy_licencje_sa_przypisane_do_sprzetu 'Czy licencje są przypisane na stałe do sprzętu?' is_need_editor freeze_finanse 'normal' need_instance.czy_w_ramach_zakupu_sprzetu_kupowane_sa_licencje True 0 %}
+            {% need_field 41 need_instance.czy_koszt_licencji_bedzie_na_fakturze|yesno:"Tak,Nie" form.czy_koszt_licencji_bedzie_na_fakturze 'Czy koszt licencji w ramach zakupu sprzętu będzie wyodrębniany w ofercie, umowie lub na fakturze?' is_need_editor freeze_finanse 'normal' need_instance.czy_w_ramach_zakupu_sprzetu_kupowane_sa_licencje True 0 %}
+        </div>
+            
+        {% need_field 21 need_instance.czy_w_ramach_sprzetu_sa_uslugi_wsparcia|yesno:"Tak,Nie" form.czy_w_ramach_sprzetu_sa_uslugi_wsparcia 'Czy w ramach zakupu sprzętu zawarty jest zakup usług wsparcia?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_jest_sprzet True 0 %}
+        <div id="obszar_uslug_ze_sprzetem">    
+            {% need_field 41 need_instance.czy_uslugi_wsparcia_sa_przypisane_do_sprzetu|yesno:"Tak,Nie" form.czy_uslugi_wsparcia_sa_przypisane_do_sprzetu 'Czy usługi wsparcia są przypisane na stałe do sprzętu? Alt. Czy usługi wsparcia są wliczone w wartosć sprzętu' is_need_editor freeze_finanse 'normal' need_instance.czy_w_ramach_sprzetu_sa_uslugi_wsparcia True 0 %}
+            {% need_field 41 need_instance.czy_koszt_uslug_wsparcia_bedzie_wyodrebniony_na_fakturze|yesno:"Tak,Nie" form.czy_koszt_uslug_wsparcia_bedzie_wyodrebniony_na_fakturze 'Czy koszt usług wsparcia w ramach zakupu sprzętu będzie wyodrębniany w ofercie, umowie lub na fakturze?' is_need_editor freeze_finanse 'normal' need_instance.czy_w_ramach_sprzetu_sa_uslugi_wsparcia True 0 %}
+          
+            {% need_field 41 need_instance.czy_w_wyniku_zakupu_bedzie_wycofywany_stary_sprzet|yesno:"Tak,Nie" form.czy_w_wyniku_zakupu_bedzie_wycofywany_stary_sprzet 'Czy zakup usług wsparcia nie jest powiązany z zakupem sprzętu i np. dotyczy wyrównania wsparcia dla posiadanego sprzętu?' is_need_editor freeze_finanse 'normal' need_instance.czy_w_ramach_sprzetu_sa_uslugi_wsparcia True 0 %}
+            <div id="sprzet_wycofywany">    
+                {% need_field 61 need_instance.numery_seryjne_nazwy_wycofywnego_sprzetu form.numery_seryjne_nazwy_wycofywnego_sprzetu 'Podaj nazwy i numery seryjne wymienianego sprzętu:' is_need_editor freeze_finanse 'tekst' need_instance.czy_w_wyniku_zakupu_bedzie_wycofywany_stary_sprzet True 0 %}
+            </div>
+        </div>  
+        {% need_field 21 need_instance.czy_wymiana_sprzetu_na_nowy|yesno:"Tak,Nie" form.czy_wymiana_sprzetu_na_nowy 'Czy w przypadku zakupu sprzętu będzie dokonana wymiana sprzętu na nowo zakupiony?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_jest_sprzet True 0 %}
+    
+    </div>
+
+    {% need_field 1 need_instance.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia|yesno:"Tak,Nie" form.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia 'Czy przedmiotem inicjatywy jest zakup usług (innych niż usługi wsparcia producenta)?' is_need_editor freeze_finanse 'normal' True True 0 %}
+    
+    <div id="obszar_uslug">
+        {% need_field 21 lista_uslug form.rodzaj_kupowanych_uslug 'Jeśli tak, to czy usługi dotyczą?' is_need_editor freeze_finanse 'lista' need_instance.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia True 0 %}
+        
+        {% need_field 21 need_instance.czy_zakup_uslug_jest_powiazany_z_zakupem_sprzetu|yesno:"Tak,Nie" form.czy_zakup_uslug_jest_powiazany_z_zakupem_sprzetu 'Czy zakup usług jest powiązany z zakupem sprzętu?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia True 0 %}
+        <div id="obszar_uslug_powiazany_ze_sprzetem">    
+            {% need_field 41 need_instance.czy_koszt_sprzetu_bedzie_wyodrebniony_na_fakturze|yesno:"Tak,Nie" form.czy_koszt_sprzetu_bedzie_wyodrebniony_na_fakturze 'Czy koszt sprzętu w ramach zakupu usług będzie w wyodrębniany w ofercie, umowie lub na fakturz?' is_need_editor freeze_finanse 'normal' need_instance.czy_zakup_uslug_jest_powiazany_z_zakupem_sprzetu True 0 %}
+        </div>
+        {% need_field 21 need_instance.czy_zakup_usług_jest_powiazany_ze_wsparci_producenta|yesno:"Tak,Nie" form.czy_zakup_usług_jest_powiazany_ze_wsparci_producenta 'Czy zakup usług jest powiązany z zakupem usług wsparcia producenta?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia True 0 %}
+        <div id="obszar_uslug_powiazany_ze_wsparciem"> 
+            {% need_field 41 need_instance.czy_koszt_uslug_wsparcia_producenta_bedzie_na_fakturze|yesno:"Tak,Nie" form.czy_koszt_uslug_wsparcia_producenta_bedzie_na_fakturze 'Czy koszt usług wsparcia producenta w ramach zakupu usług będzie wyodrębniany w ofercie, umowie lub na fakturz?' is_need_editor freeze_finanse 'normal' need_instance.czy_zakup_usług_jest_powiazany_ze_wsparci_producenta True 0 %}
+        </div>
+        {% need_field 21 need_instance.czy_zakup_uslug_jest_zwiazany_z_zakupem_licencji|yesno:"Tak,Nie" form.czy_zakup_uslug_jest_zwiazany_z_zakupem_licencji 'Czy zakup usług jest powiązany z zakupem licencji?' is_need_editor freeze_finanse 'normal' need_instance.czy_przedmiotem_zakupu_sa_uslugi_inne_niz_wsparcia True 0 %}
+        <div id="obszar_uslug_powiazany_z_licencjami">     
+            {% need_field 41 need_instance.czy_koszt_licencji_bedzie_wyodrebniony_na_fakturze|yesno:"Tak,Nie" form.czy_koszt_licencji_bedzie_wyodrebniony_na_fakturze 'Czy koszt licencji w ramach zakupu usług będzie w wyodrębniany w ofercie, umowie lub na fakturze?' is_need_editor freeze_finanse 'normal' need_instance.czy_zakup_uslug_jest_zwiazany_z_zakupem_licencji True 0 %}
+        </div>
+    </div>
+
+    
+   
+    {% need_field 1 need_instance.czy_zadanie_zostalo_zaplanowane|yesno:"Tak,Nie" form.czy_zadanie_zostalo_zaplanowane 'Czy zadanie zostało zaplanowane ?' is_need_editor freeze_finanse 'normal' True True 0 %}
+     
+    <div id="obszar_crip">
+        {% need_field 21 cripy form.pozycje_z_planu_CRIP 'CRIP:' is_need_editor freeze_finanse 'lista' need_instance.czy_zadanie_zostalo_zaplanowane True 0 %}
+    </div>
+ 
+    <div id="obszar_przyczyn_niezaplanowania">
+        {% need_field 1 need_instance.przyczyny_nie_zaplanowania_zadania form.przyczyny_nie_zaplanowania_zadania 'Zapotrzebowanie zakupowe nie zostało zaplanowane, ponieważ:' is_need_editor freeze_finanse 'tekst' need_instance.czy_zadanie_zostalo_zaplanowane|negate True 0 %}
+    </div>
+
+
+    {% need_field 1 need_instance.capex form.capex 'CAPEX:' is_need_editor freeze_finanse 'normal' True False 0 %}
+    {% need_field 1 need_instance.opex form.opex 'OPEX:' is_need_editor freeze_finanse 'normal' True False 0 %}
+    {% need_field 1 need_instance.sposob_okreslenia_budzetu form.sposob_okreslenia_budzetu 'Sposób określenia wartości?' is_need_editor freeze_finanse 'normal' True False 0 %}
+    {% need_field 1 need_instance.numer_zadania_inwestycyjnego form.numer_zadania_inwestycyjnego 'Numer zadania inwestycyjnego:' is_need_editor freeze_finanse 'normal' True False 0 %}
+
+    {% need_field 1 need_instance.harmonogram_platnosci_OPEX form.harmonogram_platnosci_OPEX 'Sposób fakturowania OPEX:' is_need_editor freeze_finanse 'tekst' True True 0 %}
+    {% need_field 1 need_instance.harmonogram_platnosci_CAPEX form.harmonogram_platnosci_CAPEX 'Sposób fakturowania CAPEX:' is_need_editor freeze_finanse 'tekst' True True 0 %}
+
+    <div style="clear:both;"></div>    
+        
+        {% need_field_komentarz_dziedzinowy need_instance.komentarz_finansowy form.komentarz_finansowy 'Komentarz finansowy dla Koordynatora IT:' status_akceptacji_finansow is_need_finanse_acceptor%}
+        {% if need_instance.komentarz_finansowy %}
+            {% need_field_info need_instance.odpowiedz_na_finansowy form.odpowiedz_na_finansowy 'Odpowiedź dla akceptującego finanse: ' freeze_finanse 0 %}
+        {%endif%}
+
+        <div style="clear:both;"></div>
+</div>   
+
+

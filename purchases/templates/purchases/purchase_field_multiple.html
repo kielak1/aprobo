@@ -1,0 +1,22 @@
+
+<div style="float: left;  display: flex; align-items: center; margin-right: 2px;padding-right: 2px;padding-left: 2px; background-color: aliceblue;"> 
+
+    <div> {{ field_label }} </div>
+    <div style="width: 2px;"></div>
+    <div style="clear: both;">
+    {% if not freeze_all %}
+        <div style="clear: both;"></div>
+        {% for element in instance %}
+            <b style="clear: both;"> {{element}} </b>
+            <div style="clear: both;"></div>
+        {% endfor %}   
+
+
+
+    {% else %}
+        {{ field }}   
+    {% endif%} 
+    </div>
+</div>
+
+

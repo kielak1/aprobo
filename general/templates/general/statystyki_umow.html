@@ -1,0 +1,49 @@
+<div class="statystyki_umow ">
+    {% if request.user.is_authenticated %}
+
+        <ul>
+            <li> Liczba umów z nieokreślonym statusem: <b> {{liczba_obslugiwanych_none}}  </b></li>
+            <li> Liczba umów z nieokreślonym działem: <b>   {{liczba_section_none}} </b></li>
+            <hr>
+            <li>
+                <ul>
+                    Umowy bez okreśonej deklaracji kontynuacji: 
+                    {% for umowa in rekordy_bez_kontynuacji_po_sekcji %}
+                    <li>{{ umowa.section__name }} <b>{{ umowa.liczba }}</b></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <hr>
+            <li>
+                <ul>
+                    Umowy bez okreśonej daty nowej umowy: 
+                    {% for umowa in rekordy_bez_daty_umowy_po_sekcji %}
+                    <li>{{ umowa.section__name }} <b>{{ umowa.liczba }}</b></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <hr>
+            <li>
+                <ul>
+                    Umowy bez zdefiniowanego pomysłu na kontynuację: 
+                    {% for umowa in  rekordy_bez_ideas_po_sekcji %}
+                    <li>{{ umowa.section__name }} <b>{{ umowa.liczba }}</b></li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+
+
+
+        </ul>
+        
+        
+        
+
+               
+
+
+     
+    {% endif %} 
+</div>
+

@@ -1,0 +1,171 @@
+{% extends 'base_general.html' %}
+{% load static %}
+{% load general_filters %}
+
+{% block content %}
+<style>
+    .continous-indent { margin-left: 30px; }
+    .continous-header {
+        display: flex;
+        background-color: rgb(240, 240, 229);
+        color: rgb(14, 1, 3);
+        align-items: center;
+        justify-content: center; /* Wyśrodkowanie tekstu w poziomie */
+        height: 50px; 
+        width: 1700px;
+        margin-top: 10px; /* Górny margines 10px */
+        margin-bottom: 2px; /* Dolny margines 2px */
+        font-size: 24pt; /* Wielkość czcionki na 24pt */
+    }
+    .contract-row {
+        display: flex;
+        background-color: rgb(180, 208, 208);
+        color: blue;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 1700px;
+        border-top: 1px dashed red;
+    }
+    .idea-row {
+        display: flex;
+        background-color: rgb(214, 226, 226);
+        color: blue;
+        align-items: center;
+        flex-wrap: nowrap;  
+        width: 1670px;
+    }
+    .need-row {
+        display: flex;
+        background-color: rgb(218, 214, 226);
+        color: blue;
+        align-items: center;
+        flex-wrap: nowrap;  
+        width: 1640px;
+    }
+    .purchase-row {
+        display: flex;
+        background-color: rgb(224, 210, 213);
+        color: blue;
+        align-items: center;
+        flex-wrap: nowrap;  
+        width: 1610px;
+    }
+
+    .continous-item {
+        flex: 0 0 auto;
+        padding: 5px;
+        text-align: center;
+    }
+    .continous-item img {
+        max-width: 100%;
+    }
+    .continous-link { width: 28px; }
+    .continous-id { width: 130px; }
+    .continous-subject { width: 600px; }
+    .continous-contract { width: 130px; }
+    .continous-kontrahent { width: 200px; }
+    .continous-value { width: 150px; }
+    .continous-currency { width: 40px; }
+    .continous-person { width: 130px; }
+    .continous-date { width: 130px; display: flex; align-items: center; }
+    .continous-date div { margin-left: 5px; }
+    .continous-section { width: 40px; }    
+    .continous-status {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    color: black; /* Dodaje czarny kolor tekstu */
+    font-weight: bold; /* Ustawia tekst na pogrubiony */
+}
+</style>
+
+
+<div class="header_lit"> Umowy wymagające kontynuacji</div>
+{% for contract in object_list %}
+    <div class="contract-row">
+        <div class="continous-item contract-link">
+            <a href="/contracts/edit_contract_short/?contract_id={{ contract.id }}">
+                <img src="/static/general/images/edit.jpg" alt="E">
+            </a>
+        </div>
+        <div class="continous-item contract-id">Umowa: {{ contract.id }}</div>
+        <div class="continous-item continous-subject">{{ contract.subject }}</div>
+        <div class="continous-item continous-contract">{{ contract.numer_umowy }}</div>
+        <div class="continous-item continous-date">
+            {% if contract.wymagana_data_zawarcia_kolejnej_umowy %}
+                <div>{{ contract.wymagana_data_zawarcia_kolejnej_umowy|date:"d-m-Y" }}</div>
+                <div>({{ contract.wymagana_data_zawarcia_kolejnej_umowy|days_until }})</div>
+            {% else %}
+                <div style="background-color: red;"> ??????? </div>
+            {% endif %}
+        </div>
+        <div class="continous-item continous-section">{{ contract.section }}</div>
+        <div class="continous-item continous-kontrahent">{{ contract.kontrahent }}</div>
+        <div class="continous-item continous-value">{{ contract.wartosc }}</div>
+        <div class="continous-item continous-currency">{{ contract.waluta }}</div>
+        <div class="continous-item continous-person">{{ contract.koordynator }}  </div>
+    </div>
+
+    {% for idea in contract.ideas.all %}
+        <div class="continous-indent">
+            <div class="idea-row">
+                <div class="continous-item continous-link">
+                    <a href="/ideas/wszystkiepomysly/edit_idea_short/?idea_id={{ idea.id }}">
+                        <img src="/static/general/images/edit.jpg" alt="E">
+                    </a>
+                </div>
+                <div class="continous-item continous-id">Pomysł: {{ idea.id }}</div>
+                <div class="continous-item continous-subject">{{ idea.subject }}</div>
+                <div class="continous-item continous-value"> {{ idea.orientacynjy_budzet }} </div>
+                
+                <div class="continous-item continous-status">(Status: {{ idea.status_idei }})</div>   
+                <div class="continous-item continous-section">{{ idea.section }}</div>
+                <div class="continous-item continous-person">{{ idea.osoba_prowadzaca }}</div>
+            </div>
+
+            {% for need in idea.needs.all %}
+                <div class="continous-indent">
+                    <div class="need-row">
+                        <div class="continous-item continous-link">
+                            <a href="/needs/wszystkiepotrzeby/edit_need_short/?need_id={{ need.id }}">
+                                <img src="/static/general/images/edit.jpg" alt="E">
+                            </a>
+                        </div>
+                        <div class="continous-item continous-id">Potrzeba: {{ need.id }}</div>
+                        <div class="continous-item continous-subject">{{ need.subject }}</div>
+                        <div class="continous-item continous-value"> OPEX:{{ need.opex }} </div>
+                        <div class="continous-item continous-value"> CAPEX:{{ need.capex }} </div>
+                        <div class="continous-item continous-currency">{{ need.waluta }}</div>
+
+                        <div class="continous-item continous-status">(Status: {{ need.status_potrzeby }})</div>
+                        <div class="continous-item continous-section">{{ need.section }}</div>
+                        <div class="continous-item continous-person">{{ need.osoba_prowadzaca }}</div>
+                    </div>
+
+                    {% for purchase in need.purchases.all %}
+                        <div class="continous-indent">
+                            <div class="purchase-row">
+                                <div class="continous-item continous-link">
+                                    <a href="/purchases/wszystkiezakupy/edit_purchase_short/?purchase_id={{ purchase.id }}">
+                                        <img src="/static/general/images/edit.jpg" alt="E">
+                                    </a>
+                                </div>
+                                <div class="continous-item continous-id">Zakup: {{ purchase.id }} {{ purchase.ezz.EZZ_number }} </div>
+                                <div class="continous-item continous-subject">{{ purchase.przedmiot_zakupu }}</div>
+
+                                <div class="continous-item continous-value"> OPEX:{{ purchase.budzet_opex_netto }} </div>
+                                <div class="continous-item continous-value"> CAPEX:{{ purchase.budzet_capex_netto }} </div>
+                                <div class="continous-item continous-currency">{{ purchase.waluta }}</div>
+
+                                <div class="continous-item continous-status">(Status: {{ purchase.status_procesu }})</div> 
+                                <div class="continous-item continous-section">{{ purchase.section }}</div>
+                                <div class="continous-item continous-person">{{ purchase.osoba_prowadzaca }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

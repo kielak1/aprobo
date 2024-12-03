@@ -1,0 +1,63 @@
+{% load need_tags %}
+
+<div style="border: 2px solid red; background-color: rgb(241, 237, 237); padding: 10px; overflow: hidden; font-size: 18px;">
+  <div style="margin-right: 5px; float: left;" title="Należy wybrać Tak, jeżeli zachodzi co najmniej jedna z poniższych przesłanek:
+    
+            zamówienie dotyczy realizacji usług, które jeszcze nie zostały zakończone
+    
+            zamówienie dotyczy realizacji usług zakończonych, ale istnieje potrzeba ich kontynuacji, a jeszcze nie został stworzony nowy Pomysł, który zaadresuje wymaganie kontynuacji
+    
+            zamówienie dotyczy zakupu środków trwałych lub WNIP, co do których świadczona jest aktualnie usługa gwarancji/wsparcia
+    
+            zamówienie dotyczy zakupu środków trwałych lub WNIP, dla których należy teraz lub w przyszłości zakupić usługę gwarancji/wsparcia (lub dokonać zakupu odtworzeniowego), a jeszcze nie został stworzony nowy Pomysł i jego realizacja sie nie zakończyła">Czy umowa jest obsługiwana?</div>
+
+  {% if is_contract_editor %}
+    <div style="margin-right: 5px; float: left;" title="Należy wybrać Tak, jeżeli zachodzi co najmniej jedna z poniższych przesłanek:
+    
+                zamówienie dotyczy realizacji usług, które jeszcze nie zostały zakończone
+            
+                zamówienie dotyczy realizacji usług zakończonych, ale istnieje potrzeba ich kontynuacji, a jeszcze nie został stworzony nowy Pomysł, który zaadresuje wymaganie kontynuacji
+            
+                zamówienie dotyczy zakupu środków trwałych lub WNIP, co do których świadczona jest aktualnie usługa gwarancji/wsparcia
+            
+                zamówienie dotyczy zakupu środków trwałych lub WNIP, dla których należy teraz lub w przyszłości zakupić usługę gwarancji/wsparcia (lub dokonać zakupu odtworzeniowego), a jeszcze nie został stworzony nowy Pomysł i jego realizacja sie nie zakończyła">{{ form.obslugiwana }}</div>
+  {% else %}
+    <div style="margin-right: 5px;width: 64px; height: 35px; float: left;" class="read_only_list">
+      {% if contract_instance.obslugiwana == True %}
+        TAK
+      {% elif contract_instance.obslugiwana == False %}
+        NIE
+      {% else %}
+        ???
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div style="margin-right: 5px; float: left;" title="Umowa wymaga kontynuacji, jeżeli po zakończeniu usługi świadczonej w ramach umowy/zamówienia niezbędne będzie zamówienie usługi/subskrypcji lub zakupienie nowego sprzętu lub licencji.">Czy umowa wymaga kontynuacji?</div>
+
+  {% if is_contract_editor %}
+    <div style="margin-right: 5px; float: left;" title="Umowa wymaga kontynuacji, jeżeli po zakończeniu usługi świadczonej w ramach umowy/zamówienia niezbędne będzie zamówienie usługi/subskrypcji lub zakupienie nowego sprzętu lub licencji.">{{ form.czy_wymagana_kontynuacja }}</div>
+  {% else %}
+    <div style="margin-right: 5px;width: 64px; height: 35px; float: left;" class="read_only_list">
+      {% if contract_instance.czy_wymagana_kontynuacja == True %}
+        TAK
+      {% elif contract_instance.czy_wymagana_kontynuacja == False %}
+        NIE
+      {% else %}
+        ???
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div style="margin-right: 5px; float: left;" title="Jeżeli umowa została sklasyfikowana jako wymagająca kontynuacji, to w pole Wymagana data kolejnej umowy należy wpisać datę, od której powinna obowiązywać kolejna umowa. Jeżeli zachodzi przypadek, że aby zapewnić ciągłość świadczenia usług, należy zawrzeć więcej niż jedną kolejną umowę, to należy wpisać datę najwcześniejszej umowy.">Wymagana data kolejnej umowy:</div>
+
+  {% if is_contract_editor %}
+    <div style="margin-right: 5px; float: left;" title="Jeżeli umowa została sklasyfikowana jako wymagająca kontynuacji, to w pole Wymagana data kolejnej umowy należy wpisać datę, od której powinna obowiązywać kolejna umowa. Jeżeli zachodzi przypadek, że aby zapewnić ciągłość świadczenia usług, należy zawrzeć więcej niż jedną kolejną umowę, to należy wpisać datę najwcześniejszej umowy.">{{ form.wymagana_data_zawarcia_kolejnej_umowy }}</div>
+  {% else %}
+    <div style="margin-right: 5px; height: 35px; float: left;" class="read_only_list">{{ contract_instance.wymagana_data_zawarcia_kolejnej_umowy }}</div>
+  {% endif %}
+</div>
+
+{% need_field_info contract_instance.przedmiot_kolejnej_umowy form.przedmiot_kolejnej_umowy 'Przedmiot kolejnej umow:' is_contract_editor|negate 0 %}
+
+<div style="clear: both;"></div>

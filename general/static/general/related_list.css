@@ -1,0 +1,44 @@
+.related_header_contract {
+    background-color: rgb(228, 228, 171);
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.related_header_idea {
+    background-color: rgb(170, 199, 166);
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.related_header_need {
+    background-color: rgb(184, 196, 214);
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.related_header_purchase {
+    background-color: rgba(151, 151, 149, 0.932);
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.related_body {
+    width: 100%;
+    background-color: rgb(210, 219, 219);
+    padding-left: 5px;
+}
+
+.related_wciecie {
+    width: 100%;
+    padding-left: 40px;
+}
+
+.related_separator {
+    width: 100%;
+    height: 2px;
+    background-color: blue;
+}

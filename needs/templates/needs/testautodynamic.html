@@ -1,0 +1,22 @@
+{% extends 'base_needs.html' %}
+
+{% load static %}
+{% block title %}Edycja potrzeby{% endblock %}
+{% load need_tags %}
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        
+        <label for="id_subject">Subject:</label>
+        {{ form.subject }}
+
+        <label for="id_uslugi">Uslugi:</label>
+        {{ form.uslugi }}
+
+        <button type="submit" name="Submit">Save</button>
+        <button type="submit" name="Anuluj">Cancel</button>
+    </form>
+
+{% endblock %}

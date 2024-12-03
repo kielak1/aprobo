@@ -1,0 +1,93 @@
+<!-- cbu_import.html -->
+{% extends 'base_contracts.html' %}
+
+{% block content %}
+    <div style="background-color: rgb(198, 218, 203); width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        <h1>Wczytane umowy z CBU</h1>
+        {% if number_of_records %}
+            wczytano {{ number_of_records }} umów z CBU ({{ number_of_new_records }} nowych)
+        {% endif %}
+
+        {% if error %}
+            <h2>{{ error }}</h2>
+        {% endif %}
+
+        {% if lista %}
+            <h2>Zaimportowane umowy:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sygnatura</th>
+                        <th>Data zawarcia</th>
+                        <th>Data zakończenia</th>
+                        <th>Status</th>
+                        <th>Nazwa kontrahenta</th>
+                        <th>Osoba prowadząca</th>
+                        <th>Wartość wydatkowa</th>
+                        <th>Wartość wpływowa</th>
+                        <th>Odbior wydatkowy</th>
+                        <th>Odbior wpływowy</th>
+                        <th>Temat</th>
+                        <th>Idemand</th>
+                        <th>Mandant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for element in lista %}
+                        <tr>
+                            {% for cell in element %}
+                                <td class="cell-td">{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak zaimportowanych wierszy</p>          
+        {% endif %}
+
+        {% if odrzucone %}
+            <h2>Odrzucone wiersze:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sygnatura</th>
+                        <th>Data zawarcia</th>
+                        <th>Data zakończenia</th>
+                        <th>Status</th>
+                        <th>Nazwa kontrahenta</th>
+                        <th>Osoba prowadząca</th>
+                        <th>Wartość wydatkowa</th>
+                        <th>Wartość wpływowa</th>
+                        <th>Odbior wydatkowy</th>
+                        <th>Odbior wpływowy</th>
+                        <th>Temat</th>
+                        <th>Idemand</th>
+                        <th>Mandant</th>
+                        <th>Powód</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for element, reason in odrzucone %}
+                        <tr>
+                            {% for cell in element %}
+                                <td class="cell-td">{{ cell }}</td>
+                            {% endfor %}
+                            <td class="cell-td">{{ reason }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Brak odrzuconych wierszy</p>
+        {% endif %}
+
+        
+        <div class="mt-4">
+            <a href="{% url 'ezzc_import' %}" class="btn btn-zielony">Import umów z EZZ</a>
+            <a href="{% url 'ezzc_add' %}" class="btn btn-zolty ml-2">Dołącz zaimportowane umowy do bazy umów</a>
+        </div>
+
+    </div>
+
+{% endblock %}

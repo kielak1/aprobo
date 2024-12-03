@@ -1,0 +1,31 @@
+<!-- zlecenia_import_form.html --> 
+{% extends 'base_general.html' %}
+{% load general_tags %}
+{% block content %}
+    <div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        {% excell_import "Import zleceń kontrolingowych" "Importuj" %}
+        <hr><br>
+        <h1>Importowany plik powinien mieć format zgodny z poniższym przykładem. Plik w formacie excell. Bez wiersza nagłówkowego.</h1>
+        <br> <br>   
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr>
+                <td style="border: 1px solid black;"> C10011KI0003 </td>
+                <td style="border: 1px solid black;"> Naprawy i konserwacje pozostałe IT </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;"> C40111DF0001</td>
+                <td style="border: 1px solid black;"> DF: Zad. Dep. Informatyki</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;"> C40211DE0001 </td>
+                <td style="border: 1px solid black;"> Wdr. i roz. CBU</td>
+            </tr>
+        </table>
+         <br>
+        <br>
+    </div>  
+{% endblock %}
+
+
+
+    

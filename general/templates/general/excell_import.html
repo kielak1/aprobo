@@ -1,0 +1,13 @@
+<!-- excell_import.html -->
+ {% load need_tags %}
+<div style="border-color: blueviolet;">
+    <h2>{{ header_text }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.excel_file.id_for_label }}">Wybierz plik w formacie .xlsx</label>
+            {{ form.excel_file }}
+        </div>
+        {% buton  "button-danger" "" button_text  button_text %} 
+    </form>
+</div>

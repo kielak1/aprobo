@@ -1,0 +1,64 @@
+{% load humanize %}
+{% load general_filters %}
+{% if purchase_list %}
+    <div  class="related_header_purchase">Powiązane zakupy</div>
+    {% for purchase in purchase_list %}
+        <div class="related_body">
+            <div style="width: 4%; float: left;">
+                {%if is_client%}    
+                    {{ purchase.id }} 
+                {%else%}
+                    <a href="/purchases/wszystkiezakupy/edit_purchase_short/?purchase_id={{ purchase.id }}"title="Edycja zakupu">  {{ purchase.id }}  </a>
+                {%endif%}
+            </div>
+            <div style="width: 7%;float: left;">
+                <b>{{ purchase.ezz.EZZ_number  }}  </b>
+            </div>
+           
+            <div style="width: 72%;float: left;">
+                {{ purchase.przedmiot_zakupu }}  
+            </div>
+            <div style="width: 17%;float: left;">
+                <b>{{ purchase.status_procesu }}</b>/{{purchase.status_akceptacji}}  
+            </div>
+            <div style="clear: both;"></div>
+
+            <div class="related_wciecie">
+                <div style="width: 10%; float: left;">
+                    {{ purchase.wymagana_data_zawarcia_umowy }}
+                </div>
+                <div style="width: 13%; float: left;">
+                    CX: {{ purchase.budzet_capex_netto|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 13%; float: left;">
+                    OX: {{ purchase.budzet_opex_netto|floatformat:2|space_intcomma }}
+                </div>
+                <div style="width: 9%; float: left;">
+                    ({{ purchase.waluta }})
+                </div>
+                <div style="float: left;">
+                    {{ purchase.client }}
+                </div>                  
+ 
+            </div>
+
+            <div style="clear: both;"></div>
+            <div class="related_wciecie"> 
+
+                <div style="width: 28%;float: left;">
+                    {{ purchase|get_kupiec }}
+                </div>           
+                <div style="width: 22%;float: left;">
+                    <b>{{ purchase|get_SAP_CRM}}</b>
+                </div>                     
+                <div style="width: 22%;float: left;">
+                    <b>{{ purchase|get_connect}}</b>
+                </div>             
+            </div>
+
+
+            <div style="clear: both;"></div>
+            <div class="related_separator"></div>
+        </div>
+    {% endfor %}
+{% endif %} 

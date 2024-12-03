@@ -1,0 +1,30 @@
+#!/bin/bash
+
+rm -r /home/tkielak/AvanTIc/docs/developer/contracts
+rm -r /home/tkielak/AvanTIc/docs/developer/ideas
+rm -r /home/tkielak/AvanTIc/docs/developer/needs
+rm -r /home/tkielak/AvanTIc/docs/developer/general
+rm -r /home/tkielak/AvanTIc/docs/developer/purchases
+rm -r /home/tkielak/AvanTIc/docs/developer/account
+
+cd docs
+make clean
+sudo chmod -R a+rw _build
+sudo find _build -type f -exec chmod a+rw {} \;
+sudo find _build -type d -exec chmod a+x {} \;
+sudo find source -type f -exec chmod a+rw {} \;
+sudo find source -type d -exec chmod a+x {} \;
+sudo find _static -type f -exec chmod a+rw {} \;
+sudo find _static -type d -exec chmod a+x {} \;
+
+# Wygeneruj pliki .rst dla każdej aplikacji, wykluczając katalogi migracji
+#sphinx-apidoc -f -o avantic ../test1
+sphinx-apidoc -f -o developer/ideas ../ideas ../ideas/migrations
+sphinx-apidoc -f -o developer/needs ../needs ../needs/migrations
+sphinx-apidoc -f -o developer/purchases ../purchases ../purchases/migrations
+sphinx-apidoc -f -o developer/general ../general ../general/migrations
+sphinx-apidoc -f -o developer/account ../account ../account/migrations
+sphinx-apidoc -f -o developer/contracts ../contracts ../contracts/migrations
+
+make html
+cd ..

@@ -1,0 +1,71 @@
+
+
+
+class ContractsForm(forms.ModelForm):
+    class Meta:
+
+        widgets = {
+            'wymagana_data_zawarcia_kolejnej_umowy': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+        }
+
+    def __init__(self, *args, display_fields=None, is_idea_allocator=False, is_idea_viewer=False, is_idea_editor=False, **kwargs):
+        self.fields['wymagana_data_zawarcia_kolejnej_umowy'].input_formats = ['%d-%m-%Y']
+
+
+
+
+
+class IdeasForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'wymagana_data_realizacji': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+            'do_kiedy_zawieszona': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+        }
+
+    def __init__(self, *args, display_fields=None, is_idea_allocator=False, is_idea_viewer=False, is_idea_editor=False, **kwargs):
+
+        self.fields['wymagana_data_realizacji'].input_formats = ['%d-%m-%Y']
+        self.fields['do_kiedy_zawieszona'].input_formats = ['%d-%m-%Y']
+
+class NeedsForm(forms.ModelForm):
+    class Meta:
+            'wymagana_data_realizacji': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'start_licencji': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'koniec_licencji': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'start_wsparcia_licencji': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'koniec_wsparcia_licencji': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'data_poczatku_uslug_wsparcia': forms.DateInput(format='%d-%m-%Y',attrs={'style': 'width: 15ch;'}),
+            'data_konca_uslug_wsparcia': forms.DateInput(attrs={format='%d-%m-%Y','style': 'width: 15ch;'}),
+        }
+
+    def __init__(self, *args, display_fields=None, is_idea_allocator=False, is_idea_viewer=False, is_idea_editor=False, **kwargs):
+
+        self.fields['wymagana_data_realizacji'].input_formats = ['%d-%m-%Y']
+        self.fields['start_licencji'].input_formats = ['%d-%m-%Y']
+        self.fields['koniec_licencji'].input_formats = ['%d-%m-%Y']
+        self.fields['start_wsparcia_licencji'].input_formats = ['%d-%m-%Y']
+        self.fields['koniec_wsparcia_licencji'].input_formats = ['%d-%m-%Y']
+        self.fields['data_poczatku_uslug_wsparcia'].input_formats = ['%d-%m-%Y']
+        self.fields['data_konca_uslug_wsparcia'].input_formats = ['%d-%m-%Y']
+
+
+
+
+
+class PurchasesForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'date_of_last_acceptance': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+            'data_utworzenia': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+            'data_wprowadzenia': forms.DateInput(attrs={'style': 'width: 15ch;'}),
+        }
+
+    def __init__(self, *args, display_fields=None, is_idea_allocator=False, is_idea_viewer=False, is_idea_editor=False, **kwargs):
+
+        self.fields['date_of_last_acceptance'].input_formats = ['%d-%m-%Y']
+        self.fields['data_utworzenia'].input_formats = ['%d-%m-%Y']
+        self.fields['data_wprowadzenia'].input_formats = ['%d-%m-%Y']
+
+
+
+

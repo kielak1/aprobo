@@ -1,0 +1,25 @@
+<!-- common_start_body.html -->
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- Zawartość strony, początkowo zablokowana -->
+<div id="content" class="disabled">
+
+    <div class="kontener">
+        {% if ENVIRONMENT == 'nonprod' %}
+            <div class="nonprod-warning">
+                UWAGA: Jesteś na systemie NIEPRODUKCYJNYM
+            </div>
+        {% endif %}
+        <!-- ============= COMPONENT ============== -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Aprobo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% include "menu_common.html" %}

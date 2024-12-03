@@ -1,0 +1,46 @@
+{% extends 'base_general.html' %}
+{% block content %}
+    <div style="background-color: rgb(152, 187, 211); margin-left: 10px;  width: 1500px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        <h1>Wczytane dane uslugi</h1>
+        {% if number_of_records %}
+            Wczytano {{ number_of_records }} usług ({{ number_of_new_records }} nowych)
+        {% endif %}
+        {% if error %}
+            <h2>{{ error }}</h2>
+        {% endif %}
+        {% if lista %}
+            <h2>Zaimportowane usługi</h2>
+            <table>
+                <tr>
+                    <th>Numer</th>
+                    <th>Nazwa</th>
+                </tr>
+                {% for element in lista %}
+                    <tr>
+                        <td>{{ element.0 }}</td>
+                        <td>{{ element.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Brak nowych usług</p>
+        {% endif %}
+        {% if rejected %}
+            <h2>Odrzucone usługi</h2>
+            <table>
+                <tr>
+                    <th>Numer</th>
+                    <th>Nazwa</th>
+                    <th>Powód odrzucenia</th>
+                </tr>
+                {% for element in rejected %}
+                    <tr>
+                        <td>{{ element.0 }}</td>
+                        <td>{{ element.1 }}</td>
+                        <td>{{ element.2 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

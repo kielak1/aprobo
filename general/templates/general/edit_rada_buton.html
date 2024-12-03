@@ -1,0 +1,29 @@
+{% load need_tags %}
+{% load static %}
+
+{% if is_recommender %}
+    {% if instance.meeting_status.status == "nowe" or  instance.meeting_status.status == "zamknięte" %}
+        {% buton  "button-proces" "" "otworz" "Otwórz posiedzenie" %}
+    {% endif %} 
+    {% if instance.meeting_status.status == "otwarte"  %}    
+        {% buton  "button-proces" "" "zamknij" "Zamknij posiedzenie" %} 
+   
+        {% buton  "button-normal" "" "zapisz" "Zapisz" %}       
+        {% buton  "button-normal" "" "z_poprzedniego" "Zaproś tych co poprzednio" %}     
+        {% buton  "button-normal" "" "wszyscy" "Wszyscy obecni" %}     
+        {% buton  "button-normal" "" "dodajdyskutowane" "Aktualizuj listę tematów" %}     
+        {% buton  "button-normal" "" "wyslijagende" "Wyślij agendę" %}         
+    {% endif %} 
+    {% if instance.meeting_status.status == "nowe"  %}    
+        {% buton  "button-danger" "Czy na pewno chcesz usunąć to posiedzenie Rady architektury" "Usun" "Usuń posiedzenie" %}
+    {% endif %} 
+
+    {% if instance.meeting_status.status == "zamknięte"  %}    
+        <a href="/general/protokol-rady/{{instance.id}}/">
+            <img src="{% static 'general/images/word.png' %}" alt="MS Word Icon" style="width: 32px; height: 32px;">
+        </a>
+    {% endif %} 
+
+{%endif%}
+{% buton  "button-normal" "" "lista" "Lista posiedzeń" %}   
+<div style="clear: both;"></div>

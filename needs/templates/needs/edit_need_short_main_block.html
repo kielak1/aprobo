@@ -1,0 +1,53 @@
+
+{% load need_tags %}
+<div style="width:1000px; ">
+
+    {% need_field_base need_instance.wymagana_data_realizacji form.wymagana_data_realizacji 'Data realizacji: ' freeze_all 1 1%}
+    {% need_field_base need_instance.orientacynjy_budzet form.orientacynjy_budzet 'Budżet: ' freeze_all 0 1%}
+    {% need_field_base need_instance.waluta form.waluta '' freeze_all 1 1%}
+    {% need_field_base need_instance.rodzaj_inicjatywy form.rodzaj_inicjatywy 'Rodzaj inicjatywy:' freeze_all 1 1%}
+    <div style="clear: both;"></div>
+    {% need_field_base need_instance.rozwojowy|yesno:"Tak,Nie" form.rozwojowy 'Rozwojowa:' freeze_all 1 1%}
+    {% need_field_base need_instance.odtworzeniowy|yesno:"Tak,Nie" form.odtworzeniowy 'Odtworzeniowa:' freeze_all 1 1%}
+
+    <div style="clear: both;"></div>
+   
+    {% need_field_base need_instance.client form.client 'Klient:' freeze_all 1 1%} 
+    <div style="clear: both;"></div>
+    {% need_field_base need_instance.osoba_kontakowa_u_klienta form.osoba_kontakowa_u_klienta 'Kontakt:' freeze_all 1 1%}
+    {% need_field_base need_instance.wlasciciel_biznesowy form.wlasciciel_biznesowy 'BDM: (Właściciel biznesowy):' freeze_all 1 1%}
+    
+    <div style="clear: both;"></div>
+    {% if is_need_editor %}
+        {% if status_akceptacji == "zaakceptowane" or is_superuser %}
+            {% include "link_purchases_in_needs.html" %}   
+        {% endif %}
+    {% endif %}
+
+    {% need_field_form_only form.link_do_clarity ' Link do wniosku w Clarity:' freeze_all %}
+    {% need_field_form_only form.link_do_dokumentacji 'Link do dokumentacji:' freeze_all %}
+
+    <div style="clear: both;"></div>
+
+    {% need_field_info need_instance.opis form.opis 'Opis:' freeze_all 1%}
+    {% need_field_info need_instance.uzasadnienie form.uzasadnienie 'Usasadnienie:' freeze_all 1%}
+    {% need_field_info need_instance.produkty form.produkty 'Produkty:' freeze_all 1%}
+    {% need_field_info need_instance.komentarz form.komentarz 'Komentarz:' freeze_all 0%}
+
+
+
+    {% need_field_base need_instance.proponowany_sposob_realizacji form.proponowany_sposob_realizacji 'Proponowany sposób realizacji:' freeze_all 1 0%}
+
+    {% need_field_base need_instance.czy_inicjatywa_dotyczy_aplikacji|yesno:"Tak,Nie"  form.czy_inicjatywa_dotyczy_aplikacji  'Czy inicjatywa dotyczy aplikacji?' freeze_all 0 1%}
+
+    {% need_field_base need_instance.godziny_dostepnosci_rozwiazania  form.godziny_dostepnosci_rozwiazania  'Godziny dostępności aplikacji:' freeze_all need_instance.czy_inicjatywa_dotyczy_aplikacji 1%}
+    {% need_field_base need_instance.oczekiwany_czas_reakcji  form.oczekiwany_czas_reakcji  'Oczekiwany czas reakcji [h]:' freeze_all  need_instance.czy_inicjatywa_dotyczy_aplikacji  1%}    
+    <div style="clear: both;"></div>
+
+    {% need_field_base need_instance.klasyfikacja_w_sensie_procedury_jakosci  form.klasyfikacja_w_sensie_procedury_jakosci  'Klasyfikacja w sensie procedury jakokości:' freeze_all need_instance.czy_inicjatywa_dotyczy_aplikacji 1%}
+    {% need_field_base need_instance.oczekiwany_czas_przywrocenia  form.oczekiwany_czas_przywrocenia  'Oczekiwany czas przywrócenia [h]:' freeze_all need_instance.czy_inicjatywa_dotyczy_aplikacji 1%}
+ 
+
+    <div style="clear:both;"></div>           
+
+</div>

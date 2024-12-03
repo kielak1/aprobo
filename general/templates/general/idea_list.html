@@ -1,0 +1,21 @@
+{% load humanize %}
+{% load general_filters %}
+{% if ideas %}
+  <div class="related_header_idea">Powiązane pomysły</div>
+  {% for idea in ideas %}
+    <div class="related_body">
+      <div style="width: 4%; float: left;">
+        <a href="/ideas/wszystkiepomysly/edit_idea_short/?idea_id={{ idea.id }}" title="Edycja pomysłu">{{ idea.id }}</a>
+      </div>
+      <div style="width: 79%;float: left;padding-right: 5px;">{{ idea.subject }}</div>
+      <div style="width: 17%;float: left;">{{ idea.status_idei }}/{{ idea.status_akceptacji }}</div>
+      <div style="clear: both;"></div>
+      <div class="related_wciecie">
+        <div style="width: 10%; float: left;">{{ idea.wymagana_data_realizacji }}</div>
+        <div style="width: 13%; float: left;">B: {{ idea.orientacynjy_budzet|floatformat:2|space_intcomma }}</div>
+      </div>
+      <div style="clear: both;"></div>
+      <div class="related_separator"></div>
+    </div>
+  {% endfor %}
+{% endif %}

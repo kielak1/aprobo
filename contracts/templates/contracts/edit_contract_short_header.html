@@ -1,0 +1,14 @@
+{% load header_tags %}
+{% load general_filters %}
+
+<div class="header-blok"; style="width: {{szerokosc}}px">
+    {% header_field  0 '' contract_instance.id   'Umowa:' 'umowa'  %}
+    {% header_field  0 '' contract_instance.numer_umowy   'Sygnatura:' ''  %}
+    {% header_field  is_contract_allocator  form.section contract_instance.section    'Dział:' '' %}
+    {% header_field  is_contract_allocator  form.koordynator contract_instance.koordynator   '' ''  %}
+    {% header_field  is_contract_editor  form.liczba_aneksow  contract_instance.liczba_aneksow    'Liczba aneksów:' ''  %}
+    {% header_field  is_contract_editor  form.data_zawarcia  contract_instance.data_zawarcia    'Zawarta:' ''  %}
+    {% header_field  is_contract_editor  form.wartosc  contract_instance.wartosc    'Wartość:' ''  %}
+    {% header_field  is_contract_editor  form.waluta  contract_instance.waluta    '' ''  %}
+</div>
+<div style="clear: both;"></div>

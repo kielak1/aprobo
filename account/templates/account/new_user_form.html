@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+    
+    html,
+    body {
+      background-image: url("{% static 'general/images/tlo.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+      font-family: 'Numans', sans-serif;
+    }
+
+    .container {
+      height: 100vh; /* pełna wysokość widoku */
+    }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3>Rejestracja</h3>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'create_new_user' %}" autocomplete="off">
+            {% csrf_token %}
+            {% if form.errors %}
+              <div class="alert alert-danger" role="alert">Wystąpiły błędy w formularzu. Proszę spróbować ponownie.</div>
+            {% else %}
+              <p class="text-center text-light">Wypełnij poniższy formularz, aby się zarejestrować:</p>
+            {% endif %}
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="imie" class="form-control" placeholder="Imię" id="id_imie" required />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="nazwisko" class="form-control" placeholder="Nazwisko" id="id_nazwisko" required />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="email" name="email" class="form-control" placeholder="Email" id="id_email" required />
+            </div>
+            <div class="form-group">
+             <input type="submit" value="Zarejestruj" class="btn float-right login_btn w-100" />
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

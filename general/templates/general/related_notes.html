@@ -1,0 +1,25 @@
+{% load need_tags %}
+{% load general_filters %}
+<div style="width: 1000px; background-color: rgb(206, 206, 214);">
+    <div style="display: flex;align-items: center; ">
+        <div>{% buton  "button-normal" "Czy na pewno chcesz dodać notatkę?" "notka" "Dodaj notatkę" %}</div>
+        <input type="text" name="tresc_notatki" value="" style="margin-left: 5px;  width: 880px;" >  
+
+    </div>
+    <div style="clear: both;"></div>
+    {% if notes %}
+        <div style="float: left; width: 1000px; background-color: rgb(206, 206, 214); overflow: auto; max-height: 200px;">
+            {% for note in notes %}
+            
+                <div style="display: flex; overflow: auto; align-items: center; color: rgb(23, 13, 80); border-bottom: 1px solid #ff0000; font-size: 16px;">
+                    <div style="width: 150px; float: left;">{{ note.timestamp|date:"Y-m-d H:i:s" }}</div>
+                    <div style="width: 140px; float: left;">{{ note.user }}</div>
+                    <div style="width: 660px; float: left;">{{ note.content|make_links }}</div>
+                </div>
+                <div style="clear: both;"></div>
+            {% endfor %}
+        </div>
+    
+    {%endif%}
+</div>        
+<div style="clear: both;"></div>

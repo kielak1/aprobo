@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block sidebar %}
+  {{ block.super }}
+{% endblock %}
+
+{% block branding %}    
+  <link rel="stylesheet" href="{% static 'general/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'general/style.css' %}">
+  <h1 id="site-name">{{ site_header }} </h1>
+  <div class="mt-4">
+    {% for link in extra_links %}
+      <a href="{{ link.url }}" class="btn btn-zielony">{{ link.name }}</a>
+    {% endfor %}
+    <a href="/admin/login/?next=/admin/" class="btn btn-zolty">ADMIN</a>
+  </div> 
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load general_filters %}
+
+<li><a class="dropdown-item" href="{{sciezka}}"> {{etykieta}} &raquo; </a>
+    <ul class="submenu dropdown-menu">
+        <li><a class="dropdown-item" href="{{sciezka}}">Wszystkie działy</a></li>
+        {% for section in request.user.custom_models.all %}
+            <li><a class="dropdown-item" href="{{sciezka}}section__short_name={{ section.short_name }}"> {{ section.short_name }}   </a></li>
+        {% endfor %} 
+    </ul>
+</li>  

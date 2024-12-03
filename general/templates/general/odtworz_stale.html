@@ -1,0 +1,54 @@
+<!-- odtworz_stalych.html -->
+{% extends 'base_general.html' %}
+
+
+{% block content %}
+    <div class="header_lit">Odtworzenie stałych</div>
+
+    {% if lista_dodanych %}
+        <p>Poniższe statusy pomysłów zostały dodane:</p>
+        <ul>
+            {% for status in lista_dodanych %}
+                <li>{{ status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak nowych statusów pomysłów do dodania.</p>
+    {% endif %}
+
+    {% if lista_dodanych_need %}
+        <p>Poniższe statusy potrzeb zostały dodane:</p>
+        <ul>
+            {% for status in lista_dodanych_need %}
+                <li>{{ status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak nowych statusów potrzeb do dodania.</p>
+    {% endif %}
+
+    {% if lista_dodanych_grup %}
+        <p>Poniższe grupy zostały dodane:</p>
+        <ul>
+            {% for status in lista_dodanych_grup %}
+                <li>{{ status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak nowych grup do dodania.</p>
+    {% endif %}
+
+
+    {% if lista_dodanych_rada %}
+        <p>Poniższe ststusy Rady zostały dodane:</p>
+        <ul>
+            {% for status in lista_dodanych_rada %}
+                <li>{{ status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak nowych statusów Rady do dodania.</p>
+    {% endif %}
+
+
+{% endblock %}

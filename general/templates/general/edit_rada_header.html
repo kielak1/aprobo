@@ -1,0 +1,15 @@
+{% load header_tags %}
+<div class="header-blok" style="width:{{ szerokosc }}px">
+  {% with id_part=instance.id|stringformat:'s' %}
+    {% with date_part=instance.meeting_date|stringformat:'s' %}
+      {% with instance_id_date=id_part|add:' - '|add:date_part %}
+        {% header_field 0 '' instance_id_date 'Rada Architektury:' '' %}
+      {% endwith %}
+    {% endwith %}
+  {% endwith %}
+
+  {% header_field 0 '' instance.meeting_status.status 'Posiedzenie:' instance.meeting_status.status %}
+
+  {% header_field 0 0 instance.creation_date|stringformat:'s' 'Utworzone:' 'klasa' %}
+</div>
+<div style="clear: both;"></div>

@@ -1,0 +1,59 @@
+
+{% if purchase_instance.ezz %}
+<div style="clear: both;  width: 400px; height: 24px; ">
+    Dane zaimportowane z wniosku EZZ:
+</div>
+
+<div style="float:left;  width: 140px; height: 24px; ">
+   ID: {{purchase_instance.ezz.id}}
+</div>
+
+<div style="float:left; width: 240px; height: 24px; ">
+   EZZ_ID: {{purchase_instance.ezz.EZZ_number}}
+</div>
+
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 30px; overflow: auto;">
+    Ordering person: {{purchase_instance.ezz.ordering_person}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 24px; ">
+    Creation date: {{purchase_instance.ezz.creation_date}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 150px; overflow: auto;">
+    {{purchase_instance.ezz.subject }}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 24px; ">
+    {{purchase_instance.ezz.status}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 40px; ">
+    {{purchase_instance.ezz.suplier}}
+</div>
+
+<div style="float:left; width: 400px; height: 24px; ">
+{{purchase_instance.ezz.source_of_financing}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 24px; ">
+{{purchase_instance.ezz.final_receiver}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 24px; ">
+{{purchase_instance.ezz.current_acceptor}}
+</div>
+<div style="clear:both;"></div>
+<div style="float:left; width: 400px; height: 24px; ">
+{{purchase_instance.ezz.date_of_last_acceptance}}
+</div>
+
+
+              
+                         
+                                
+
+
+{%endif%}
+

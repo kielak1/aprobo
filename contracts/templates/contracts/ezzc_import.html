@@ -1,0 +1,63 @@
+<!--ezzc_import.html -->
+{% extends 'base_contracts.html' %}
+{% block content %}
+    <div style="background-color: rgb(165, 165, 136); width: 1200px;padding-top: 10px; padding-left: 10px;padding-bottom: 10px;padding-right: 10px;">
+        <h1>Wczytane umowy z EZZ</h1>
+        {% if number_of_records %}
+            wczytano {{ number_of_records}} umów z EZZ ({{number_of_new_records}} nowych)
+        {% endif %}
+        {% if error %}
+            <h2> {{ error}}  </h2>
+        {% elif lista %}
+            <table>
+                {% for element in lista %}
+                    <tr>
+                        {% for cell in element %}
+
+                        <td class="cell-td">{{ cell}}</td>
+                        {% endfor %}
+
+
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Brak nowych umów z EZZ</p>
+        {% endif %}
+
+        {% if rejected_list%}
+            <h2>Odrzucone pozycje</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Row</th>
+                        <th>Reason for Rejection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through rejected contracts -->
+                    {% for row, reason in rejected_list %}
+                    <tr>
+                        <td>
+                            {% for item in row %}
+                            {{ item }} 
+                            {% endfor %}
+                        </td>
+                        <td>{{ reason }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {%else%}
+            <p>Brak odrzuconych pozycji</p>
+        {%endif%}
+
+               
+        <div class="mt-4">
+            <a href="{% url 'cbu_import' %}" class="btn btn-zielony">Import umów z CBU</a>
+            <a href="{% url 'ezzc_add' %}" class="btn btn-zolty ml-2">Dołącz zaimportowane umowy do bazy umów</a>
+        </div>
+
+    </div>
+{% endblock %}
+

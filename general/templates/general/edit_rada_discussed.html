@@ -1,0 +1,27 @@
+{% load need_tags %}
+<!-- Dyskutowane -->
+<div style="width: 100%;margin-top: 5px; background-color: rgb(202, 177, 204);" >
+    {% if is_editable %}
+        <div style="color:  rgb(31, 8, 53);clear: both; margin-left: 10px; font-size: 2em;"> Wybór tematów</div>
+        
+        <div style="float: left; background-color: beige;width: 50%;">
+            <div style="color: blue;">Pomysły:</div>
+            {% if is_editable %}
+            <div style=" overflow-y: auto; overflow-x: hidden; ">
+                {{form.discussed_ideas}}
+            </div>
+            {%endif%}
+        </div>
+        
+        <div style="color: blue;background-color: azure;">
+            <div >Potrzeby:</div>
+            <div  style=" overflow-y: auto; overflow-x: hidden; ">
+                {{form.discussed_needs}}
+            </div>
+        
+        </div>
+    {%endif%}
+</div>
+    
+<div style="clear: both;"></div>
+    

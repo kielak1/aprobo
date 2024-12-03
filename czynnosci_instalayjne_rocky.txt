@@ -1,0 +1,84 @@
+sudo dnf install -y postgresql postgresql-server postgresql-contrib
+sudo mkdir -p /var/lib/pgsql/13/data
+sudo chown postgres:postgres /var/lib/pgsql/13/data
+sudo /usr/bin/postgresql-setup --initdb
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+
+sudo -u postgres psql
+CREATE USER aprobo WITH PASSWORD 'aprobo';
+CREATE DATABASE aprobo;
+GRANT ALL PRIVILEGES ON DATABASE aprobo TO aprobo;
+\q
+
+sudo dnf install python3-pip
+pip install psycopg2-binary
+pip install gunicorn
+
+
+pip install django
+pip install celery
+
+
+
+sudo mkdir -p /var/log/django
+sudo touch /var/log/django/debug.log
+sudo chown -R rocky:rocky /var/log/django
+
+
+sudo chmod a+w /var/log/django
+sudo chmod a+w /var/log/django/debug.log 
+
+
+pip install django-crispy-forms django-bootstrap3 django-tables2 django-filter django-autocomplete-light
+
+
+sudo dnf groupinstall -y "Development Tools"
+sudo dnf install -y gcc libffi-devel bzip2 bzip2-devel zlib-devel xz-devel wget
+
+wget https://www.python.org/ftp/python/3.11.5/Python-3.11.5.tgz
+tar xvf Python-3.11.5.tgz
+cd Python-3.11.5
+
+
+pip install python-docx
+
+
+konfiguracja pliku /var/lib/pgsql/data/pg_hba.conf :
+local   all             all                                     md5
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5
+local   replication     all                                     md5
+host    replication     all             127.0.0.1/32            md5
+host    replication     all             ::1/128                 md5
+
+
+GUNICORN
+
+pip install gunicorn
+sudo nano /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=Gunicorn service for Django project
+After=network.target
+
+[Service]
+User=rocky
+Group=rocky
+WorkingDirectory=/opt/aprobo/aprobo
+Environment="PATH=/opt/aprobo/env/bin/"
+ExecStart=/opt/aprobo/env/bin/gunicorn -c /opt/aprobo/aprobo/gunicorn_config.py test1.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+sudo mkdir /var/log/gunicorn
+sudo setenforce 0
+sudo chmod a+rwx /var/log/gunicorn
+
+
+
+
+sudo dnf install certbot python3-certbot-nginx -y
+sudo certbot --nginx -d aprobo.kielak.com

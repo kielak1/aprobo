@@ -1,0 +1,7 @@
+{% if form.sort_field and form.sort_order %}
+  <div style="background-color: hsl(225, 20%, 66%);height: 50px; width: 340px; margin-left: 10px; display: flex; align-items: center; justify-content: space-around;">
+    <div style="height: 40px; display: flex; align-items: center;">Kolejność:</div>
+    <div style="height: 40px; display: flex; align-items: center;">{{ form.sort_field }}</div>
+    <div style="height: 40px; display: flex; align-items: center;">{{ form.sort_order }}</div>
+  </div>
+{% endif %}
