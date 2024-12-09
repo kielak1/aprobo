@@ -100,7 +100,7 @@ Treść najpóźniejszej notatki: {najpozniejsza_notatka.content if najpozniejsz
 Status procesu: {purchase.status_procesu}\n\n\
 Status akceptacji: {purchase.status_akceptacji}\n\n\n\
 Dostosuj status procesu zgodnie z poniższymi regułami:\n\n\
-roboczy- przed uzyskaniem akceptacji dyrektora Biura w systemie AvanTIc i skierowaniem wniosku w systemie EZZ do procesu akceptacyjnego \n\n\
+roboczy- przed uzyskaniem akceptacji dyrektora Biura w systemie Aprobo i skierowaniem wniosku w systemie EZZ do procesu akceptacyjnego \n\n\
 w EZZ - od uzyskania akceptacji dyrektora Biura i skierowaniu wniosku w systemie EZZ do procesu akceptacyjnego\n\n\
 w zakupach (zakup standardowy) - od uzyskania w systemie EZZ statusu: Zarejestrowany w SRM/SAP CP \n\n\
 zakup BGNIG - od uzyskania w systemie EZZ statusu: Zarejestrowany w SRM/SAP CP  (status wybierany jedynie w sytuacji kiedy z jakichkolwiek powodów Biuro Zakupów nie zajmuje się procedowaniem przedmiotowego zakupu) \n\n\
@@ -628,7 +628,7 @@ Dostawca: {purchase.suplier} \n\n\
 Odbiorca końcowy: {purchase.final_receiver} \n\n\
 Data ostatniej akceptacji: {purchase.date_of_last_acceptance} \n\n\
 Status: {purchase.status} \n\n"
-                    tresc += "\nUzupełnij w AvanTIc właściwe procesy decyzyjne\n"
+                    tresc += "\nUzupełnij w Aprobo właściwe procesy decyzyjne\n"
                     #        print(tresc)
                     temat = f"EZZ numer {purchase.EZZ_number} wymaga uwagi"
 

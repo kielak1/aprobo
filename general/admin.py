@@ -88,8 +88,8 @@ admin.site.register(Variable)
 
 
 class MyAdminSite(AdminSite):
-    site_header = "AvanTIc - Panel Administracyjny"
-    site_title = "AvanTIc - Panel Administracyjny"
+    site_header = "Aprobo - Panel Administracyjny"
+    site_title = "Aprobo - Panel Administracyjny"
 
     def has_permission(self, request):
         """Zwraca True, jeśli użytkownik jest aktywny i należy do grupy 'superuser'."""

@@ -3,12 +3,12 @@
 
 
 
-AvanTIc
-=======
+Aprobo
+======
 
 
 
-AvanTIc to system wspierający planowanie i realizację przedsięwzięć informatycznych w Biurze Informatyki Górnictwa Naftowego i Gazownictwa.  
+Aprobo to system wspierający planowanie i realizację przedsięwzięć informatycznych w Biurze Informatyki Górnictwa Naftowego i Gazownictwa.  
 System umożliwia:
 
 - Inicjowanie zakupów (Pomysły),
@@ -59,7 +59,7 @@ Indeksy i tabele
 W tej sekcji znajdziesz:
 
 - **Indeks ogólny** – lista pojęć i tematów opisanych w dokumentacji.
-- **Indeks modułów** – spis modułów systemu AvanTIc.
+- **Indeks modułów** – spis modułów systemu Aprobo.
 - **Wyszukiwarkę** – pozwala znaleźć treści w dokumentacji.
 
 * :ref:`genindex`

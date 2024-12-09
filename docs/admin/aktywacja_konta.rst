@@ -2,7 +2,7 @@ Aktywacja nowego konta
 ======================
 
 
-Jeżeli otrzymasz maila z prośbą o aktywację konta oznacza to, że ktoś zainicjował proces tworzenia konta w systemie AvanTIc. Naciśnij na odnośnik w mailu. otworzy się poniższe okno:
+Jeżeli otrzymasz maila z prośbą o aktywację konta oznacza to, że ktoś zainicjował proces tworzenia konta w systemie Aprobo. Naciśnij na odnośnik w mailu. otworzy się poniższe okno:
 
 
 

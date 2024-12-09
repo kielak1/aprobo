@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.WARNING)
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "AvanTIc"
+project = "Aprobo"
 copyright = "2024, Tadeusz Kielak"
 author = "Tadeusz Kielak"
 
